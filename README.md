@@ -19,6 +19,11 @@ Versión 1.1 – 19 de septiembre de 2021
 |Público objetivo: A partir de 12 años| Plataformas: Web|
 | Requisitos mínimos: Google Chrome(recomendado)|Idioma: Inglés|
 
+## Descripción
+ 
+ Frenzy Rail es un juego estilo top-down ambientado en el interior de un tren , donde nuestro protagonista, Guy Haines, es una estrella del tenis que tiene que viajar a Berlín para  participar en un torneo. Sin embargo, su trayecto se ve adulterado por un chantaje, según el cual deberá matar a ciertos pasajeros sin ser visto, si reniega, su padre será asesinado. Guy tendrá que hacer frente a esta adversidad y convertirse en un sigiloso homicida, evadiendose de las atentas miradas de los pasajeros.
+
+
 ## _2.1 Mecánica_
 ### 2.1.1 Mecánicas del personaje
 - Vida: Nuestro personaje no tendrá puntos de salud ni una barra de vida como tal. La partida se reseteara al último punto de control si nos descubren.
@@ -51,10 +56,22 @@ Versión 1.1 – 19 de septiembre de 2021
 >Estáticos: enemigos que están fijos en un lugar.
 Dinamicos: enemigos que se moverán por el mapa y dificultarán su asesinato
 
-## 2.1.3 Controles
+### 2.1.3 Controles
 - Personaje principal:
 >Flechas y las teclas WASD: movimiento
 Espacio: Interacción con los objetos.
 Q: Para abrir nuestro cuaderno de misiones.
 Click Derecho: coger objetos y interactuar con ellos
 E: Para acceder al inventario de objetos 
+
+### 2.1.4 Cámara
+Se utiliza una vista top down 2D.
+La cámara se encuentra fija enfocando al vagón completo, haciendo que el personaje se pueda mover libremente. Cuando pase a otro vagón, la cámara cambia a esa ubicación mostrándola al completo.
+
+## 2.2 Dinámica
+La dinámica principal de Frenzy Rail consiste en ir asesinando a los objetivos que nos marca el propio juego, moviéndonos por los vagones del tren. Para ello será necesario ir combinando las distintas mecánicas y elementos interactivos del escenario.
+
+La forma de ganar será eliminar a todos los enemigos sin ser visto y llegar a Berlín. En definitiva, el jugador no puede ser pillado con las manos en la masa.
+
+Cada vez que el jugador es visto asesinando por un integrante del vagón o por el propio objetivo, la partida se reanudará en el último punto de guardado (checkpoint). Si estos sucesos ocurren en tres ocasiones, seremos detenidos por la policía y perderemos la partida.
+
