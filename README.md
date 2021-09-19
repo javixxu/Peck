@@ -54,15 +54,20 @@ Versión 1.1 – 19 de septiembre de 2021
 - Vida: Los objetivos del personaje morirán al asestarles un único golpe.
 - Tipos: 
 >Estáticos: enemigos que están fijos en un lugar.
-Dinamicos: enemigos que se moverán por el mapa y dificultarán su asesinato
+
+>Dinamicos: enemigos que se moverán por el mapa y dificultarán su asesinato
 
 ### 2.1.3 Controles
 - Personaje principal:
 >Flechas y las teclas WASD: movimiento
-Espacio: Interacción con los objetos.
-Q: Para abrir nuestro cuaderno de misiones.
-Click Derecho: coger objetos y interactuar con ellos
-E: Para acceder al inventario de objetos 
+
+>Espacio: Interacción con los objetos.
+
+>Q: Para abrir nuestro cuaderno de misiones.
+
+>Click Derecho: coger objetos y interactuar con ellos
+
+>E: Para acceder al inventario de objetos 
 
 ### 2.1.4 Cámara
 Se utiliza una vista top down 2D.
