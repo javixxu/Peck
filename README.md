@@ -81,7 +81,7 @@ La forma de ganar será eliminar a todos los enemigos sin ser visto y llegar a B
 Cada vez que el jugador es visto asesinando por un integrante del vagón o por el propio objetivo, la partida se reanudará en el último punto de guardado (checkpoint). Si estos sucesos ocurren en tres ocasiones, seremos detenidos por la policía y perderemos la partida.
 
 ## 2.3 Estética
-Frenzy Rail aporta al jugador la sensación de estar atrapado en una pesadilla. Guy Haines se ve obligado a acabar con sus objetivos, para poder salvar la vida de su padre. Asesinando a diestro y siniestro en un tren, sin saber siquiera si las víctimas son merecedoras de ello, sintiéndote en la piel de un criminal sin escrúpulos, cuando eres únicamente un deportista de viaje a Berlín. Por otro lado, proporcionará al jugador unas ganas abrumadoras de acabar con el chantajista, y así poder continuar con normalidad su vida de deportista.
+Frenzy Rail aporta al jugador la sensación de estar atrapado en una pesadilla. Guy Haines se ve obligado a acabar con sus objetivos, para poder salvar la vida de su padre. Asesinando fríamente en un tren, sin saber siquiera si las víctimas son merecedoras de ello, sintiéndote en la piel de un criminal sin escrúpulos, cuando eres únicamente un deportista de viaje a Berlín. Por otro lado, proporcionará al jugador unas ganas abrumadoras de acabar con el chantajista, y así poder continuar con normalidad su vida de deportista.
 
 # 3. Menús y modos de juego
 Frenzy Rail dispondrá de diversos menús:
@@ -89,4 +89,12 @@ Frenzy Rail dispondrá de diversos menús:
 - Menú principal: El juego contará con un menú principal que tendrá un botón de jugar(únicamente existe el modo Un Jugador), información sobre los controles y redes sociales del juego.
 - Menú de pausa: Desde la propia partida podremos acceder a un menú de pausa. Incluirá un botón de reanudar partida, acceso al menú de ajustes y vuelta al menú principal, 
 - Menú De Ajustes:El jugador podrá acceder a información sobre los controles y regular tanto el volumen como el brillo.
+
+## 3.1 Configuración
+El menú de ajustes dispondrá las opciones de:
+
+- Ajustar el volumen del juego
+- Ajustar el brillo
+- Mapa de los controles
+
 
