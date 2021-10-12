@@ -1,0 +1,144 @@
+h1 {
+	text-align: center;
+	font-family: Courier;
+}
+a {
+	text-align: right;
+	color:white;
+}
+p{
+	font-family: 'Arial Black', sans-serif;
+	color:whitesmoke;
+	font-size: 16px;
+	display: inline-block;
+	padding-inline: 20px;
+ 
+}
+ul{
+	
+	display: inline-block;
+	padding-inline: 150px;
+}
+body {
+	background-image: url("fondo2.png");
+	  background-size: 100%;
+	  background-repeat: no-repeat;
+	  background-position: 100% 10%;
+	  background-attachment: scroll;
+}
+* {
+	  margin:0px;
+	  padding:0px;
+}
+#banner{
+	  margin: auto;
+	  width: 100%;
+	  text-align: center;
+}
+#header {
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+ul, ol {
+	list-style:none;
+}
+.navegador > li {
+	display: inline-block;
+}
+.navegador li ul {
+	display:none;
+	position:absolute;
+	min-width:50px;
+}
+			
+.navegador li:hover > ul {
+	display:block;
+	padding-inline: 0px;
+}
+			
+.navegador li ul li {
+	position:relative;
+}
+			
+.navegador li ul li ul {
+	right:-140px;
+	top:0px;
+}
+.iconos{
+	padding-left: 650px;
+}
+.iconos > li {
+	display: inline-block;
+	padding-top: 200px;
+}
+
+
+#juego{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonJuego.png");
+}
+#juego:hover{
+	background-image: url("botones/juPulsado.png");
+}
+#historia{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonHistoria.png");
+}
+#menu10{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonNarrativ.png");
+}
+#menu10:hover{
+	background-image: url("botones/narrPulsado.png");
+}
+#menu11{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonPer.png");
+}
+#menu11:hover{
+	background-image: url("botones/perPulsado.png");
+}
+#acerca{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonAcer.png");
+}
+#menu20{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonJuego.png");
+}
+#menu20:hover{
+	background-image: url("botones/juPulsado.png");
+}
+#menu21{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonNosotros.png");
+}
+#menu21:hover{
+	background-image: url("botones/nosPulsado.png");
+}
+#redes{
+	width: 300px;
+	height: 90px;
+	background-image: url("botones/botonRedes.png");
+}
+#redes:hover{
+	background-image: url("botones/redesPulsado.png");
+}
+#twitter{
+	width: 90px;
+	height: 90px;
+	background-image: url("logos/twitterLog.png");
+}
+#github{
+	width: 90px;
+	height: 90px;
+	background-image: url("logos/githubLog.png");	
+}
