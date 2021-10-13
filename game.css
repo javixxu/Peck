@@ -65,7 +65,7 @@ ul, ol {
 	top:0px;
 }
 .iconos{
-	padding-left: 45%;
+	padding-left: 40%;
 }
 
 .iconos > li {
@@ -139,4 +139,9 @@ ul, ol {
 	width: 90px;
 	height: 90px;
 	background-image: url("logos/githubLog.png");	
+}
+#pivotal{
+	width: 90px;
+	height: 90px;
+	background-image: url("logos/pivotalLog.png");
 }
