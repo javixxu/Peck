@@ -38,18 +38,18 @@ body {
 #header {
 	margin: auto;
 	width: 100%;
-	text-align: center;
+	align-items: center;
 }
 ul, ol {
 	list-style:none;
 }
 .navegador > li {
 	display: inline-block;
+	align-items: center;
 }
 .navegador li ul {
 	display:none;
 	position:absolute;
-	min-width:50px;
 }
 			
 .navegador li:hover > ul {
@@ -62,18 +62,16 @@ ul, ol {
 }
 			
 .navegador li ul li ul {
-	right:-140px;
 	top:0px;
 }
 .iconos{
-	padding-left: 650px;
+	padding-left: 40%;
 }
+
 .iconos > li {
 	display: inline-block;
 	padding-top: 200px;
 }
-
-
 #juego{
 	width: 300px;
 	height: 90px;
@@ -141,4 +139,9 @@ ul, ol {
 	width: 90px;
 	height: 90px;
 	background-image: url("logos/githubLog.png");	
+}
+#pivotal{
+	width: 90px;
+	height: 90px;
+	background-image: url("logos/pivotalLog.png");
 }
