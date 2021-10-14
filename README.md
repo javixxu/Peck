@@ -9,7 +9,7 @@ Nombre de los autores y correo electrónico de contacto:
 - Javier Comas de Frutos javcomas@ucm.es
 - Adrián Montero Castrillo admont02@ucm.es
 
-Versión 1.1 – 30 de septiembre de 2021
+Versión 1.2 –14 octubre 2021
 
 ## Características
 
@@ -87,6 +87,9 @@ Obstáculos que bloquean el paso:
 Asimismo, habrá trampas (obstáculos que quitan vida):
 - Pinchos: Quitan medio corazón mientras se esté en contacto con ellos.
 - Alcantarilla: Quita un corazón al caer en ella. El jugador, tras caer por ella aparecerá justo detrás de ésta.  
+- Charco de lodo: si la protagonista cae o se posiciona dentro de uno de estos se reducirá su velocidad a la mitad y como consecuencia la altura de su salto. El efecto dura 5 segundos desde que se pisa por primera vez.
+
+
 
 ### 2.1.3 Cámara
 La cámara tendrá movimiento de scroll lateral y seguirá al jugador, viéndose tan solo una parte del nivel y no éste completo. La partida se desarrolla en un único plano lateral. 
@@ -124,26 +127,21 @@ Peck dispondrá únicamente de un modo de juego, que será el modo Single Player
 
 - Menú principal
 - Menú de pausa: Desde la propia partida podremos acceder a un menú de pausa.
-- Menú De Ajustes
+
 
 ## 3.1 Configuración
 
 El menú de pausa tendrá las opciones de:
 - Reanudar el juego
-- Menú de ajustes
 - Salir del juego (volver al menú principal)
-
-El menú de ajustes dispondrá las opciones de:
-- Ajustar el volumen del juego
-- Ajustar el brillo
-- Mapa de los controles
+- Configuración del sonido
 
 El menú principal dará acceso a:
 - Iniciar la Partida
-- Menú de Ajustes 
 - Información sobre los controles
 - Redes sociales del juego
 - Salir del juego
+
 
 ## 3.2 Interfaz y control  
 Si pulsamos la tecla “ESC” nos abrirá el menú de pausa.
@@ -157,8 +155,11 @@ El día del undécimo cumpleaños de Cathy Brenner una bandada de gaviotas, cuer
 
 ## 4.2 Niveles
 
+Los niveles estarán predefinidos en el diseño, es decir, siempre habrá el mismo número de enemigos.
 El juego consta de dos niveles en los que la dificultad aumenta gradualmente. Ambos niveles están ambientados en Bodega Bay y se darán en un escenario similar. El final o la meta de los dos será el coche de Mitch Brenner.
 En el segundo nivel aparecerán obstáculos de mayor dificultad con respecto al nivel anterior, por ejemplo más trampas o plataformas más separadas.
+En ambos niveles habrá ciertas zonas en las que la concentración de enemigos será mayor de la usual, por ello, alrededor de estas zonas encontraremos objetos que nos servirán de ayuda.
+
 
 ## 4.3 Personajes y enemigos
 
@@ -166,15 +167,22 @@ Protagonista: Cathy Brenner. Ocupa 1,5 x 1,5.
 
 Los enemigos tendrán la habilidad de atacar a Cathy colisionando con ella. Irán apareciendo aleatoriamente del cielo, volando hacia ella.
 
-- Cuervo: Enemigo hostil que ataca por la espalda. Ocupa la mitad que la protagonista.
+- Cuervo: Enemigo hostil que ataca por la espalda en línea recta, dándose la vuelta al llegar al límite de la pantalla. Ocupa la mitad que la protagonista.
+
 
 ![N|Solid](https://cdn.discordapp.com/attachments/884555645414699018/891738880787750963/unknown.png)
-- Gaviota: Enemigo hostil que ataca con el doble de velocidad que el cuervo, de forma directa desde todas las direcciones, cayendo en picado hacia su objetivo. Ocupa la mitad que la protagonista.
+- Gaviota: Enemigo hostil que realiza movimientos circulares alrededor de un punto fijo. Ocupa la mitad que la protagonista.
+
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/891739115060600832/unknown.png?width=749&height=657)
-- Gorrión: Enemigo hostil que ataca a  la mitad de velocidad que el cuervo. Es a su vez el enemigo más numeroso. Ocupa la mitad que la protagonista.
+- Gorrión: Enemigo hostil que se mueve en semicírculos tocando el suelo (es decir, dando saltitos por el suelo), a lo largo de un radio de medio metro. Es a su vez el enemigo más numeroso. Ocupa ¼ de la escala de la protagonista.
+
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/891737841741234226/unknown.png?width=758&height=657)
+
+Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino será la posición del jugador en el momento en el que se genere el enemigo (no se actualizará de constante), es decir, si el jugador se mueve, no será perseguido. El movimiento que realiza este enemigo es con forma de semi parábola cóncava.
+
+![N|Solid](https://st4.depositphotos.com/20277160/38579/v/600/depositphotos_385794022-stock-illustration-vector-of-flying-eagle-mascot.jpg)
 
 | Daño producido |por los enemigos: |
 | ------ | ------ |
@@ -190,6 +198,8 @@ Controles de movimiento:
 - Menú de pausa: Al pulsar la tecla “ESC” aparecerá en la pantalla el menú de pausa que contendrá distintas opciones.
 
 ## 4.4 Objetos
+Los objetos aparecerán aleatoriamente por el escenario de juego, y se activan automáticamente al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres objetos:
+
 - Llave para la jaula: al recogerla, Cathy abre su jaula y lanza  un periquito para eliminar varios cuervos cuando el periquito explota cerca de estos. Cathy dispone 2 periquitos por nivel , en su jaula 
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/893092168477061130/llave.png)
@@ -213,3 +223,4 @@ https://www.shutterstock.com/es/image-vector/old-school-8-bit-pixel-art-66359515
 - https://www.istockphoto.com/es/vector/mantequilla-de-man%C3%AD-en-un-tarro-icono-del-arte-p%C3%ADxel-aislado-sobre-fondo-blanco-gm959493560-262011776
 https://www.pinterest.ch/pin/807129564441953561/
 - https://es.123rf.com/photo_84161725_adhesivos-venda-salud-icono-imagen-vector-ilustraci%C3%B3n-dise%C3%B1o.html
+- https://mx.depositphotos.com/
