@@ -9,7 +9,7 @@ Nombre de los autores y correo electrónico de contacto:
 - Javier Comas de Frutos javcomas@ucm.es
 - Adrián Montero Castrillo admont02@ucm.es
 
-Versión 1.2 –14 octubre 2021
+Versión 1.3 –22 octubre 2021
 
 ## Características
 
@@ -186,7 +186,7 @@ Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino ser�
 
 | Daño producido |por los enemigos: |
 | ------ | ------ |
-| Gorrión: 0,5 corazones | Cuervo: 1 corazón |
+| Gorrión: 0,5 corazones | Cuervo y Aguilucho: 1 corazón |
 |Gaviota: | 1,5 corazones |
 
 ### 4.3.1 Controles
