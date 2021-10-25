@@ -11,6 +11,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
+  
   constructor(scene, x, y) {
     super(scene, x, y, 'player');
     this.score = 0;
@@ -25,6 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.updateScore();
   }
+  
 
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
@@ -52,12 +54,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     super.preUpdate(t,dt);
     if (this.cursors.up.isDown && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
+     
     }
     if (this.cursors.left.isDown) {
       this.body.setVelocityX(-this.speed);
+      this.setFlip(true,false);
     }
     else if (this.cursors.right.isDown) {
-      this.body.setVelocityX(this.speed);
+      this.body.setVelocityX(this.speed); 
+      this.setFlip(false,false);
     }
     else {
       this.body.setVelocityX(0);
