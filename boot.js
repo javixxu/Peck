@@ -26,7 +26,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('player', 'cathy2.png');
    
     this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
-     this.load.spritesheet('run','cathy_run.png',{frameWidth:50, frameHeight:75});
+    this.load.spritesheet('run','cathy_run.png',{frameWidth:50, frameHeight:75});
+    this.load.spritesheet('jump','cathy_jump.png',{frameWidth:50, frameHeight:75});
   }
 
   /**

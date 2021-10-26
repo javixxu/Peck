@@ -53,7 +53,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
   updateScore() {
     this.label.text = 'PECK HITO 1 ' + this.score;
   }
-
+   playerAnimations(){
+    if(this.right.isDown){
+      this.stop;
+      this.setFlip(false,false);
+      this.play('run_anim');
+    }
+    else if(this.left.isDown){
+      this.stop;
+      this.setFlip(true,false);
+      this.play('run_anim');
+    }
+    else if(this.Jump.isDown||this.Up.isDown){
+    this.stop;
+    this.play('jump_anim');
+   }
+   else if( this.body.setVelocityX(0))//this.body.speed==0
+   {
+     this.stop;
+     this.play('still_anim');
+   }
+  }
+  
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
    * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -62,36 +83,35 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
+    this.playerAnimations();
     
-    if((this.Jump.isDown||this.Up.isDown)&&this.body.onFloor()){
-      this.body.setVelocityY(this.jumpSpeed);
-      //this.stop();
-      //this.play('idle_anim');
-    }
-    else if(this.Up.isDown){
+    if((this.Jump.isDown||this.Up.isDown)&&this.body.onFloor())
+      this.body.setVelocityY(this.jumpSpeed);   
+    
+    //else if(this.Up.isDown){
       //this.stop();
       //this.play('idle_anim');
       //animacion de k se agache
       //Sprite de k este agachado
-    }
-    if(this.right.isDown){
-      this.body.setVelocityX(this.speed); 
       
-      this.setFlip(false,false);
-      //this.stop();
-      this.play('run_anim');
-    } 
-    else if(this.left.isDown){
+    //}
+    if(this.right.isDown)
+     
+      this.body.setVelocityX(this.speed); 
+      //this.play('run2_anim');
+    
+    else if(this.left.isDown)
+    
       this.body.setVelocityX(-this.speed);
-      this.setFlip(true,false);
-     // this.stop();   
-      this.play('run_anim');
-    }
-    else {
-      this.body.setVelocityX(0);
+     
+      //this.stop(); 
+      //this.play('still_anim');
+    
+    else   
+      this.body.setVelocityX(0); //this.body.setVelocityY(0);
       //this.stop();   
-      this.play('still_anim');
-    }
+      //this.play('still_anim');
+    
     
   }
   
