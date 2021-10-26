@@ -27,8 +27,8 @@ export default class Level extends Phaser.Scene {
     this.bases = this.add.group();
     this.player = new Player(this, 200, 300);
    
-    new Platform(this, this.player, this.bases, 150, 350);
-    new Platform(this, this.player, this.bases, 850, 350);
+    new Platform(this, this.player, this.bases, 150, 450);
+    new Platform(this, this.player, this.bases, 850, 450);
     //new Platform(this, this.player, this.bases, 500, 200);
     //new Platform(this, this.player, this.bases, 150, 100);
     //new Platform(this, this.player, this.bases, 850, 100);
