@@ -19,11 +19,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
-    this.speed = 300;
-    this.jumpSpeed = -400;
+    this.speed = 250;
+    this.jumpSpeed = -300;
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.label = this.scene.add.text(10, 10, "");
-    this.cursors = this.scene.input.keyboard.createCursorKeys();
+    //NO BORRAR PUEDE SER UTILIZADO MAS ADELANTE
+    //this.cursors = this.scene.input.keyboard.createCursorKeys();
+   
+    this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    this.Down=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.Up=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+
     this.updateScore();
   }
   
@@ -52,21 +60,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    if (this.cursors.up.isDown && this.body.onFloor()) {
+    
+    if((this.Jump.isDown||this.Up.isDown)&&this.body.onFloor()){
       this.body.setVelocityY(this.jumpSpeed);
-     
     }
-    if (this.cursors.left.isDown) {
-      this.body.setVelocityX(-this.speed);
-      this.setFlip(true,false);
+    else if(this.Up.isDown){
+      //animacion de k se agache
+      //Sprite de k este agachado
     }
-    else if (this.cursors.right.isDown) {
+    if(this.right.isDown){
       this.body.setVelocityX(this.speed); 
       this.setFlip(false,false);
+    } 
+    else if(this.left.isDown){
+      this.body.setVelocityX(-this.speed);
+      this.setFlip(true,false);
     }
     else {
       this.body.setVelocityX(0);
     }
+    
   }
   
 }
