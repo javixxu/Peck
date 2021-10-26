@@ -44,6 +44,12 @@ export default class Level extends Phaser.Scene {
       frameRate: 8, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
+    this.anims.create({
+      key: 'still_anim',
+      frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+      frameRate: 8, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     this.spawn();
   }
 

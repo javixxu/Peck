@@ -51,7 +51,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * Actualiza la UI con la puntuación actual
    */
   updateScore() {
-    this.label.text = 'Score: ' + this.score;
+    this.label.text = 'PECK HITO 1 ' + this.score;
   }
 
   /**
@@ -78,19 +78,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.body.setVelocityX(this.speed); 
       
       this.setFlip(false,false);
-      this.stop();
+      //this.stop();
       this.play('run_anim');
     } 
     else if(this.left.isDown){
       this.body.setVelocityX(-this.speed);
       this.setFlip(true,false);
-      this.stop();   
+     // this.stop();   
       this.play('run_anim');
     }
     else {
       this.body.setVelocityX(0);
       //this.stop();   
-      //this.play('idle_anim');
+      this.play('still_anim');
     }
     
   }
