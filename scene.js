@@ -32,6 +32,18 @@ export default class Level extends Phaser.Scene {
     //new Platform(this, this.player, this.bases, 500, 200);
     //new Platform(this, this.player, this.bases, 150, 100);
     //new Platform(this, this.player, this.bases, 850, 100);
+    /*this.anims.create({
+      key: 'idle_anim',
+      frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 3 }),
+      frameRate: 8, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });*/
+    this.anims.create({
+      key: 'run_anim',
+      frames: this.anims.generateFrameNumbers('run', { start: 0, end: 6 }),
+      frameRate: 8, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     this.spawn();
   }
 
