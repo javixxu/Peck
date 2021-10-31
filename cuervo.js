@@ -22,16 +22,13 @@ export default class Cuervo extends Phaser.GameObjects.Sprite {
     this.speedPos = 250;
     this.speedInv=-250;
     this.speed=250;
+    this.jumpSpeed = -1;
   
     //NO BORRAR PUEDE SER UTILIZADO MAS ADELANTE
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     
   }
-  
-
- 
-   
   
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -40,17 +37,21 @@ export default class Cuervo extends Phaser.GameObjects.Sprite {
    * @override
    */
   preUpdate(t,dt) {
+    
     super.preUpdate(t,dt);
    
  this.body.setVelocityX(this.speed);//movimiento
- 
+ this.body.setVelocityY(this.jumpSpeed);
+
    if(this.body.blocked.right){//si choca derecha
        this.setFlip(true,false);
        this.speed=this.speedInv;//velocidad negativa
+       this.jumpSpeed--;
    }
    else if(this.body.blocked.left){//si choca izquierda
     this.setFlip(true,false);
     this.speed=this.speedPos;//velocidad positiva
+    this.jumpSpeed--;
    
 }
   }
