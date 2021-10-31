@@ -9,7 +9,7 @@ Nombre de los autores y correo electrónico de contacto:
 - Javier Comas de Frutos javcomas@ucm.es
 - Adrián Montero Castrillo admont02@ucm.es
 
-Versión 1.3 –22 octubre 2021
+Versión 1.4 –31 octubre 2021
 
 ## Características
 
@@ -211,6 +211,10 @@ Los objetos aparecerán aleatoriamente por el escenario de juego, y se activan a
 - Vendas: Recuperan un corazón entero de salud, nunca superando la vida máxima de 5 corazones.
 
 ![N|Solid](https://previews.123rf.com/images/jemastock/jemastock1708/jemastock170811033/84161725-adhesivos-venda-salud-icono-imagen-vector-ilustraci%C3%B3n-dise%C3%B1o.jpg)
+
+-Refresco :La velocidad de Cathy se duplica durante 5 segundos.
+![N|Solid](https://media.discordapp.net/attachments/884555645414699018/904436623834492978/cola.png)
+
 
 # Referencias
 Basado en “Los pájaros” (película de 1963 - Alfred Hitchcock).
