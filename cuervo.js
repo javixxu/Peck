@@ -18,8 +18,10 @@ export default class Cuervo extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
-    this.speed = 250;
-    
+    //velocidades para los choques
+    this.speedPos = 250;
+    this.speedInv=-250;
+    this.speed=250;
   
     //NO BORRAR PUEDE SER UTILIZADO MAS ADELANTE
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -40,18 +42,17 @@ export default class Cuervo extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
    
+ this.body.setVelocityX(this.speed);//movimiento
  
-   if(this.body.blocked.right){
+   if(this.body.blocked.right){//si choca derecha
        this.setFlip(true,false);
-       this.body.setVelocityX(-this.speed);
+       this.speed=this.speedInv;//velocidad negativa
    }
-   else if(this.body.blocked.left){
+   else if(this.body.blocked.left){//si choca izquierda
     this.setFlip(true,false);
-    this.body.setVelocityX(this.speed);
+    this.speed=this.speedPos;//velocidad positiva
+   
 }
-//else this.body.setVelocityX(this.speed);
-    
-    
   }
  
 }
