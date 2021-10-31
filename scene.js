@@ -56,6 +56,12 @@ export default class Level extends Phaser.Scene {
       frameRate: 8, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
+    this.anims.create({//en estático
+      key: 'raven_right',
+      frames: this.anims.generateFrameNumbers('cuervo', { start: 0, end: 8 }),
+      frameRate: 8, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     this.spawn();
   }
 
