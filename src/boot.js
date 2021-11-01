@@ -20,7 +20,9 @@
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
         this.load.image('star', 'star.png');
+        this.load.image('cola', 'cola.png');
         this.load.image('player', 'cathy2.png');
+
         //this.load.image('city', 'city.png');
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});

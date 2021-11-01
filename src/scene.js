@@ -25,7 +25,7 @@ export default class Level extends Phaser.Scene {
     this.add.sprite(500,250, 'background2');
     this.stars = 10;
     this.bases = this.add.group();
-    this.player = new Player(this, 200, 300);
+    this.player = new Player(this, 200, 300, 4.5);
     this.crow= new Crow(this,100,100);
 
     new Platform(this, this.player, this.bases, 150, 350);

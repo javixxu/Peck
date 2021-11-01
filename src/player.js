@@ -11,7 +11,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
-  constructor(scene, x, y) {
+  constructor(scene, x, y, numslife) {
     super(scene, x, y, 'player');
     this.score = 0;
     this.scene.add.existing(this);
@@ -23,14 +23,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.label = this.scene.add.text(10, 10, "");
     this.cursors = this.scene.input.keyboard.createCursorKeys();
-
+    this.lifes=numslife;
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
 
     this.updateScore();
   }
+ PerderVida(golpe){
+ this.lifes-=golpe;
 
+}
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
    * actualiza la UI con la puntuación actual.
@@ -45,6 +48,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   updateScore() {
     this.label.text = 'PECK HITO 1: ' + this.score;
+    this.lifes+=0.5;
   }
   
   playerAnimations(){
@@ -78,6 +82,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.playerAnimations();
+    let x=10;
+    for(let i=0;i<this.lifes;i+=0.5){
+      this.scene.add.image(x,15, 'cola');
+      x+=this.scene.add.image(x,15, 'cola').width/2;
+    }
     if ((this.cursors.up.isDown || this.Jump.isDown) && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
     }
