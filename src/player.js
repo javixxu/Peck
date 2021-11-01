@@ -1,4 +1,5 @@
 import Star from './star.js';
+import scene from './scene.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
  * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
@@ -17,8 +18,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
-    this.body.setCollideWorldBounds();
+    //this.body.setCollideWorldBounds();
     this.speed = 300;
+    this.speedAux=this.speed;
     this.jumpSpeed = -400;
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.label = this.scene.add.text(10, 10, "");
