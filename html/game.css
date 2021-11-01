@@ -78,7 +78,7 @@ ul, ol {
 #juego{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonJuego.png");
+	background-image: url("./assets/botones/botonJuego.png");
 }
 #juego:hover{
 	background-image: url("/assets/botones/juPulsado.png");
