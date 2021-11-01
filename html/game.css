@@ -43,6 +43,9 @@ body {
 ul, ol {
 	list-style:none;
 }
+.navegador{
+	padding-left: 10%;
+}
 .navegador > li {
 	display: inline-block;
 	align-items: center;
