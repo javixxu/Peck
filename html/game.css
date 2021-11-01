@@ -43,7 +43,11 @@ body {
 ul, ol {
 	list-style:none;
 }
+.navegador{
+	padding-left: 20%;
+}
 .navegador > li {
+	
 	display: inline-block;
 	align-items: center;
 }
