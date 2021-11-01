@@ -22,6 +22,7 @@
         this.load.image('star', 'star.png');
         this.load.image('cola', 'cola.png');
         this.load.image('player', 'cathy2.png');
+        this.load.image('city', 'city.png');
 
         //this.load.image('city', 'city.png');
 

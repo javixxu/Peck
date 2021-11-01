@@ -1,7 +1,22 @@
 import Player from './player.js';
 import Platform from './platform.js';
 import Crow from './crow.js';
+import Floor from './floor.js';
 
+const createAligned = (scene, large, texture, scrollFactor)=>{
+  const w = scene.textures.get(texture).getSourceImage().width;
+  const cant = Math.ceil(large/w)*scrollFactor;
+
+  let x=0;
+
+  for(let i=0; i<cant; i++){
+    const b = scene.add.image(x, scene.scale.height, texture)
+    .setOrigin(0,1)
+    .setScrollFactor(scrollFactor);
+
+    x+=b.width;
+  }
+}
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -22,10 +37,23 @@ export default class Level extends Phaser.Scene {
    * Creación de los elementos de la escena principal de juego
    */
   create() {
-    this.add.sprite(500,250, 'background2');
+    const width=this.scale.width;
+    const height = this.scale.height;
+    const large=width*10;
+
+    createAligned(this, large, 'city', 0.5);
+    //this.add.sprite(500,250, 'background2');
     this.stars = 10;
     this.bases = this.add.group();
+<<<<<<< Updated upstream
     this.player = new Player(this, 200, 300, 4.5);
+=======
+    this.player = new Player(this, 200, 300);
+    for(let i = 0; i < large; i+=60)
+    {
+      this.ground = new Floor(this, this.player, i, height);
+    }
+>>>>>>> Stashed changes
     this.crow= new Crow(this,100,100);
 
     new Platform(this, this.player, this.bases, 150, 350);
@@ -62,7 +90,12 @@ export default class Level extends Phaser.Scene {
         repeat: -1    // Animación en bucle
       });
     this.spawn();
+
+    this.cameras.main.setBounds(0, 0, width*5, height);
+    this.cameras.main.startFollow(this.player);
   }
+
+  
 
   /**
    * Genera una estrella en una de las bases del escenario
@@ -89,4 +122,7 @@ export default class Level extends Phaser.Scene {
 
       }
   }
+}
+function onCollision (obj1, obj2){
+  obj2.hamdleCollision(obj2.nameImg);
 }
