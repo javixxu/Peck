@@ -1,7 +1,6 @@
 import Player from './player.js';
 import Platform from './platform.js';
-import Cuervo from './cuervo.js';
-
+import Crow from './crow.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -23,15 +22,15 @@ export default class Level extends Phaser.Scene {
    * Creación de los elementos de la escena principal de juego
    */
   create() {
-    this.add.sprite(500,250,'background');
+    this.add.sprite(500,250, 'background2');
     this.stars = 10;
     this.bases = this.add.group();
     this.player = new Player(this, 200, 300);
-    this.cuervo= new Cuervo(this,100,100);
-   
-    new Platform(this, this.player, this.bases, 150, 450);
-    new Platform(this, this.player, this.bases, 850, 450);
-   
+    this.crow= new Crow(this,100,100);
+
+    new Platform(this, this.player, this.bases, 150, 350);
+    new Platform(this, this.player, this.bases, 850, 350);
+
     /*this.anims.create({
       key: 'idle_anim',
       frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 3 }),
@@ -39,29 +38,29 @@ export default class Level extends Phaser.Scene {
       repeat: -1    // Animación en bucle
     });*/
     this.anims.create({ //correr 1
-      key: 'run_anim',
-      frames: this.anims.generateFrameNumbers('run', { start: 0, end: 6 }),
-      frameRate: 8, // Velocidad de la animación
-      repeat: -1  // Animación en bucle
-    });
-    this.anims.create({ //correr 1
-      key: 'jump_anim',
-      frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 6 }),
-      frameRate: 8, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
-    });
-    this.anims.create({//en estático
-      key: 'still_anim',
-      frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
-      frameRate: 8, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
-    });
-    this.anims.create({//en estático
-      key: 'raven_right',
-      frames: this.anims.generateFrameNumbers('cuervo', { start: 0, end: 8 }),
-      frameRate: 8, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
-    });
+        key: 'run_anim',
+        frames: this.anims.generateFrameNumbers('run', { start: 0, end: 6 }),
+        frameRate: 8, // Velocidad de la animación
+        repeat: -1  // Animación en bucle
+      });
+      this.anims.create({ //correr 1
+        key: 'jump_anim',
+        frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 6 }),
+        frameRate: 8, // Velocidad de la animación
+        repeat: -1    // Animación en bucle
+      });
+      this.anims.create({//en estático
+        key: 'still_anim',
+        frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+        frameRate: 8, // Velocidad de la animación
+        repeat: -1    // Animación en bucle
+      });
+      this.anims.create({//en estático
+        key: 'raven_right',
+        frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 8 }),
+        frameRate: 8, // Velocidad de la animación
+        repeat: -1    // Animación en bucle
+      });
     this.spawn();
   }
 
@@ -71,7 +70,7 @@ export default class Level extends Phaser.Scene {
    * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
    */
   spawn(from = null) {
-    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
+    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
   }
 
   /**

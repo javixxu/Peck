@@ -3,7 +3,7 @@ import scene from './scene.js'
 /**
  * Clase que representa el cuervo.
  */
-export default class Cuervo extends Phaser.GameObjects.Sprite {
+export default class Crow extends Phaser.GameObjects.Sprite {
   
   /**
    * Constructor del jugador
@@ -13,7 +13,7 @@ export default class Cuervo extends Phaser.GameObjects.Sprite {
    */
   
   constructor(scene, x, y) {
-    super(scene, x, y, 'cuervo');
+    super(scene, x, y, 'crow');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el cuervo no se salga de los límites del mundo
