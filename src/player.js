@@ -13,6 +13,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * @param {number} y Coordenada Y
    */
   constructor(scene, x, y, numslife) {
+    
     super(scene, x, y, 'player');
     this.score = 0;
     this.scene.add.existing(this);
@@ -74,7 +75,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
      this.play('still_anim');
    }
   }
-  
+  pintarVidas(){
+    
+    let x=this.body.x;
+    for(let i=0;i<this.lifes;i+=0.5){
+      this.scene.add.image(x,15, 'cola');
+      x+=this.scene.add.image(x,15, 'cola').width/2;
+
+    }
+  }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
    * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -84,11 +93,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.playerAnimations();
-    let x=10;
-    for(let i=0;i<this.lifes;i+=0.5){
-      this.scene.add.image(x,15, 'cola');
-      x+=this.scene.add.image(x,15, 'cola').width/2;
-    }
+    this.pintarVidas();
     if ((this.cursors.up.isDown || this.Jump.isDown) && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
     }
