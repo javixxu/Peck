@@ -133,15 +133,15 @@ ul, ol {
 #twitter{
 	width: 90px;
 	height: 90px;
-	background-image: url("/assets/logos/twitterLog.png");
+	background-image: url("../assets/logos/twitterLog.png");
 }
 #github{
 	width: 90px;
 	height: 90px;
-	background-image: url("/assets/logos/githubLog.png");	
+	background-image: url("../assets/logos/githubLog.png");	
 }
 #pivotal{
 	width: 90px;
 	height: 90px;
-	background-image: url("/assets/logos/pivotalLog.png");
+	background-image: url("../assets/logos/pivotalLog.png");
 }
