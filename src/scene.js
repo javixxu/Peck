@@ -1,7 +1,7 @@
 import Player from './player.js';
 import Platform from './platform.js';
-import Crow from './crow.js';
-import Floor from './floor.js';
+//import Crow from './crow.js';
+//import Floor from './floor.js';
 
 const createAligned = (scene, large, texture, scrollFactor)=>{
   const w = scene.textures.get(texture).getSourceImage().width;
@@ -46,12 +46,13 @@ export default class Level extends Phaser.Scene {
     this.stars = 10;
     this.bases = this.add.group();
     this.player = new Player(this, 200, 300);
+    /**
     for(let i = 0; i < large; i+=60)
     {
       this.ground = new Floor(this, this.player, i, height);
     }
     this.crow= new Crow(this,100,100);
-
+*/
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
 
@@ -119,6 +120,8 @@ export default class Level extends Phaser.Scene {
       }
   }
 }
+/** 
 function onCollision (obj1, obj2){
   obj2.hamdleCollision(obj2.nameImg);
 }
+*/

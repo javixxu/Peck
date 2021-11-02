@@ -6,37 +6,37 @@
  * sobre cómo hacer una barra de progreso.
  */
  export default class Boot extends Phaser.Scene{
-       /**
-   * Constructor de la escena
-   */
-        constructor() 
-        {
-            super({ key: 'boot' }); 
-        }
-        
     /**
-   * Carga de los assets del juego
-   */
-  preload()
-  {
-        this.load.setPath ('../assets/images/');
-        this.load.image ('background2', 'background2.jpg');
-        this.load.image('platform', 'platform.png');
-        this.load.image('base', 'base.png');
-        this.load.image('star', 'star.png');
-        this.load.image('player', 'cathy2.png');
-        this.load.image('city', 'city.png');
+* Constructor de la escena
+*/
+     constructor() 
+     {
+         super({ key: 'boot' }); 
+     }
+     
+ /**
+* Carga de los assets del juego
+*/
+preload()
+{
+     this.load.setPath ('./../assets/images/');
+     this.load.image ('background2', 'background2.jpg');
+     this.load.image('platform', 'platform.png');
+     this.load.image('base', 'base.png');
+     this.load.image('star', 'star.png');
+     this.load.image('player', 'cathy2.png');
+     this.load.image('city', 'city.png');
 
-        this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
-        this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
-        this.load.spritesheet('run','cathy_run.png',{frameWidth:50, frameHeight:75});
-        this.load.spritesheet('jump','cathy_jump.png',{frameWidth:50, frameHeight:75});
-  }
-   /**
-   * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
-   * nivel del juego
-   */
-  create(){
-      this.scene.start('level');
-  }
- }
+     this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
+     this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
+     this.load.spritesheet('run','cathy_run.png',{frameWidth:50, frameHeight:75});
+     this.load.spritesheet('jump','cathy_jump.png',{frameWidth:50, frameHeight:75});
+}
+/**
+* Creación de la escena. En este caso, solo cambiamos a la escena que representa el
+* nivel del juego
+*/
+create(){
+   this.scene.start('level');
+}
+}

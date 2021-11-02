@@ -20,7 +20,7 @@ ul{
 	padding-inline: 150px;
 }
 body {
-	background-image: url("/assets/images/fondo2.png");
+	background-image: url("../assets/images/fondo2.png");
 	  background-size: 100%;
 	  background-repeat: no-repeat;
 	  background-position: 100% 10%;
@@ -78,73 +78,73 @@ ul, ol {
 #juego{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonJuego.png");
+	background-image: url("../assets/botones/botonJuego.png");
 }
 #juego:hover{
-	background-image: url("/assets/botones/juPulsado.png");
+	background-image: url("../assets/botones/juPulsado.png");
 }
 #historia{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonHistoria.png");
+	background-image: url("../assets/botones/botonHistoria.png");
 }
 #menu10{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonNarrativ.png");
+	background-image: url("../assets/botones/botonNarrativ.png");
 }
 #menu10:hover{
-	background-image: url("/assets/botones/narrPulsado.png");
+	background-image: url("../assets/botones/narrPulsado.png");
 }
 #menu11{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonPer.png");
+	background-image: url("../assets/botones/botonPer.png");
 }
 #menu11:hover{
-	background-image: url("/assets/botones/perPulsado.png");
+	background-image: url("../assets/botones/perPulsado.png");
 }
 #acerca{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonAcer.png");
+	background-image: url("../assets/botones/botonAcer.png");
 }
 #menu20{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonJuego.png");
+	background-image: url("../assets/botones/botonJuego.png");
 }
 #menu20:hover{
-	background-image: url("/assets/botones/juPulsado.png");
+	background-image: url("../assets/botones/juPulsado.png");
 }
 #menu21{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonNosotros.png");
+	background-image: url("../assets/botones/botonNosotros.png");
 }
 #menu21:hover{
-	background-image: url("/assets/botones/nosPulsado.png");
+	background-image: url("../assets/botones/nosPulsado.png");
 }
 #redes{
 	width: 300px;
 	height: 90px;
-	background-image: url("/assets/botones/botonRedes.png");
+	background-image: url("../assets/botones/botonRedes.png");
 }
 #redes:hover{
-	background-image: url("/assets/botones/redesPulsado.png");
+	background-image: url("../assets/botones/redesPulsado.png");
 }
 #twitter{
 	width: 90px;
 	height: 90px;
-	background-image: url("/assets/logos/twitterLog.png");
+	background-image: url("../assets/logos/twitterLog.png");
 }
 #github{
 	width: 90px;
 	height: 90px;
-	background-image: url("/assets/logos/githubLog.png");	
+	background-image: url("../assets/logos/githubLog.png");	
 }
 #pivotal{
 	width: 90px;
 	height: 90px;
-	background-image: url("/assets/logos/pivotalLog.png");
+	background-image: url("../assets/logos/pivotalLog.png");
 }
