@@ -19,9 +19,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
-    //this.body.setCollideWorldBounds();
+    this.body.setCollideWorldBounds();
     this.speed = 300;
-    this.speedAux=this.speed;
+    //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.label = this.scene.add.text(10, 10, "");
@@ -81,9 +81,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     let puestos=0;
     for(let i=0.5;i<this.lifes;i+=0.5){
       if(puestos%2==0)
-      this.scene.add.image(x,45, 'corazon');
+      this.scene.add.image(x,45,'corazon');
       else{
-       x+= this.scene.add.image(x,45, 'corazon').setFlip(true,false).width/2+20;
+       x+= this.scene.add.image(x,45,'corazon').setFlip(true,false).width/2+20;
       }      
       puestos++;
     }
@@ -97,8 +97,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.playerAnimations();
-    this.body.setCollideWorldBounds();
-    //this.pintarVidas();
     if ((this.cursors.up.isDown || this.Jump.isDown) && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
     }
@@ -112,5 +110,4 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.body.setVelocityX(0);
     }
   }
-  
 }
