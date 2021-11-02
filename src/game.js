@@ -1,3 +1,4 @@
+import Boot from './boot.js';
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
@@ -12,8 +13,8 @@
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene:[{create:create}],
-    //scene: [Boot, Level, End],
+    //scene:[{create:create}],
+    scene: [Boot/** , Level, End*/],
     physics: { 
         default: 'arcade', 
         arcade: { 
@@ -22,8 +23,10 @@
         } 
     }
 };
-function create(){
+/** 
+ function create(){
     this.add.text(400,200, "It works");
 }
+*/
 
 new Phaser.Game(config);
