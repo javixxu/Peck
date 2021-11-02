@@ -24,12 +24,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(10, 10, "");
+    this.label = this.scene.add.text(850, 10, "");
+    this.label.setScrollFactor(0);
     this.cursors = this.scene.input.keyboard.createCursorKeys();
+   
     this.lifes=numslife;
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     this.pintarVidas();
     this.updateScore();
   }
@@ -55,7 +58,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   
   playerAnimations(){
-    if(this.cursors.up.isDown || this.Jump.isDown){
+    if(this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown){
         this.stop;
         this.play('jump_anim');
        }
@@ -79,11 +82,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     
     let x=this.body.x-100;
     let puestos=0;
-    for(let i=0.5;i<this.lifes;i+=0.5){
+    const w = this.scene.textures.get('corazon').getSourceImage().width;
+    for(let i=0;i<this.lifes;i+=0.5){
       if(puestos%2==0)
-      this.scene.add.image(x,45,'corazon');
+      this.scene.add.image(x,45,'corazon').setScrollFactor(0);
       else{
-       x+= this.scene.add.image(x,45,'corazon').setFlip(true,false).width/2+20;
+       this.scene.add.image(x,45,'corazon').setFlip(true,false).setScrollFactor(0);
+       x+=20+w/2;
       }      
       puestos++;
     }
@@ -97,7 +102,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.playerAnimations();
-    if ((this.cursors.up.isDown || this.Jump.isDown) && this.body.onFloor()) {
+    if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown) && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
     }
     if (this.cursors.left.isDown ||this.left.isDown) {
