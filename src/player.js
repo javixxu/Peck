@@ -76,12 +76,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
    }
   }
   pintarVidas(){
-    
+    //this.ImagesLifes[this.lifes];
     let x=this.body.x-100;
-    for(let i=0;i<this.lifes;i+=0.5){
-      this.scene.add.image(x,15, 'cola');
-      x+=this.scene.add.image(x,15, 'cola').width/2;
-
+    let puestos=0;
+    for(let i=0.5;i<this.lifes;i+=0.5){
+      if(puestos%2==0)
+      this.scene.add.image(x,45, 'corazon');
+      else{
+       x+= this.scene.add.image(x,45, 'corazon').setFlip(true,false).width/2+20;
+      }      
+      puestos++;
     }
   }
   /**
