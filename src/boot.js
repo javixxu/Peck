@@ -27,6 +27,7 @@ preload()
      this.load.image('player', 'cathy2.png');
      this.load.image('city', 'city.png');
      this.load.image('corazon','HEART.png');
+     this.load.image('cola','cola.png');
     
 
      this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});

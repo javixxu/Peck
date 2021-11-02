@@ -2,6 +2,7 @@ import Player from './player.js';
 import Platform from './platform.js';
 import Crow from './crow.js';
 import Floor from './floor.js';
+import Cola from './cola.js';
 
 const createAligned = (scene, large, texture, scrollFactor)=>{
   const w = scene.textures.get(texture).getSourceImage().width;
@@ -51,11 +52,12 @@ export default class Level extends Phaser.Scene {
       this.ground = new Floor(this, this.player, i, height);
     }
     this.crow= new Crow(this,100,100);
+   
     
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
     new Platform(this, this.player, this.bases, 5000, 350);
-
+     this.cola= new Cola(this,300,400);
     /*this.anims.create({
       key: 'idle_anim',
       frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 3 }),
@@ -120,6 +122,11 @@ export default class Level extends Phaser.Scene {
 
       }
   }
+  cola(){
+  this.player.colaEffect();
+  }
+
+  
 }
 function onCollision (obj1, obj2){
   obj2.hamdleCollision(obj2.nameImg);
