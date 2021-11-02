@@ -30,7 +30,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-
+    this.pintarVidas();
     this.updateScore();
   }
  PerderVida(golpe){
@@ -76,7 +76,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    }
   }
   pintarVidas(){
-    //this.ImagesLifes[this.lifes];
+    
     let x=this.body.x-100;
     let puestos=0;
     for(let i=0.5;i<this.lifes;i+=0.5){
@@ -97,7 +97,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.playerAnimations();
-    this.pintarVidas();
+    //this.pintarVidas();
     if ((this.cursors.up.isDown || this.Jump.isDown) && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
     }
