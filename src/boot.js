@@ -19,7 +19,7 @@
 */
 preload()
 {
-     this.load.setPath ('../../assets/images/');
+     this.load.setPath ('./../assets/images/');
      this.load.image ('background2', 'background2.jpg');
      this.load.image('platform', 'platform.png');
      this.load.image('base', 'base.png');
