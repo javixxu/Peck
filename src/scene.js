@@ -41,7 +41,7 @@ export default class Level extends Phaser.Scene {
     const height = this.scale.height;
     const large=width*10;
 
-    createAligned(this, large, 'city', 0.5);
+    createAligned(this, large, 'city', 1);
     //this.add.sprite(500,250, 'background2');
     this.stars = 10;
     this.bases = this.add.group();
@@ -55,6 +55,7 @@ export default class Level extends Phaser.Scene {
 
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
+    new Platform(this, this.player, this.bases, 5000, 350);
 
     /*this.anims.create({
       key: 'idle_anim',
@@ -88,7 +89,8 @@ export default class Level extends Phaser.Scene {
       });
     this.spawn();
 
-    this.cameras.main.setBounds(0, 0, width*5, height);
+    this.physics.world.setBounds( 0, 0, large, height );
+    this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
 

@@ -80,6 +80,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.playerAnimations();
+    this.body.setCollideWorldBounds();
     if ((this.cursors.up.isDown || this.Jump.isDown) && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
     }
