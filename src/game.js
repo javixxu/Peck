@@ -13,7 +13,6 @@ import Boot from './boot.js';
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    //scene:[{create:create}],
     scene: [Boot/** , Level, End*/],
     physics: { 
         default: 'arcade', 
@@ -23,10 +22,5 @@ import Boot from './boot.js';
         } 
     }
 };
-/** 
- function create(){
-    this.add.text(400,200, "It works");
-}
-*/
 
 new Phaser.Game(config);
