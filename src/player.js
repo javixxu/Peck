@@ -1,5 +1,4 @@
 import Star from './star.js';
-import Cola from './cola.js';
 import scene from './scene.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -22,7 +21,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
     this.speed = 300;
-    this.poweredSpeed=this.speed*2;
+    this.speedAux=this.speed;
     //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     // Esta label es la UI en la que pondremos la puntuación del jugador
@@ -43,7 +42,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 }
 colaEffect(){
-  this.speed=this.poweredSpeed;
+  this.speed*=2;
+}
+setSpeed(){
+  this.speed=this.speedAux;
 }
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
