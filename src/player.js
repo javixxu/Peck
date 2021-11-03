@@ -42,10 +42,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 }
 colaEffect(){
-  this.speed*=2;
+  this.speed*=10;
 }
 setSpeed(){
-  this.speed=this.speedAux;
+  this.speed=this.speedAux
 }
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y

@@ -6,12 +6,12 @@
  */
  export default class Cola extends Phaser.GameObjects.Sprite {
  
-  constructor(scene, x, y, temp) {
+  constructor(scene, x, y) {
     super(scene, x, y, 'cola');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
     this.y -= this.height;
-    this.time=temp;
+    //this.time=temp;
   }
 
   /**
@@ -22,16 +22,19 @@
     // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
     // no se podrá ejecutar la animación del sprite. 
     super.preUpdate();
+    let scene=this.scene;
     if (this.scene.physics.overlap(this.scene.player, this)) 
     {
+      console.log(scene.player.speed);
       this.scene.speedUp();
-      this.destroy();
-      /**let timer=this.scene.time.addEvent( {
-        delay:400,
-        callback:this.scene.player.setSpeed(),
+      console.log(scene.player.speed);
+      let timer=scene.time.addEvent( {
+        delay:4000,
+        callback:scene.player.setSpeed(),
         callbackScope: this.scene,
       });
-      */
+      console.log(scene.player.speed);
+      this.destroy();
     }
   }
 }

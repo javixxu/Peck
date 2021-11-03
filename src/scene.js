@@ -53,7 +53,7 @@ export default class Level extends Phaser.Scene
     {
       this.ground = new Floor(this, this.player, i, height);
     }
-    this.cola= new Cola(this,400,400, 1);
+    this.cola= new Cola(this,400,400);
     this.crow= new Crow(this,100,100);
    
     
