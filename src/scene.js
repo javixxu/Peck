@@ -1,7 +1,8 @@
 import Player from './player.js';
 import Platform from './platform.js';
-//import Crow from './crow.js';
-//import Floor from './floor.js';
+import Crow from './crow.js';
+import Floor from './floor.js';
+import Cola from './cola.js';
 
 const createAligned = (scene, large, texture, scrollFactor)=>{
   const w = scene.textures.get(texture).getSourceImage().width;
@@ -25,7 +26,8 @@ const createAligned = (scene, large, texture, scrollFactor)=>{
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class Level extends Phaser.Scene {
+export default class Level extends Phaser.Scene 
+{
   /**
    * Constructor de la escena
    */
@@ -37,25 +39,28 @@ export default class Level extends Phaser.Scene {
    * Creación de los elementos de la escena principal de juego
    */
   create() {
+    //DIMENSIONES
     const width=this.scale.width;
     const height = this.scale.height;
     const large=width*10;
-
-    createAligned(this, large, 'city', 0.5);
-    //this.add.sprite(500,250, 'background2');
+    //background
+    createAligned(this, large, 'city', 1);
+    
     this.stars = 10;
     this.bases = this.add.group();
-    this.player = new Player(this, 200, 300);
-    /**
+    this.player = new Player(this, 200, 300, 4.5);
     for(let i = 0; i < large; i+=60)
     {
       this.ground = new Floor(this, this.player, i, height);
     }
+    this.cola= new Cola(this,400,400);
     this.crow= new Crow(this,100,100);
-*/
+   
+    
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
-
+    new Platform(this, this.player, this.bases, 5000, 350);
+    
     /*this.anims.create({
       key: 'idle_anim',
       frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 3 }),
@@ -88,11 +93,13 @@ export default class Level extends Phaser.Scene {
       });
     this.spawn();
 
-    this.cameras.main.setBounds(0, 0, width*5, height);
+    this.physics.world.setBounds( 0, 0, large, height );
+    this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
 
   
+ 
 
   /**
    * Genera una estrella en una de las bases del escenario
@@ -119,9 +126,7 @@ export default class Level extends Phaser.Scene {
 
       }
   }
+  speedUp(){
+    this.player.colaEffect();
+  }
 }
-/** 
-function onCollision (obj1, obj2){
-  obj2.hamdleCollision(obj2.nameImg);
-}
-*/

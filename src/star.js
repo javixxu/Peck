@@ -32,6 +32,7 @@
       if (this.scene.physics.overlap(this.scene.player, this)) {
           // Delegamos en la escena para decidir qué hacer al 
           // haber cogido una estrella
+          
           this.scene.starPickt(this.base);
           this.destroy();
       }
