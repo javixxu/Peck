@@ -23,39 +23,30 @@ export default class Crow extends Phaser.GameObjects.Sprite {
     this.speedInv=-200;
     this.speed=200;
     this.jumpSpeed = -1;
-    
   }
-  
-  
   /**
    * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
    */
   preUpdate(t,dt) {
-    
     super.preUpdate(t,dt);
   
-   //movimiento
- this.body.setVelocityX(this.speed);
- this.body.setVelocityY(this.jumpSpeed);
+    //movimiento
+    this.body.setVelocityX(this.speed);
+    this.body.setVelocityY(this.jumpSpeed);
  
-      //si choca derecha
-   if(this.body.blocked.right){
-   
-    this.setFlip(true,false);
-    this.speed=this.speedInv;//velocidad negativa
-    this.play('raven_right');
-    this.jumpSpeed--;
-}
-      //si choca izquierda
-  else if(this.body.blocked.left){
-
-   this.setFlip(false,false);
-   this.speed=this.speedPos;//velocidad positiva
-   this.jumpSpeed--;
-} 
-
-
+    //si choca derecha
+    if(this.body.blocked.right){
+    
+      this.setFlip(true,false);
+      this.speed=this.speedInv;//velocidad negativa
+      this.play('raven_right');
+      this.jumpSpeed--;
+    }
+    //si choca izquierda
+    else if(this.body.blocked.left){
+      this.setFlip(false,false);
+      this.speed=this.speedPos;//velocidad positiva
+      this.jumpSpeed--;
+    }
   }
- 
- 
 }

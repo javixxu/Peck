@@ -34,7 +34,6 @@ export default class Level extends Phaser.Scene
   constructor() {
     super({ key: 'level' });
   }
-
   /**
    * Creación de los elementos de la escena principal de juego
    */
@@ -97,10 +96,6 @@ export default class Level extends Phaser.Scene
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
-
-  
- 
-
   /**
    * Genera una estrella en una de las bases del escenario
    * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
@@ -109,7 +104,6 @@ export default class Level extends Phaser.Scene
   spawn(from = null) {
     Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
   }
-
   /**
    * Método que se ejecuta al coger una estrella. Se pasa la base
    * sobre la que estaba la estrella cogida para evitar repeticiones
@@ -117,14 +111,13 @@ export default class Level extends Phaser.Scene
    */
   starPickt (base) {
     this.player.point();
-      if (this.player.score == this.stars) {
-        this.scene.start('end');
-      }
-      else {
-        let s = this.bases.children.entries;
-        this.spawn(s.filter(o => o !== base));
-
-      }
+    if (this.player.score == this.stars) {
+      this.scene.start('end');
+    }
+    else {
+      let s = this.bases.children.entries;
+      this.spawn(s.filter(o => o !== base));
+    }
   }
   speedUp(){
     this.player.colaEffect();

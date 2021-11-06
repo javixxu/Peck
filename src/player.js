@@ -37,16 +37,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.pintarVidas();
     this.updateScore();
   }
- PerderVida(golpe){
- this.lifes-=golpe;
-
-}
-colaEffect(){
-  this.speed*=10;
-}
-setSpeed(){
-  this.speed=this.speedAux
-}
+  PerderVida(golpe){
+    this.lifes-=golpe;
+  }
+  colaEffect(){
+    this.speed*=10;
+  }
+  setSpeed(){
+    this.speed=this.speedAux
+  }
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
    * actualiza la UI con la puntuación actual.
@@ -79,11 +78,11 @@ setSpeed(){
       this.setFlip(true,false);
       this.play('run_anim');
     }
-   else if( this.body.setVelocityX(0))//this.body.speed==0
-   {
-     this.stop;
-     this.play('still_anim');
-   }
+    else if( this.body.setVelocityX(0))//this.body.speed==0
+    {
+      this.stop;
+      this.play('still_anim');
+    }
   }
   pintarVidas(){
     
