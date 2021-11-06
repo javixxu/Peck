@@ -63,29 +63,29 @@ export default class Level extends Phaser.Scene
     
 
     this.anims.create({ //correr 1
-      key: 'run_anim',
-      frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
-      frameRate: 10,
+    key: 'run_anim',
+    frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
+    frameRate: 10,
+    repeat: -1
+    });
+    this.anims.create({ //saltar
+      key: 'jump_anim',
+      frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 2 }),
+      frameRate: 4, 
       repeat: -1
-      });
-      this.anims.create({ //saltar
-        key: 'jump_anim',
-        frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 6 }),
-        frameRate: 8, 
-        repeat: -1
-      });
-      this.anims.create({//en estático
-        key: 'still_anim',
-        frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
-        frameRate: 8,
-        repeat: -1 
-      });
-      this.anims.create({// movimiento del cuervo
-        key: 'raven_right',
-        frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 9 }),
-        frameRate: 10, // Velocidad de la animación
-        repeat: -1    // Animación en bucle
-      });
+    });
+    this.anims.create({//en estático
+      key: 'still_anim',
+      frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+      frameRate: 8,
+      repeat: -1 
+    });
+    this.anims.create({// movimiento del cuervo
+      key: 'raven_right',
+      frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 9 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     this.spawn();
 
     this.physics.world.setBounds( 0, 0, large, height );
