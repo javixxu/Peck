@@ -20,7 +20,6 @@ export default class Star extends Phaser.GameObjects.Sprite {
     this.y -= this.height;
     this.base = base;
   }
-
   /**
    * Redefinición del preUpdate de Phaser
    * @override

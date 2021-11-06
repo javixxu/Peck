@@ -32,7 +32,7 @@
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
-        this.load.spritesheet('run','cathy_run.png',{frameWidth:50, frameHeight:75});
+        this.load.spritesheet('run','ninya_run.png',{frameWidth:55, frameHeight:75, endFrame: 6});
         this.load.spritesheet('jump','cathy_jump.png',{frameWidth:50, frameHeight:75});
     }
     /**
@@ -40,6 +40,6 @@
     * nivel del juego
     */
     create(){
-    this.scene.start('level');
+        this.scene.start('level');
     }
 }
