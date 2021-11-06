@@ -34,7 +34,6 @@ export default class Level extends Phaser.Scene
   constructor() {
     super({ key: 'level' });
   }
-
   /**
    * Creación de los elementos de la escena principal de juego
    */
@@ -56,43 +55,35 @@ export default class Level extends Phaser.Scene
     this.cola= new Cola(this,400,400);
     this.crow= new Crow(this,100,100);
    
-    
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
     new Platform(this, this.player, this.bases, 5000, 350);
-    
-    /*this.anims.create({
-      key: 'idle_anim',
-      frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 3 }),
-      frameRate: 8, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
-    });*/
+
     this.anims.create({ //correr 1
         key: 'run_anim',
-        frames: this.anims.generateFrameNumbers('run', { start: 0, end: 6 }),
+        frames: this.anims.generateFrameNumbers('run', { start: 0, end: 8 }),
         frameRate: 8, // Velocidad de la animación
         repeat: -1  // Animación en bucle
       });
-      this.anims.create({ //correr 1
+      this.anims.create({ //saltar
         key: 'jump_anim',
-        frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 6 }),
+        frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 8 }),
         frameRate: 8, // Velocidad de la animación
         repeat: -1    // Animación en bucle
       });
       this.anims.create({//en estático
         key: 'still_anim',
-        frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+        frames: this.anims.generateFrameNumbers('still', { start: 0, end: 8}),
         frameRate: 8, // Velocidad de la animación
         repeat: -1    // Animación en bucle
       });
-      this.anims.create({//en estático
+      this.anims.create({// cuervo en movimiento
         key: 'raven_right',
         frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 8 }),
         frameRate: 8, // Velocidad de la animación
         repeat: -1    // Animación en bucle
       });
     this.spawn();
-
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);

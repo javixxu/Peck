@@ -19,12 +19,10 @@ import Star from './star.js';
       baseGroup.add(this);
       this.y -= this.height / 2 + platform.height / 2;
     }
-  
     /**
      * Método para que la base instancie una estrella sobre ella
      */
     spawn() {
       this.scene.add.existing(new Star(this.scene, this, this.x, this.y));
     }
-  
   }
