@@ -55,43 +55,43 @@ export default class Level extends Phaser.Scene
     this.cola= new Cola(this,400,400);
     this.crow= new Crow(this,100,100);
    
+    
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
     new Platform(this, this.player, this.bases, 5000, 350);
+    
+    
 
     this.anims.create({ //correr 1
-        key: 'run_anim',
-        frames: this.anims.generateFrameNumbers('run', { start: 0, end: 8 }),
-        frameRate: 8, // Velocidad de la animación
-        repeat: -1  // Animación en bucle
-      });
-      this.anims.create({ //saltar
-        key: 'jump_anim',
-        frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 8 }),
-        frameRate: 8, // Velocidad de la animación
-        repeat: -1    // Animación en bucle
-      });
-      this.anims.create({//en estático
-        key: 'still_anim',
-        frames: this.anims.generateFrameNumbers('still', { start: 0, end: 8}),
-        frameRate: 8, // Velocidad de la animación
-        repeat: -1    // Animación en bucle
-      });
-      this.anims.create({// cuervo en movimiento
-        key: 'raven_right',
-        frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 8 }),
-        frameRate: 8, // Velocidad de la animación
-        repeat: -1    // Animación en bucle
-      });
+    key: 'run_anim',
+    frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
+    frameRate: 10,
+    repeat: -1
+    });
+    this.anims.create({ //saltar
+      key: 'jump_anim',
+      frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 2 }),
+      frameRate: 4, 
+      repeat: -1
+    });
+    this.anims.create({//en estático
+      key: 'still_anim',
+      frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+      frameRate: 8,
+      repeat: -1 
+    });
+    this.anims.create({// movimiento del cuervo
+      key: 'raven_right',
+      frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 9 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     this.spawn();
+
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
-
-  
- 
-
   /**
    * Genera una estrella en una de las bases del escenario
    * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
@@ -100,7 +100,6 @@ export default class Level extends Phaser.Scene
   spawn(from = null) {
     Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
   }
-
   /**
    * Método que se ejecuta al coger una estrella. Se pasa la base
    * sobre la que estaba la estrella cogida para evitar repeticiones
@@ -108,14 +107,13 @@ export default class Level extends Phaser.Scene
    */
   starPickt (base) {
     this.player.point();
-      if (this.player.score == this.stars) {
-        this.scene.start('end');
-      }
-      else {
-        let s = this.bases.children.entries;
-        this.spawn(s.filter(o => o !== base));
-
-      }
+    if (this.player.score == this.stars) {
+      this.scene.start('end');
+    }
+    else {
+      let s = this.bases.children.entries;
+      this.spawn(s.filter(o => o !== base));
+    }
   }
   speedUp(){
     this.player.colaEffect();

@@ -4,7 +4,7 @@
  * una nueva estrella en otra posición, si el juego no ha terminado.
  * @extends Phaser.GameObjects.Sprite
  */
- export default class Cola extends Phaser.GameObjects.Sprite {
+export default class Cola extends Phaser.GameObjects.Sprite {
  
   constructor(scene, x, y) {
     super(scene, x, y, 'cola');

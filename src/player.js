@@ -37,16 +37,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.pintarVidas();
     this.updateScore();
   }
- PerderVida(golpe){
- this.lifes-=golpe;
-
-}
-colaEffect(){
-  this.speed*=10;
-}
-setSpeed(){
-  this.speed=this.speedAux
-}
+  PerderVida(golpe){
+    this.lifes-=golpe;
+  }
+  colaEffect(){
+    this.speed*=10;
+  }
+  setSpeed(){
+    this.speed=this.speedAux
+  }
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
    * actualiza la UI con la puntuación actual.
@@ -64,27 +63,28 @@ setSpeed(){
     this.lifes+=0.5;
   }
   
-  playerAnimations(){
+  /* playerAnimations(){
+    
     if(this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown){
         this.stop;
         this.play('jump_anim');
        }
     else if(this.cursors.right.isDown || this.right.isDown){
-      this.stop;
+      //this.stop;
       this.setFlip(false,false);
       this.play('run_anim');
     }
     else if(this.cursors.left.isDown ||this.left.isDown){
-      this.stop;
+      //this.stop;
       this.setFlip(true,false);
       this.play('run_anim');
     }
-   else if( this.body.setVelocityX(0))//this.body.speed==0
-   {
-     this.stop;
-     this.play('still_anim');
-   }
-  }
+    else if( this.body.setVelocityX(0))
+    {
+      this.stop;
+      this.play('still_anim');
+    }
+  } */
   pintarVidas(){
     
     let x=this.body.x-100;
@@ -108,18 +108,34 @@ setSpeed(){
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    this.playerAnimations();
-    if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown) && this.body.onFloor()) {
-      this.body.setVelocityY(this.jumpSpeed);
+    
+    if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
+      if(this.body.onFloor()){
+        this.body.setVelocityY(this.jumpSpeed);
+      }
     }
     if (this.cursors.left.isDown ||this.left.isDown) {
       this.body.setVelocityX(-this.speed);
+      this.setFlip(true,false);
+      this.play('run_anim', true);
+      if(!this.body.onFloor()){
+        this.play('jump_anim')
+      }
     }
     else if (this.cursors.right.isDown || this.right.isDown) {
       this.body.setVelocityX(this.speed);
+      this.setFlip(false,false);
+      this.play('run_anim', true);
+      if(!this.body.onFloor()){
+        this.play('jump_anim')
+      }
     }
     else {
       this.body.setVelocityX(0);
+      this.play('still_anim');
+      if(!this.body.onFloor()){
+        this.play('jump_anim')
+      }
     }
   }
 }
