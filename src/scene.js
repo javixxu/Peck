@@ -47,7 +47,7 @@ export default class Level extends Phaser.Scene
     
     this.stars = 10;
     this.bases = this.add.group();
-    this.player = new Player(this, 200, 300, 4.5);
+    this.player = new Player(this, 200, 300, 5);
     for(let i = 0; i < large; i+=60)
     {
       this.ground = new Floor(this, this.player, i, height);
