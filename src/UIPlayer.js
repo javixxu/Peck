@@ -25,7 +25,7 @@ import Player from './player.js';
     CreacionVidas(numlifes){
         
       this.puestos=0;this.x=this.player.x-125;
-     
+ 
       for(let i=0;i<numlifes;i+=0.5){
           let img;
             if(this.puestos%2==0)
@@ -44,7 +44,7 @@ import Player from './player.js';
         let aux=this.vidaACT-vidaActual;
         max--;
         while(aux>0&&this.lifes[max]!=null){
-           this.lifes.splice(max,1)
+            this.lifes.splice(max,1)
             aux-=0.5;
             max--;
            this.puestos--;
@@ -52,17 +52,19 @@ import Player from './player.js';
         }
     }
     GanarVida(){
-        let img;
-       
-        if(this.puestos%2==0)
-            img=this.scene.add.image(this.x,45,'corazon').setScrollFactor(0);
-        else{
-           img=this.scene.add.image(this.x,45,'corazon').setFlip(true,false).setScrollFactor(0);
-           this.x+=20+this.w/2;
+        let img; 
+        
+        if(this.puestos%2==0){  
+            this.x+=40+this.w;          
+            img=this.scene.add.image(this.x,45,'corazon').setScrollFactor(0);}
+        else{           
+           img=this.scene.add.image(this.x,45,'corazon').setFlip(true,false).setScrollFactor(0);           
         }      
         this.puestos++;
         this.x+=20+this.w/2;
         this.lifes.push(img);
+        this.vidaACT+=0.5;
+        console.log(this.vidaACT)
 
     }
 
