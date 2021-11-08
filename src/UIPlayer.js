@@ -1,5 +1,4 @@
-import scene from './scene.js';
-import Player from './player.js';
+
 /**
  * Clase que hace q se visualize las vidas , puntos y power ups que dispone el jugador
  * 

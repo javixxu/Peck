@@ -1,4 +1,3 @@
-import scene from './scene.js'
 
 /**
  * Clase que representa el cuervo.

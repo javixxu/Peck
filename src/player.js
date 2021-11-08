@@ -1,5 +1,3 @@
-import Star from './star.js';
-import scene from './scene.js';
 import UIPlayer from './UIPlayer.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
