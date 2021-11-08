@@ -3,21 +3,8 @@ import Platform from './platform.js';
 import Crow from './crow.js';
 import Floor from './floor.js';
 import Cola from './cola.js';
+import Car from './car.js';
 
-const createAligned = (scene, large, texture, scrollFactor)=>{
-  const w = scene.textures.get(texture).getSourceImage().width;
-  const cant = Math.ceil(large/w)*scrollFactor;
-
-  let x=0;
-
-  for(let i=0; i<cant; i++){
-    const b = scene.add.image(x, scene.scale.height, texture)
-    .setOrigin(0,1)
-    .setScrollFactor(scrollFactor);
-
-    x+=b.width;
-  }
-}
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -43,7 +30,8 @@ export default class Level extends Phaser.Scene
     const height = this.scale.height;
     const large=width*10;
     //background
-    createAligned(this, large, 'city', 1);
+    //createAligned(large, 'city', 1);
+    this.createAligned(this, large,'city',1);
     
     this.stars = 10;
     this.bases = this.add.group();
@@ -55,7 +43,7 @@ export default class Level extends Phaser.Scene
     this.cola= new Cola(this,400,400);
     this.crow= new Crow(this,100,100);
    
-    
+    new Car(this, this.player, 1000, height-38, 'car');
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
     new Platform(this, this.player, this.bases, 5000, 350);
@@ -92,8 +80,22 @@ export default class Level extends Phaser.Scene
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
+  createAligned(scene, large, texture, scrollFactor)
+  {
+    const w = scene.textures.get(texture).getSourceImage().width;
+    const cant = Math.ceil(large/w)*scrollFactor;
+
+    let x=0;
+
+    for(let i=0; i<cant; i++){
+      const b = scene.add.image(x, scene.scale.height, texture)
+      .setOrigin(0,1)
+      .setScrollFactor(scrollFactor);
+
+      x+=b.width;
+    }
+  }
   /**
-   * Genera una estrella en una de las bases del escenario
    * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
    * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
    */

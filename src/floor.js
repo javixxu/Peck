@@ -1,5 +1,4 @@
 
-
 export default class Floor extends Phaser.GameObjects.Sprite{
     constructor(scene, player, x, y){
         super(scene, x, y, 'base');
