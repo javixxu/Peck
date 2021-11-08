@@ -4,6 +4,7 @@ import Crow from './crow.js';
 import Floor from './floor.js';
 import Cola from './cola.js';
 import Car from './car.js';
+import Fence from './fence.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -43,6 +44,7 @@ export default class Level extends Phaser.Scene
     this.cola= new Cola(this,400,400);
     this.crow= new Crow(this,100,100);
    
+    new Fence(this,this.player, 1500, height-120, 'fence');
     new Car(this, this.player, 1000, height-38, 'car');
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);
