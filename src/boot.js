@@ -28,6 +28,8 @@
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
         this.load.image('cola','cola.png');
+        this.load.image('car', 'car.png');
+        this.load.image('fence', 'fence.png');
         
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});

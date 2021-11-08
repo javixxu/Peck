@@ -1,5 +1,4 @@
-import Star from './star.js';
-import scene from './scene.js';
+import UIPlayer from './UIPlayer.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
  * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
@@ -34,14 +33,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.pintarVidas();
+
+    //this.pintarVidas();
+    this.powerups;
+    this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
     this.updateScore();
+    this.lifes=3;
+    this.UI.ActualizarVidas(this.lifes);
+    
   }
   PerderVida(golpe){
     this.lifes-=golpe;
+    this.UI.ActualizarVidas(this.lifes);
   }
   colaEffect(){
     this.speed*=10;
+    
   }
   setSpeed(){
     this.speed=this.speedAux
@@ -52,7 +59,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
+    this.lifes+=0.5;
     this.updateScore();
+    this.UI.GanarVida();
   }
   
   /**
@@ -85,7 +94,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.play('still_anim');
     }
   } */
-  pintarVidas(){
+ /* pintarVidas(){
     
     let x=this.body.x-100;
     let puestos=0;
@@ -100,6 +109,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       puestos++;
     }
   }
+  */
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
    * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -108,7 +118,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    
+    if(this.lifes<=0){
+      console.log("PERDER");
+      //Que se acabe la partida
+      document.location.reload();
+    }
+
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
         this.body.setVelocityY(this.jumpSpeed);
@@ -137,5 +152,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.play('jump_anim')
       }
     }
+    
   }
 }
