@@ -38,13 +38,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
     this.updateScore();
-    this.lifes=3;
-    this.UI.ActualizarVidas(this.lifes);
-    
   }
   PerderVida(golpe){
     this.lifes-=golpe;
-    this.UI.ActualizarVidas(this.lifes);
+    this.UI.PerderVidas(this.lifes);
   }
   colaEffect(){
     this.speed*=10;
@@ -61,7 +58,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.score++;
     this.lifes+=0.5;
     this.updateScore();
-    this.UI.GanarVida();
+    this.UI.GanarVida(0.5);
   }
   
   /**
