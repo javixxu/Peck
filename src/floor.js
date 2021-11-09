@@ -1,4 +1,3 @@
-import scene from './scene.js';
 
 export default class Floor extends Phaser.GameObjects.Sprite{
     constructor(scene, player, x, y){

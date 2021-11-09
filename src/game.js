@@ -1,7 +1,6 @@
 import Boot from './boot.js';
 import End from './end.js';
 import Level from './scene.js';
-//import Platform from './platform.js';
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
