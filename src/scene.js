@@ -119,7 +119,4 @@ export default class Level extends Phaser.Scene
       this.spawn(s.filter(o => o !== base));
     }
   }
-  speedUp(){
-    this.player.colaEffect();
-  }
 }
