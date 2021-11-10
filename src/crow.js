@@ -33,7 +33,8 @@ export default class Crow extends Enemies {
     this.body.setVelocityX(this.speed);
         //si choca derecha
     
-    if(this.body.blocked.right){
+        console.log( " POS X: "+this.x);
+    if(this.x > 1000){
       this.setFlip(true,false);
       this.speed=this.speedInv;//velocidad negativa
       this.play('raven_right');
