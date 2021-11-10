@@ -45,7 +45,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.UI.PerderVida(golpe);
   }
   colaEffect(){
-    this.speed*=10;
+    this.speed+=10;
     
   }
   setSpeed(){
@@ -87,7 +87,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         let timer=this.scene.time.addEvent( {
           delay:4000,
-          callback: this.setSpeed(),
+          callback: this.setSpeed,
           callbackScope: this
         });
         console.log(this.speed);
