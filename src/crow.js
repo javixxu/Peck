@@ -31,9 +31,7 @@ export default class Crow extends Enemies {
     }
     //movimiento
     this.body.setVelocityX(this.speed);
-        //si choca derecha
-    
-        console.log( " POS X: "+this.x);
+    //si choca derecha
     if(this.x > 1000){
       this.setFlip(true,false);
       this.speed=this.speedInv;//velocidad negativa
