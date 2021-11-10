@@ -5,7 +5,6 @@ import Floor from './floor.js';
 import Cola from './cola.js';
 import Car from './car.js';
 import Fence from './fence.js';
-
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -39,10 +38,11 @@ export default class Level extends Phaser.Scene
     this.player = new Player(this, 200, 300, 5);
     for(let i = 0; i < large; i+=60)
     {
-      this.ground = new Floor(this, this.player, i, height);
+      this.ground = new Floor(this, this.player, i, height-10);
     }
     this.cola= new Cola(this,400,400);
-    this.crow= new Crow(this,50,100);
+    this.crow=new Crow (this, this.player, 50,100, 'crow');
+    //this.crow= new Crow(this,50,100);
    
     new Fence(this,this.player, 1500, height-120, 'fence');
     new Car(this, this.player, 1000, height-38, 'car');

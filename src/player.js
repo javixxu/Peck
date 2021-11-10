@@ -81,16 +81,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     if(this.scene.physics.overlap(this.scene.cola, this))
     {
-      console.log(this.speed);
+      //console.log(this.speed);
         this.colaEffect();
-        console.log(this.speed);
+        //console.log(this.speed);
         
         let timer=this.scene.time.addEvent( {
-          delay:4000,
+          delay:5000,
           callback: this.setSpeed,
           callbackScope: this
         });
-        console.log(this.speed);
+        //console.log(this.speed);
         
     }
 

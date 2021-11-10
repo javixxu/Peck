@@ -23,11 +23,6 @@ export default class Cola extends Phaser.GameObjects.Sprite {
     
      if (this.scene.physics.overlap(this.scene.player, this)) 
     {
-      //console.log(this.scene.player.speed);
-      //this.scene.speedUp();
-      //console.log(this.scene.player.speed);
-     
-      //console.log(this.scene.player.speed);
       this.setActive(false);
       this.setVisible(false);
     }
