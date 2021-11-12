@@ -15,6 +15,15 @@ export default class Crow extends Enemies {
     super(scene, player, x, y, name);
     
     
+    this.scene.tweens.add({
+      targets: this,
+      x: 700,
+      duration:1000,
+      ease: 'Sine.easeInOut',
+      flipX: true,
+      yoyo: true,
+      repeat: -1,
+    })
     //velocidades para los choques
     //this.speedPos = 200;
     //this.speedInv=-200;
@@ -25,7 +34,8 @@ export default class Crow extends Enemies {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    if (this.scene.physics.overlap(this.scene.player, this))
+
+    /* if (this.scene.physics.overlap(this.scene.player, this))
     {
       this.collision();
     }
@@ -42,6 +52,7 @@ export default class Crow extends Enemies {
       this.setFlip(false,false);
       this.speed=this.speedPos;//velocidad positiva
       this.play('raven_right');
-    }
+    } */
+    
   }
 }
