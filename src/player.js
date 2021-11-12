@@ -57,9 +57,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
-    this.lifes+=2.5;
+    this.lifes-=6;
     this.updateScore();
-    this.UI.GanarVida(2.5);
+    this.UI.PerderVida(6);
   }
   
   /**
@@ -97,7 +97,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida
-      this.scene.start('end');
+      
+      this.scene.scene.start('gameOver');
     }
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
