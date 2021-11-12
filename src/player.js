@@ -38,13 +38,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
     this.updateScore();
+    
   }
   PerderVida(golpe){
     this.lifes-=golpe;
-    this.UI.PerderVidas(this.lifes);
+    this.UI.PerderVida(golpe);
   }
   colaEffect(){
-    this.speed*=10;
+    this.speed+=10;
     
   }
   setSpeed(){
@@ -80,23 +81,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     if(this.scene.physics.overlap(this.scene.cola, this))
     {
-      console.log(this.speed);
+      //console.log(this.speed);
         this.colaEffect();
-        console.log(this.speed);
+        //console.log(this.speed);
         
         let timer=this.scene.time.addEvent( {
-          delay:4000,
-          callback: this.setSpeed(),
+          delay:5000,
+          callback: this.setSpeed,
           callbackScope: this
         });
-        console.log(this.speed);
+        //console.log(this.speed);
         
     }
 
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida
-      document.location.reload();
+      this.scene.start('end');
     }
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {

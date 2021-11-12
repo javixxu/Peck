@@ -20,7 +20,6 @@
     preload()
     {
         this.load.setPath ('assets/images/');
-        this.load.image ('background2', 'background2.jpg');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
         this.load.image('star', 'star.png');
@@ -30,6 +29,7 @@
         this.load.image('cola','cola.png');
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
+        this.load.image('seagull', 'seagull.png')
         
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
