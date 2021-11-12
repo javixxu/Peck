@@ -7,8 +7,7 @@
 
     constructor(scene,player,numslife,score,powerups){
         super(scene,player,numslife,score,powerups);
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+        
         this.scene=scene;
         this.GameMaxLife=7;        
         //VIDA ACTUAL
@@ -46,18 +45,20 @@
         }                            
     }
     PerderVida(golpe){       
-        this.vidaACT-=golpe;
+        if(this.vidaACT-golpe<0)golpe=0;
         for(let i=0;i<golpe;i+=0.5){
             let entity= this.Barradevida.getLast(true,false);
             this.Barradevida.killAndHide(entity);
         }
+        this.vidaACT-=golpe;
     }
     GanarVida(vidaM){
-        this.vidaACT+=vidaM;
+        if(vidaM+this.vidaACT>7)vidaM=this.GameMaxLife-this.vidaACT;
         for(let i=0;i<vidaM;i+=0.5){
            let x= this.Barradevida.getFirstDead(false,false);
            x.setVisible(true);
            x.setActive(true);
         }
+        this.vidaACT+=vidaM;
     }
 }

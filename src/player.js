@@ -57,9 +57,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
-    this.lifes+=0.5;
+    this.lifes+=2.5;
     this.updateScore();
-    this.UI.GanarVida(0.5);
+    this.UI.GanarVida(2.5);
   }
   
   /**
