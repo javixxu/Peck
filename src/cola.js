@@ -26,7 +26,5 @@ export default class Cola extends Phaser.GameObjects.Sprite {
       this.setActive(false);
       this.setVisible(false);
     }
-     
-   
   }
 }
