@@ -29,8 +29,9 @@
         this.load.image('cola','cola.png');
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
-        this.load.image('seagull', 'seagull.png')
-        this.load.image('gameover','GameOver.png')
+        this.load.image('seagull', 'seagull.png');
+        this.load.image('gameover','GameOver.png');
+        this.load.image('puddle','mud.png');
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});

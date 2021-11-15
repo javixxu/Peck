@@ -45,7 +45,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   colaEffect(){
     this.speed+=10;
-    
   }
   setSpeed(){
     this.speed=this.speedAux
@@ -89,8 +88,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
           callback: this.setSpeed,
           callbackScope: this
         });
+
         //console.log(this.speed);
-        
     }
     
     if(this.lifes<=0){
@@ -130,6 +129,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.play('jump_anim')
       }
     }
-    
   }
 }
