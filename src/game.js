@@ -1,5 +1,5 @@
 import Boot from './boot.js';
-import End from './end.js';
+import gameOver from './gameOver.js';
 import Level from './scene.js';
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -15,7 +15,7 @@ import Level from './scene.js';
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Level, End],
+    scene: [Boot, Level, gameOver],
     physics: { 
         default: 'arcade', 
         arcade: { 

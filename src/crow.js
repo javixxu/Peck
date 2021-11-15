@@ -14,45 +14,21 @@ export default class Crow extends Enemies {
    constructor(scene, player, x, y, name) {
     super(scene, player, x, y, name);
     
-    
+    this.play('raven_right');
     this.scene.tweens.add({
       targets: this,
-      x: 700,
-      duration:1000,
+      x: 500,
+      duration:1700,
       ease: 'Sine.easeInOut',
       flipX: true,
       yoyo: true,
       repeat: -1,
     })
-    //velocidades para los choques
-    //this.speedPos = 200;
-    //this.speedInv=-200;
-    //this.speed = -200;
   }
   /**
    * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-
-    /* if (this.scene.physics.overlap(this.scene.player, this))
-    {
-      this.collision();
-    }
-    //movimiento
-    this.body.setVelocityX(this.speed);
-    //si choca derecha
-    if(this.x > 1000){
-      this.setFlip(true,false);
-      this.speed=this.speedInv;//velocidad negativa
-      this.play('raven_right');
-    }
-        //si choca izquierda
-    else if(this.body.blocked.left){
-      this.setFlip(false,false);
-      this.speed=this.speedPos;//velocidad positiva
-      this.play('raven_right');
-    } */
-    
   }
 }

@@ -32,11 +32,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-    
+    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
+    
     this.updateScore();
     
   }
@@ -57,16 +56,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
-    this.lifes+=0.5;
+    this.lifes-=6;
     this.updateScore();
-    this.UI.GanarVida(0.5);
+    this.UI.PerderVida(6);
   }
   
   /**
    * Actualiza la UI con la puntuación actual
    */
   updateScore() {
-    this.label.text = 'PECK HITO 1: ' + this.score;
+    //this.label.text = 'PECK HITO 1: ' + this.score;
     this.lifes+=0.5;
   }
   
@@ -93,12 +92,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //console.log(this.speed);
         
     }
-
+    
     if(this.lifes<=0){
       console.log("PERDER");
-      //Que se acabe la partida
-      this.scene.start('end');
+      //Que se acabe la partida     
+      this.scene.scene.start('gameOver');
     }
+    let x=parseInt(t/1000);
+    this.label.text=('Time: ' + x);
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
