@@ -32,6 +32,7 @@
         this.load.image('seagull', 'seagull.png');
         this.load.image('gameover','GameOver.png');
         this.load.image('puddle','mud.png');
+        this.load.image('center', 'center.png');
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
