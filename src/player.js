@@ -19,6 +19,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
+    this.body.setBounceY(0.25);
     this.speed = 300;
     this.speedAux=this.speed;
     //this.speedAux=this.speed;

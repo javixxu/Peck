@@ -28,7 +28,13 @@ export default class Crow extends Enemies {
   /**
    * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
    */
-  preUpdate(t,dt) {
+   preUpdate(t,dt) {
     super.preUpdate(t,dt);
+    this.crowFollows();
+    
   }
+  crowFollows(){
+    this.scene.physics.moveToObject(this,this.scene.player,300);
+  }
+  
 }
