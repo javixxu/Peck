@@ -30,5 +30,11 @@ export default class Crow extends Enemies {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
+    this.crowFollows();
+    
   }
+  crowFollows(){
+    this.scene.physics.moveToObject(this,this.scene.player,300);
+  }
+  
 }
