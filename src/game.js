@@ -1,4 +1,5 @@
 import Boot from './boot.js';
+import Menu from './mainmenu.js';
 import gameOver from './gameOver.js';
 import Level from './scene.js';
 /**
@@ -15,7 +16,7 @@ import Level from './scene.js';
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Level, gameOver],
+    scene: [Boot, Menu,Level, gameOver],
     physics: { 
         default: 'arcade', 
         arcade: { 

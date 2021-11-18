@@ -92,6 +92,6 @@
     * nivel del juego
     */
     create(){
-        this.scene.start(/*'menu'*/'level');
+        this.scene.start('menu');
     }
 }
