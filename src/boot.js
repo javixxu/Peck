@@ -30,7 +30,8 @@
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(350, 280, 300 * value, 30);
         });
-      
+        this.load.setPath('assets/botones/');
+        this.load.image('button','button.png');
         this.load.setPath ('assets/images/');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
@@ -66,9 +67,9 @@
           var width = this.cameras.main.width;
           var height = this.cameras.main.height;
           var loadingText = this.make.text({
-            x: width / 2,
+            x: width / 2-75,
             y: height / 2 - 50,
-            text: 'Loading...',
+            text: 'LOADING PECK...',
             style: {
               font: '20px monospace',
               fill: '#ffffff'
@@ -91,6 +92,6 @@
     * nivel del juego
     */
     create(){
-        this.scene.start('level');
+        this.scene.start('menu');
     }
 }
