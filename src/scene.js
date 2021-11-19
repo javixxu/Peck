@@ -7,6 +7,7 @@ import Car from './car.js';
 import Fence from './fence.js';
 import Seagull from './seagull.js';
 import Puddle from './puddle.js';
+import VictoriaCollider from './victoriacollider.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -47,7 +48,8 @@ export default class Level extends Phaser.Scene
     this.seagull = new Seagull(this, this.player, 500, 250);
    
     new Fence(this,this.player, 1500, height-120, 'fence');
-    new Car(this, this.player, 1000, height-38, 'car');
+    //new Car(this, this.player, 1000, height-38, 'car');
+    new VictoriaCollider(this,this.player,1000,height-38);
     new Puddle(this, this.player, 500, height+10, 'puddle')
     new Platform(this, this.player, this.bases, 150, 350);
     new Platform(this, this.player, this.bases, 850, 350);

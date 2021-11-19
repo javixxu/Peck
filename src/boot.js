@@ -32,6 +32,7 @@
         });
         this.load.setPath('assets/botones/');
         this.load.image('button','button.png');
+        this.load.image('replay','replay.png')
         this.load.setPath ('assets/images/');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
@@ -39,6 +40,7 @@
         this.load.image('player', 'cathy2.png');
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
+        this.load.image('ganar','victoria.jpg')
         this.load.image('cola','cola.png');
         for (var i = 0; i < 1000; i++) {
             this.load.image('cola'+ i, 'cola.png');
