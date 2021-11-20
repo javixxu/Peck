@@ -24,6 +24,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speedAux=this.speed;
     //this.speedAux=this.speed;
     this.jumpSpeed = -400;
+    this.jumpAux = this.jumpSpeed;
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.label = this.scene.add.text(850, 10, "");
     this.label.setScrollFactor(0);
@@ -47,8 +48,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
   colaEffect(){
     this.speed+=10;
   }
+  puddleEffect(){
+    this.speed = 200;
+    this.jumpSpeed = -250;
+  }
   setSpeed(){
-    this.speed=this.speedAux
+    this.speed = this.speedAux;
+    this.jumpSpeed = this.jumpAux;
   }
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
@@ -77,7 +83,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-
+    // COLA
     if(this.scene.physics.overlap(this.scene.cola, this))
     {
       //console.log(this.speed);
@@ -91,6 +97,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
         });
 
         //console.log(this.speed);
+    }
+    // PUDDLE
+    if(this.scene.physics.overlap(this.scene.puddle, this))
+    {
+        this.puddleEffect();
+        
+        let timer=this.scene.time.addEvent( {
+          delay:5000,
+          callback: this.setSpeed,
+          callbackScope: this
+        });
     }
     
     if(this.lifes<=0){

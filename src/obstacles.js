@@ -4,7 +4,6 @@ export default class Obstacles extends Phaser.GameObjects.Sprite{
         super(scene, x, y, name);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
-        this.scene.physics.add.collider(this, player);
     }
     preUpdate() {
         super.preUpdate();
