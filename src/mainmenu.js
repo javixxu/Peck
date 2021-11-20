@@ -4,7 +4,8 @@ export default class Menu extends Phaser.Scene{
         super({key:'menu'});
     }
     create(){
-        this.playButton=new Button(this,500,250);
+        
+        this.playButton=new Button(this,500,250,'button');
         
     }
     spawn(){
