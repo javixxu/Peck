@@ -8,6 +8,7 @@ import Fence from './fence.js';
 import Seagull from './seagull.js';
 import Puddle from './puddle.js';
 import VictoriaCollider from './victoriacollider.js';
+import Star from './star.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -36,8 +37,8 @@ export default class Level extends Phaser.Scene
     //createAligned(large, 'city', 1);
     this.createAligned(this, large,'city',1);
     
-    this.stars = 10;
-    this.bases = this.add.group();
+    
+    this.star=new Star(this,1050,350);//para perder(pruebas)
     this.player = new Player(this, 200, 300, 5);
     for(let i = 0; i < large; i+=60)
     {
@@ -51,9 +52,9 @@ export default class Level extends Phaser.Scene
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoriaCollider(this,this.player,1000,height-38);
     this.puddle = new Puddle(this, this.player, 500, height-10, 'puddle')
-    new Platform(this, this.player, this.bases, 150, 350);
-    new Platform(this, this.player, this.bases, 850, 350);
-    new Platform(this, this.player, this.bases, 5000, 350);
+    new Platform(this, this.player, 150, 350);
+    new Platform(this, this.player, 850, 350);
+    new Platform(this, this.player, 5000, 350);
     
     
 
@@ -81,7 +82,7 @@ export default class Level extends Phaser.Scene
       frameRate: 10, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
-    this.spawn();
+    //this.spawn();
 
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
@@ -106,22 +107,15 @@ export default class Level extends Phaser.Scene
    * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
    * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
    */
-  spawn(from = null) {
+  /*spawn(from = null) {
     Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-  }
+  }*/
   /**
    * Método que se ejecuta al coger una estrella. Se pasa la base
    * sobre la que estaba la estrella cogida para evitar repeticiones
-   * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
    */
-  starPickt (base) {
+  starPickt () {
     this.player.point();
-    if (this.player.score == this.stars) {
-      this.scene.start('end');
-    }
-    else {
-      let s = this.bases.children.entries;
-      this.spawn(s.filter(o => o !== base));
-    }
+    
   }
 }
