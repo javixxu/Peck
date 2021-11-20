@@ -109,6 +109,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
           callbackScope: this
         });
     }
+    //CUERVO
+    if(this.scene.physics.collide(this.scene.crow, this))
+    {
+        this.PerderVida(0.5);
+    }
     
     if(this.lifes<=0){
       console.log("PERDER");
