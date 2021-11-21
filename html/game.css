@@ -1,12 +1,4 @@
-h1 {
-	text-align: center;
-	font-family: Courier;
-	font-weight: 700;
-  font-size: 60px;
-  color:rgb(250, 245, 245);
-  background-color: rgba(146, 36, 168, 0.75);
- 
-}
+
 a {
 	text-align: right;
 	color:white;
@@ -14,7 +6,7 @@ a {
 p{
 	font-family: 'Arial Black', sans-serif;
 	color:whitesmoke;
-	font-size: 16px;
+	font-size: 32px;
 	display: inline-block;
 	padding-inline: 45px;
  
@@ -37,14 +29,17 @@ body {
 }
 #logo{
 
-	width: 90px;
-	height: 90px;
+	width: 100px;
+	height: 100px;
 	background-image: url("../assets/logos/logo1.jpg");
+	
 }
 #banner{
 	  margin: auto;
 	  width: 100%;
 	  text-align: center;
+	  
+	  
 }
 #header {
 	margin: auto;
@@ -158,4 +153,10 @@ ul, ol {
 	width: 90px;
 	height: 90px;
 	background-image: url("../assets/logos/pivotalLog.png");
+}
+h1{
+	text-align: center;
+	padding-top: 5%;
+	
+	
 }
