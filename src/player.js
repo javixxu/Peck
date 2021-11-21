@@ -62,11 +62,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
-    this.lifes-=6;
+    this.lifes+=2.5;
     this.updateScore();
-    this.UI.PerderVida(6);
+    this.UI.GanarVida(2.5);
   }
-  
   /**
    * Actualiza la UI con la puntuación actual
    */
@@ -74,7 +73,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.label.text = 'PECK HITO 1: ' + this.score;
     this.lifes+=0.5;
   }
-  
+  AlcantarillaDamage(){
+    this.PerderVida(1);
+    this.x+=150;
+  }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
    * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -114,7 +116,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
         this.PerderVida(0.5);
     }
-    
+    //Alcantarilla
+    if(this.scene.physics.collide(this.scene.alcantarilla1,this)){      
+      this.AlcantarillaDamage();
+     
+    }
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     

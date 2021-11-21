@@ -40,8 +40,10 @@
         this.load.image('player', 'cathy2.png');
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
-        this.load.image('ganar','victoria.jpg')
+        this.load.image('ganar','victoria.jpg');
+        this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('cola','cola.png');
+        
         for (var i = 0; i < 1000; i++) {
             this.load.image('cola'+ i, 'cola.png');
           }
