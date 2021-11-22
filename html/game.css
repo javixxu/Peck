@@ -1,7 +1,4 @@
-h1 {
-	text-align: center;
-	font-family: Courier;
-}
+
 a {
 	text-align: right;
 	color:white;
@@ -9,7 +6,7 @@ a {
 p{
 	font-family: 'Arial Black', sans-serif;
 	color:whitesmoke;
-	font-size: 16px;
+	font-size: 32px;
 	display: inline-block;
 	padding-inline: 45px;
  
@@ -20,7 +17,7 @@ ul{
 	padding-inline: 150px;
 }
 body {
-	background-image: url("../assets/images/fondo2.png");
+	background-image: url("../assets/images/morado.jpg");
 	  background-size: 100%;
 	  background-repeat: no-repeat;
 	  background-position: 100% 10%;
@@ -30,10 +27,19 @@ body {
 	  margin:0px;
 	  padding:0px;
 }
+#logo{
+
+	width: 100px;
+	height: 100px;
+	background-image: url("../assets/logos/logo1.jpg");
+	
+}
 #banner{
 	  margin: auto;
 	  width: 100%;
 	  text-align: center;
+	  
+	  
 }
 #header {
 	margin: auto;
@@ -147,4 +153,10 @@ ul, ol {
 	width: 90px;
 	height: 90px;
 	background-image: url("../assets/logos/pivotalLog.png");
+}
+h1{
+	text-align: center;
+	padding-top: 5%;
+	
+	
 }
