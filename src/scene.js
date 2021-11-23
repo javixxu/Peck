@@ -56,8 +56,10 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 150, 350);
     new Platform(this, this.player, 850, 350);
     new Platform(this, this.player, 5000, 350);
-    this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
-    
+    //this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
+    this.GroupAlcantarillas=this.add.group();
+   
+    this.CreacionAlcantarillas(height-50);
 
     this.anims.create({ //correr 1
     key: 'run_anim',
@@ -118,5 +120,20 @@ export default class Level extends Phaser.Scene
   starPickt () {
     this.player.point();
     
+  }
+  /**
+   * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
+  */
+  CreacionAlcantarillas(h){
+    this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
+    this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
+  }
+  UltimaSobrePasada(){
+    let x=this.GroupAlcantarillas.size;
+    console.log(x);
+    for(let i=0 ;i<this.GroupAlcantarillas.size;i++){
+     if(!this.GroupAlcantarillas[i].Mirar())return this.GroupAlcantarillas[i].MirarPos();
+    }
+    return this.GroupAlcantarillas[this.GroupAlcantarillas.lenght-1].MirarPos();
   }
 }

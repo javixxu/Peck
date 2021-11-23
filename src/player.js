@@ -1,3 +1,4 @@
+import alcantarilla from './alcantarilla.js';
 import UIPlayer from './UIPlayer.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -74,8 +75,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.lifes+=0.5;
   }
   AlcantarillaDamage(){
+    this.lifes-=1;
     this.PerderVida(1);
     this.x+=150;
+    //this.x=this.scene. UltimaSobrePasada();
   }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -115,12 +118,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.scene.physics.collide(this.scene.crow, this))
     {
         this.PerderVida(0.5);
-    }
-    //Alcantarilla
-    if(this.scene.physics.collide(this.scene.alcantarilla1,this)){      
-      this.AlcantarillaDamage();
-     
-    }
+    }  
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     
