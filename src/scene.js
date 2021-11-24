@@ -46,7 +46,7 @@ export default class Level extends Phaser.Scene
       this.ground = new Floor(this, this.player, i, height-10);
     }
     this.cola= new Cola(this,600,300);
-    this.crow=new Crow (this, this.player, 50,100, 'crow');
+    this.crow=new Crow (this, this.player, 500,100, 'crow');
     this.seagull = new Seagull(this, this.player, 500, 250);
    
     new Fence(this,this.player, 1500, height-120, 'fence');
@@ -119,17 +119,7 @@ export default class Level extends Phaser.Scene
       x+=b.width;
     }
   }
-  /**
-   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-   */
-  /*spawn(from = null) {
-    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-  }*/
-  /**
-   * Método que se ejecuta al coger una estrella. Se pasa la base
-   * sobre la que estaba la estrella cogida para evitar repeticiones
-   */
+  
   starPickt () {
     this.player.point();
     
