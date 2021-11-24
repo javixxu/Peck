@@ -6,24 +6,22 @@ export default class alcantarilla extends Obstacles
         super(scene,player, x, y, name);
         this.x=x;
        this.player=player;
-       this.Sobrepasado=false;
-       this.collision=true;
-       
+       this.Sobrepasado=false;      
     }
     preUpdate(){
        if( this.scene.physics.collide(this.player,this)){
 
             this.player.AlcantarillaDamage();
-            this.collision=false; 
+            
             console.log('dañooo');
                  
         }
         if(this.x<this.player.x)this.Sobrepasado=true;
 
     }
-    Mirar(){
-        return this.Sobrepasado;
-    }
+    
+    Mirar(){return this.Sobrepasado; } 
+
     MirarPos(){return this.x;}
    
 }

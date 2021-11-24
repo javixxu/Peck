@@ -58,7 +58,7 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 5000, 350);
     //this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
     this.GroupAlcantarillas=this.add.group();
-   
+    this.NumAlcantarillas=0;
     this.CreacionAlcantarillas(height-50);
 
     this.anims.create({ //correr 1
@@ -90,6 +90,19 @@ export default class Level extends Phaser.Scene
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
+
+    this.tiempo;
+    this.tiempoTotal=0;
+    this.label = this.add.text(850, 10, "");
+    this.label.setScrollFactor(0);
+  }
+  init(){
+    console.log('inicio');
+    //por si es la pruimera vez q se inicia el juego
+    if(this.tiempoTotal==undefined)this.tiempoTotal=0;
+    this.tiempo=this.tiempoTotal;
+    console.log(this.tiempo);
+    
   }
   createAligned(scene, large, texture, scrollFactor)
   {
@@ -127,13 +140,20 @@ export default class Level extends Phaser.Scene
   CreacionAlcantarillas(h){
     this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
     this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
+    this.NumAlcantarillas=2;
   }
   UltimaSobrePasada(){
-    let x=this.GroupAlcantarillas.size;
-    console.log(x);
-    for(let i=0 ;i<this.GroupAlcantarillas.size;i++){
-     if(!this.GroupAlcantarillas[i].Mirar())return this.GroupAlcantarillas[i].MirarPos();
+    for(let i=0 ;i<this.NumAlcantarillas;i++){
+     if(!this.GroupAlcantarillas[i].Mirar()){
+       console.log('vamossss');
+       return this.GroupAlcantarillas[i].MirarPos();
+      }
     }
-    return this.GroupAlcantarillas[this.GroupAlcantarillas.lenght-1].MirarPos();
+    return this.GroupAlcantarillas[this.NumAlcantarillas-1].MirarPos();
+  }
+  update(t,dt){    
+    this.tiempoTotal=t;
+    let x=parseInt((t-this.tiempo)/1000);
+    this.label.text=('Time: ' + x);
   }
 }

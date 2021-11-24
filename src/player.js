@@ -26,9 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
-    // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(850, 10, "");
-    this.label.setScrollFactor(0);
+    
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
@@ -39,6 +37,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
     
+  
     this.updateScore();
     
   }
@@ -124,8 +123,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
       //Que se acabe la partida     
       this.scene.scene.start('gameOver');
     }
-    let x=parseInt(t/1000);
-    this.label.text=('Time: ' + x);
+   
+    
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
