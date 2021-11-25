@@ -83,6 +83,12 @@ export default class Level extends Phaser.Scene
       frameRate: 10, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
+    this.anims.create({
+      key: 'seagull_fly',
+      frames: this.anims.generateFrameNumbers('sg', { start: 0, end: 8 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     //this.spawn();
 
     this.physics.world.setBounds( 0, 0, large, height );
