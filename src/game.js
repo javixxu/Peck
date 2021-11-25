@@ -22,7 +22,7 @@ import victoriascene from './victoriascene.js'
         default: 'arcade', 
         arcade: { 
             gravity: { y: 400 }, 
-            debug: true 
+            debug: false 
         } 
     }
 };
