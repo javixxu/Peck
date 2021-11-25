@@ -25,9 +25,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
-    // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(850, 10, "");
-    this.label.setScrollFactor(0);
+   
+   
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
@@ -75,7 +74,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   AlcantarillaDamage(){
     this.PerderVida(1);
-    this.x+=150;
+    this.x=this.scene.UltimaSobrePasada();
   }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -116,18 +115,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
         this.PerderVida(0.5);
     }
-    //Alcantarilla
-    if(this.scene.physics.collide(this.scene.alcantarilla1,this)){      
-      this.AlcantarillaDamage();
-     
-    }
+   
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     
       this.scene.scene.start('gameOver');
     }
-    let x=parseInt(t/1000);
-    this.label.text=('Time: ' + x);
+   
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){

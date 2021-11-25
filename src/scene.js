@@ -56,8 +56,12 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 150, 350);
     new Platform(this, this.player, 850, 350);
     new Platform(this, this.player, 5000, 350);
-    this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
+    this.groupAlcantarillas=this.add.group();
+    this.creacionAlcantarillas(height-50);
     
+    this.tiempoTotal=0;this.tiempo;
+    this.label = this.add.text(850, 10, "");
+    this.label.setScrollFactor(0);
 
     this.anims.create({ //correr 1
     key: 'run_anim',
@@ -95,6 +99,14 @@ export default class Level extends Phaser.Scene
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
+  init(){
+    console.log('inicio');
+    //por si es la pruimera vez q se inicia el juego
+    if(this.tiempoTotal==undefined)this.tiempoTotal=0;
+    this.tiempo=this.tiempoTotal;
+    console.log(this.tiempo);
+    
+  }
   createAligned(scene, large, texture, scrollFactor)
   {
     const w = scene.textures.get(texture).getSourceImage().width;
@@ -125,4 +137,27 @@ export default class Level extends Phaser.Scene
     this.player.point();
     
   }
+  
+  creacionAlcantarillas(h){
+
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,3500,h,'alcantarilla'));
+    
+  }
+  UltimaSobrePasada(){
+    let w=this.groupAlcantarillas.getChildren();let desplazamiento=175
+    for(let i=this.groupAlcantarillas.getLength()-1 ;i>-1;i--){     
+     if(w[i].Mirar()){
+       return w[i].MirarPos()-desplazamiento;
+      }
+    }
+    return w[0].MirarPos()-desplazamiento;
+  }
+  update(t,dt){    
+    this.tiempoTotal=t;
+    let x=parseInt((t-this.tiempo)/1000);
+    this.label.text=('Time: ' + x);
+  }
+  
 }
