@@ -10,6 +10,7 @@ import Puddle from './puddle.js';
 import VictoriaCollider from './victoriacollider.js';
 import Star from './star.js';
 import alcantarilla from './alcantarilla.js';
+import Bandages from './bandages.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -48,7 +49,7 @@ export default class Level extends Phaser.Scene
     this.cola= new Cola(this,600,300);
     this.crow=new Crow (this, this.player, 500,100, 'crow');
     this.seagull = new Seagull(this, this.player, 500, 250);
-   
+    new Bandages(this,100,100,'bandage');
     new Fence(this,this.player, 1500, height-120, 'fence');
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoriaCollider(this,this.player,6000,height-38);
@@ -56,11 +57,12 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 150, 350);
     new Platform(this, this.player, 850, 350);
     new Platform(this, this.player, 5000, 350);
-    //this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
-    this.GroupAlcantarillas=this.add.group();
-    this.NumAlcantarillas=0;
-    this.CreacionAlcantarillas(height-50);
-
+    this.groupAlcantarillas=this.add.group();
+    this.creacionAlcantarillas(height-50);
+    
+    this.tiempoTotal=0;this.tiempo;
+    this.label = this.add.text(850, 10, "");
+    this.label.setScrollFactor(0);
     this.anims.create({ //correr 1
     key: 'run_anim',
     frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
@@ -82,6 +84,12 @@ export default class Level extends Phaser.Scene
     this.anims.create({// movimiento del cuervo
       key: 'raven_right',
       frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 9 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
+    this.anims.create({
+      key: 'seagull_fly',
+      frames: this.anims.generateFrameNumbers('sg', { start: 0, end: 8 }),
       frameRate: 10, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
@@ -124,22 +132,27 @@ export default class Level extends Phaser.Scene
     this.player.point();
     
   }
+  bandagePickt(){
+    this.player.bandageEffect();
+  }
   /**
    * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
   */
-  CreacionAlcantarillas(h){
-    this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
-    this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
-    this.NumAlcantarillas=2;
+   creacionAlcantarillas(h){
+
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,3500,h,'alcantarilla'));
+    
   }
   UltimaSobrePasada(){
-    for(let i=0 ;i<this.NumAlcantarillas;i++){
-     if(!this.GroupAlcantarillas[i].Mirar()){
-       console.log('vamossss');
-       return this.GroupAlcantarillas[i].MirarPos();
+    let w=this.groupAlcantarillas.getChildren();let desplazamiento=175
+    for(let i=this.groupAlcantarillas.getLength()-1 ;i>-1;i--){     
+     if(w[i].Mirar()){
+       return w[i].MirarPos()-desplazamiento;
       }
     }
-    return this.GroupAlcantarillas[this.NumAlcantarillas-1].MirarPos();
+    return w[0].MirarPos()-desplazamiento;
   }
   update(t,dt){    
     this.tiempoTotal=t;

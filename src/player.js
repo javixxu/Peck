@@ -26,7 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
-    
+    this.maxLife=5;//vidas máximas
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
@@ -35,7 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
-    this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
+    this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     
   
     this.updateScore();
@@ -63,6 +63,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateScore();
     this.UI.GanarVida(2.5);
   }
+  bandageEffect(){
+    this.UI.GanarVida(1);
+  }
   /**
    * Actualiza la UI con la puntuación actual
    */
@@ -71,10 +74,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.lifes+=0.5;
   }
   AlcantarillaDamage(){
-    this.lifes-=1;
     this.PerderVida(1);
-    this.x+=150;
-    //this.x=this.scene. UltimaSobrePasada();
+    this.x=this.scene.UltimaSobrePasada();
   }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.

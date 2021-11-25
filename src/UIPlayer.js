@@ -5,11 +5,11 @@
  */
  export default class UIPlayer extends Phaser.GameObjects.Sprite {
 
-    constructor(scene,player,numslife,score,powerups){
-        super(scene,player,numslife,score,powerups);
+    constructor(scene,player,numslife,maxLife,score,powerups){
+        super(scene,player,numslife,maxLife,score,powerups);
         
         this.scene=scene;
-        this.GameMaxLife=7;        
+        this.GameMaxLife=maxLife;        
         //VIDA ACTUAL
         this.vidaACT=numslife;
         //tamaño del corazon
@@ -53,7 +53,7 @@
         this.vidaACT-=golpe;
     }
     GanarVida(vidaM){
-        if(vidaM+this.vidaACT>7)vidaM=this.GameMaxLife-this.vidaACT;
+        if(vidaM+this.vidaACT>5)vidaM=this.GameMaxLife-this.vidaACT;
         for(let i=0;i<vidaM;i+=0.5){
            let x= this.Barradevida.getFirstDead(false,false);
            x.setVisible(true);

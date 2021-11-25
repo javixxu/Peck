@@ -1,9 +1,5 @@
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
- * Esta escena se puede mejorar añadiendo una imagen del juego y una 
- * barra de progreso de carga de los assets
- * @see {@link https://gamedevacademy.org/creating-a-preloading-screen-in-phaser-3/} como ejemplo
- * sobre cómo hacer una barra de progreso.
  */
  export default class Boot extends Phaser.Scene{
     /**
@@ -40,11 +36,12 @@
         this.load.image('player', 'cathy2.png');
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
+        this.load.image('bandage','star1.png');
         this.load.image('ganar','victoria.jpg');
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('cola','cola.png');
         
-        for (var i = 0; i < 1000; i++) {
+        for (var i = 0; i < 500; i++) {
             this.load.image('cola'+ i, 'cola.png');
           }
         this.load.image('car', 'car.png');
@@ -55,6 +52,7 @@
         this.load.image('center', 'center.png');
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
+        this.load.spritesheet('sg', 'seagullsSprite.png',{frameWidth:100, frameHeight:85});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
         this.load.spritesheet('run','ninya_run.png',{frameWidth:55, frameHeight:75, endFrame: 6});
         this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});

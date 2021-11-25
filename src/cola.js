@@ -1,10 +1,9 @@
+import PowerUp from "./powerUp.js";
 
-export default class Cola extends Phaser.GameObjects.Sprite {
+export default class Cola extends PowerUp {
  
   constructor(scene, x, y) {
     super(scene, x, y, 'cola');
-    this.scene.add.existing(this);
-    this.scene.physics.add.existing(this, true);
     this.y -= this.height;
   }
 
