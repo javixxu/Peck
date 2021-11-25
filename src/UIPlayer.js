@@ -24,7 +24,7 @@
     }
    
     CreacionVidasGroup() {   
-        let corazon;           
+              
         this.puestos=0;this.x=this.player.x-125;
         for(let i=0;i<this.GameMaxLife;i+=0.5){
             

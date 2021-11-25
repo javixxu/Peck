@@ -22,7 +22,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setBounceY(0.15);
     this.speed = 300;
     this.speedAux=this.speed;
-    //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
     this.maxLife=5;//vidas máximas

@@ -4,7 +4,6 @@ export default class Cola extends PowerUp {
  
   constructor(scene, x, y) {
     super(scene, x, y, 'cola');
-    this.y -= this.height;
   }
 
   /**

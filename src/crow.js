@@ -14,6 +14,9 @@ export default class Crow extends Enemies {
    constructor(scene, player, x, y, name) {
     super(scene, player, x, y, name);
     
+    this.scene.physics.add.existing(this);
+    this.body.allowGravity = false;
+    this.body.setCollideWorldBounds();
     this.play('raven_right');
     this.scene.tweens.add({
       targets: this,
