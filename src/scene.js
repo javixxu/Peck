@@ -56,9 +56,14 @@ export default class Level extends Phaser.Scene
     this.groupAlcantarillas=this.add.group();
     this.creacionAlcantarillas(height-50);
 
-    this.pause=this.add.image(975,25,'pause').setScale(0.1);
+    this.pause = this.add.image(975,25,'pause').setScale(0.1);
     this.pause.setScrollFactor(0);
-    
+    this.pause.setInteractive();
+    this.pause.on("pointerdown", () =>{
+      this.scene.pause(),
+      this.scene.start('pausemenu')
+    });
+
     this.tiempoTotal=0;this.tiempo;
     this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);
