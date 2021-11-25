@@ -1,9 +1,5 @@
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
- * Esta escena se puede mejorar añadiendo una imagen del juego y una 
- * barra de progreso de carga de los assets
- * @see {@link https://gamedevacademy.org/creating-a-preloading-screen-in-phaser-3/} como ejemplo
- * sobre cómo hacer una barra de progreso.
  */
  export default class Boot extends Phaser.Scene{
     /**
@@ -32,7 +28,8 @@
         });
         this.load.setPath('assets/botones/');
         this.load.image('button','button.png');
-        this.load.image('replay','replay.png')
+        this.load.image('replay','replay.png');
+        this.load.image('pause','pause.png');
         this.load.setPath ('assets/images/');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
@@ -40,11 +37,12 @@
         this.load.image('player', 'cathy2.png');
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
+        this.load.image('bandage','star1.png');
         this.load.image('ganar','victoria.jpg');
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('cola','cola.png');
         
-        for (var i = 0; i < 1000; i++) {
+        for (var i = 0; i < 500; i++) {
             this.load.image('cola'+ i, 'cola.png');
           }
         this.load.image('car', 'car.png');

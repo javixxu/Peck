@@ -10,13 +10,11 @@ import Puddle from './puddle.js';
 import VictoriaCollider from './victoriacollider.js';
 import Star from './star.js';
 import alcantarilla from './alcantarilla.js';
+import Bandages from './bandages.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
  * El juego comienza generando aleatoriamente una base sobre la que generar una estrella. 
- * Cada vez que el jugador recoge la estrella, aparece una nueva en otra base.
- * El juego termina cuando el jugador ha recogido 10 estrellas.
- * @extends Phaser.Scene
  */
 export default class Level extends Phaser.Scene 
 {
@@ -46,9 +44,9 @@ export default class Level extends Phaser.Scene
       this.ground = new Floor(this, this.player, i, height-10);
     }
     this.cola= new Cola(this,600,300);
-    this.crow=new Crow (this, this.player, 50,100, 'crow');
+    this.crow=new Crow (this, this.player, 500,100, 'crow');
     this.seagull = new Seagull(this, this.player, 500, 250);
-   
+    new Bandages(this,100,100,'bandage');
     new Fence(this,this.player, 1500, height-120, 'fence');
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoriaCollider(this,this.player,6000,height-38);
@@ -56,9 +54,15 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 150, 350);
     new Platform(this, this.player, 850, 350);
     new Platform(this, this.player, 5000, 350);
-    this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
-    
+    this.groupAlcantarillas=this.add.group();
+    this.creacionAlcantarillas(height-50);
 
+    this.pause=this.add.image(975,25,'pause').setScale(0.1);
+    this.pause.setScrollFactor(0);
+    
+    this.tiempoTotal=0;this.tiempo;
+    this.label = this.add.text(800, 10, "");
+    this.label.setScrollFactor(0);
     this.anims.create({ //correr 1
     key: 'run_anim',
     frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
@@ -95,6 +99,14 @@ export default class Level extends Phaser.Scene
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
   }
+  init(){
+    console.log('inicio');
+    //por si es la pruimera vez q se inicia el juego
+    if(this.tiempoTotal==undefined)this.tiempoTotal=0;
+    this.tiempo=this.tiempoTotal;
+    console.log(this.tiempo);
+    
+  }
   createAligned(scene, large, texture, scrollFactor)
   {
     const w = scene.textures.get(texture).getSourceImage().width;
@@ -110,19 +122,37 @@ export default class Level extends Phaser.Scene
       x+=b.width;
     }
   }
-  /**
-   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-   */
-  /*spawn(from = null) {
-    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-  }*/
-  /**
-   * Método que se ejecuta al coger una estrella. Se pasa la base
-   * sobre la que estaba la estrella cogida para evitar repeticiones
-   */
+  
   starPickt () {
     this.player.point();
     
   }
+  bandagePickt(){
+    this.player.bandageEffect();
+  }
+  /**
+   * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
+  */
+   creacionAlcantarillas(h){
+
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
+    this.groupAlcantarillas.add(new alcantarilla(this,this.player,3500,h,'alcantarilla'));
+    
+  }
+  UltimaSobrePasada(){
+    let w=this.groupAlcantarillas.getChildren();let desplazamiento=175
+    for(let i=this.groupAlcantarillas.getLength()-1 ;i>-1;i--){     
+     if(w[i].Mirar()){
+       return w[i].MirarPos()-desplazamiento;
+      }
+    }
+    return w[0].MirarPos()-desplazamiento;
+  }
+  update(t,dt){    
+    this.tiempoTotal=t;
+    let x=parseInt((t-this.tiempo)/1000);
+    this.label.text=('Time: ' + x);
+  }
+  
 }

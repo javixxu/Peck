@@ -4,11 +4,11 @@ export default class Enemies extends  Phaser.GameObjects.Sprite
     {
         super(scene, x, y, name);
         this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+        //this.scene.physics.add.existing(this);
         //this.scene.physics.add.collider(this, player);
-        this.body.allowGravity = false;
+        //this.body.allowGravity = false;
         // Queremos que no se salga de los límites del mundo
-        this.body.setCollideWorldBounds();
+        //this.body.setCollideWorldBounds();
         this.speedPos = 200;
         this.speedInv=-200;
         this.speed = -200;

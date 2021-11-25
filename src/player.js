@@ -22,12 +22,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setBounceY(0.15);
     this.speed = 300;
     this.speedAux=this.speed;
-    //this.speedAux=this.speed;
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
-    // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(850, 10, "");
-    this.label.setScrollFactor(0);
+    this.maxLife=5;//vidas máximas
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
@@ -36,7 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
-    this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
+    this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     
     this.updateScore();
     
@@ -66,6 +63,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.updateScore();
     this.UI.GanarVida(2.5);
   }
+  bandageEffect(){
+    this.UI.GanarVida(1);
+  }
   /**
    * Actualiza la UI con la puntuación actual
    */
@@ -75,7 +75,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   AlcantarillaDamage(){
     this.PerderVida(1);
-    this.x+=150;
+    this.x=this.scene.UltimaSobrePasada();
   }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -116,18 +116,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
         this.PerderVida(0.5);
     }
-    //Alcantarilla
-    if(this.scene.physics.collide(this.scene.alcantarilla1,this)){      
-      this.AlcantarillaDamage();
-     
-    }
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     
       this.scene.scene.start('gameOver');
     }
-    let x=parseInt(t/1000);
-    this.label.text=('Time: ' + x);
+   
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
