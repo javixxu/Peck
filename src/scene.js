@@ -8,7 +8,6 @@ import Fence from './fence.js';
 import Seagull from './seagull.js';
 import Puddle from './puddle.js';
 import VictoriaCollider from './victoriacollider.js';
-import Star from './star.js';
 import alcantarilla from './alcantarilla.js';
 import Bandages from './bandages.js';
 /**
@@ -37,7 +36,7 @@ export default class Level extends Phaser.Scene
     this.createAligned(this, large,'city',1);
     
     
-    this.star=new Star(this,1050,350);//para perder(pruebas)
+    
     this.player = new Player(this, 200, 300, 5);
     for(let i = 0; i < large; i+=60)
     {
@@ -123,10 +122,7 @@ export default class Level extends Phaser.Scene
     }
   }
   
-  starPickt () {
-    this.player.point();
-    
-  }
+  
   bandagePickt(){
     this.player.bandageEffect();
   }
