@@ -5,9 +5,10 @@ export default class PowerUp extends Phaser.GameObjects.Sprite{
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
     }
-    
-      effect(){
-          
-      }
+      //effect(){}
 
+    desactive()
+    {
+        this.body.enable=false;
+    }
 }
