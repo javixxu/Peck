@@ -117,7 +117,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
         this.PerderVida(0.5);
     }
-   
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     

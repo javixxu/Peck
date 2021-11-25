@@ -15,9 +15,6 @@ import Bandages from './bandages.js';
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
  * El juego comienza generando aleatoriamente una base sobre la que generar una estrella. 
- * Cada vez que el jugador recoge la estrella, aparece una nueva en otra base.
- * El juego termina cuando el jugador ha recogido 10 estrellas.
- * @extends Phaser.Scene
  */
 export default class Level extends Phaser.Scene 
 {
@@ -59,9 +56,12 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 5000, 350);
     this.groupAlcantarillas=this.add.group();
     this.creacionAlcantarillas(height-50);
+
+    this.pause=this.add.image(975,25,'pause').setScale(0.1);
+    this.pause.setScrollFactor(0);
     
     this.tiempoTotal=0;this.tiempo;
-    this.label = this.add.text(850, 10, "");
+    this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);
     this.anims.create({ //correr 1
     key: 'run_anim',
@@ -122,17 +122,7 @@ export default class Level extends Phaser.Scene
       x+=b.width;
     }
   }
-  /**
-   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-   */
-  /*spawn(from = null) {
-    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-  }*/
-  /**
-   * Método que se ejecuta al coger una estrella. Se pasa la base
-   * sobre la que estaba la estrella cogida para evitar repeticiones
-   */
+  
   starPickt () {
     this.player.point();
     

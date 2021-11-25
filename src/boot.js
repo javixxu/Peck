@@ -28,7 +28,8 @@
         });
         this.load.setPath('assets/botones/');
         this.load.image('button','button.png');
-        this.load.image('replay','replay.png')
+        this.load.image('replay','replay.png');
+        this.load.image('pause','pause.png');
         this.load.setPath ('assets/images/');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
