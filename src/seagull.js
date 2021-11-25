@@ -24,11 +24,9 @@ export default class Seagull extends Enemies
     this.bird.rotation+=angle; //correcion para que la gaviota no se gire raro
 
     //Si pongo collide la gaviota se mueve y hace giros cada vez mas grandes
-   /**  
     if(this.scene.physics.overlap(this.player, this.bird))
     {
         this.player.PerderVida(0.5);
     }
-    */
   }
 }

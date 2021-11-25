@@ -43,7 +43,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.UI.PerderVida(golpe);
   }
   colaEffect(){
-    this.speed*=2;
+    this.speed+=10;
   }
   puddleEffect(){
     this.speed = 200;
@@ -116,7 +116,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
         this.PerderVida(0.5);
     }
-    
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     
