@@ -30,6 +30,7 @@
         this.load.image('button','button.png');
         this.load.image('replay','replay.png');
         this.load.image('pause','pause.png');
+        this.load.image('resume', 'button.png');
         this.load.setPath ('assets/images/');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
@@ -40,7 +41,7 @@
         this.load.image('ganar','victoria.jpg');
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('cola','cola.png');
-        
+        this.load.image('pausebg', '3.png');
         for (var i = 0; i < 500; i++) {
             this.load.image('cola'+ i, 'cola.png');
           }

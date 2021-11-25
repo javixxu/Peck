@@ -17,10 +17,12 @@
     * @override
     */
    create() {
-
-     this.resume = new Button(this,500,330,'button');
-   }
-    spawn(){
+       this.fondo = this.add.image(400,300,'pausebg');
+     this.resume = this.add.image(500,300,'resume');
+     this.resume.setInteractive();
+     this.resume.on("pointerdown", ()=> {
+        this.scene.stop();
         this.scene.resume('level');
-    }
+     });
+   }
  }

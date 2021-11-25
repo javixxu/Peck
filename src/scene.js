@@ -60,8 +60,9 @@ export default class Level extends Phaser.Scene
     this.pause.setScrollFactor(0);
     this.pause.setInteractive();
     this.pause.on("pointerdown", () =>{
-      this.scene.pause(),
-      this.scene.start('pausemenu')
+      this.scene.launch('pausemenu'),
+      this.scene.pause()
+      
     });
 
     this.tiempoTotal=0;this.tiempo;
