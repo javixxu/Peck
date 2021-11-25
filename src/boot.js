@@ -42,7 +42,7 @@
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('cola','cola.png');
         this.load.image('pausebg', '3.png');
-        for (var i = 0; i < 500; i++) {
+        for (var i = 0; i < 200; i++) {
             this.load.image('cola'+ i, 'cola.png');
           }
         this.load.image('car', 'car.png');
