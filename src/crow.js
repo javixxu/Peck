@@ -5,8 +5,8 @@ import Enemies from "./enemies.js";
 export default class Crow extends Enemies {
   
   /**
-   * Constructor del cuervo
-   * @param {Phaser.Scene} scene Escena a la que pertenece el cuervo
+   * Constructor del jugador
+   * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
@@ -17,7 +17,7 @@ export default class Crow extends Enemies {
     this.play('raven_right');
     this.scene.tweens.add({
       targets: this,
-      x:1200,
+      x:1000,
       duration:1700,
       ease: 'Sine.easeInOut',
       flipX: true,
@@ -25,7 +25,9 @@ export default class Crow extends Enemies {
       repeat: -1,
     })
   }
-  
+  /**
+   * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
+   */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     this.crowAttack();

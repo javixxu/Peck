@@ -1,4 +1,3 @@
-import alcantarilla from './alcantarilla.js';
 import UIPlayer from './UIPlayer.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -37,7 +36,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     
-  
     this.updateScore();
     
   }
@@ -56,7 +54,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
   }
-  
+  /**
+   * El jugador ha recogido una estrella por lo que este método añade un punto y
+   * actualiza la UI con la puntuación actual.
+   */
   point() {
     this.score++;
     this.lifes+=2.5;
@@ -79,6 +80,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
+   * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
+   * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
    * @override
    */
   preUpdate(t,dt) {
@@ -113,14 +116,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.scene.physics.collide(this.scene.crow, this))
     {
         this.PerderVida(0.5);
-    }  
+    }
+   
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     
       this.scene.scene.start('gameOver');
     }
    
-    
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){

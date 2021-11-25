@@ -98,11 +98,6 @@ export default class Level extends Phaser.Scene
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
-
-    this.tiempo;
-    this.tiempoTotal=0;
-    this.label = this.add.text(850, 10, "");
-    this.label.setScrollFactor(0);
   }
   init(){
     console.log('inicio');
@@ -127,7 +122,17 @@ export default class Level extends Phaser.Scene
       x+=b.width;
     }
   }
-  
+  /**
+   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
+   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
+   */
+  /*spawn(from = null) {
+    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
+  }*/
+  /**
+   * Método que se ejecuta al coger una estrella. Se pasa la base
+   * sobre la que estaba la estrella cogida para evitar repeticiones
+   */
   starPickt () {
     this.player.point();
     
@@ -159,4 +164,5 @@ export default class Level extends Phaser.Scene
     let x=parseInt((t-this.tiempo)/1000);
     this.label.text=('Time: ' + x);
   }
+  
 }
