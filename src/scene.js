@@ -46,7 +46,7 @@ export default class Level extends Phaser.Scene
       this.ground = new Floor(this, this.player, i, height-10);
     }
     this.cola= new Cola(this,600,300);
-    this.crow=new Crow (this, this.player, 500,100, 'crow');
+    this.crow=new Crow (this, this.player, 50,100, 'crow');
     this.seagull = new Seagull(this, this.player, 500, 250);
    
     new Fence(this,this.player, 1500, height-120, 'fence');
@@ -56,10 +56,8 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, 150, 350);
     new Platform(this, this.player, 850, 350);
     new Platform(this, this.player, 5000, 350);
-    //this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
-    this.GroupAlcantarillas=this.add.group();
-    this.NumAlcantarillas=0;
-    this.CreacionAlcantarillas(height-50);
+    this.alcantarilla1=new alcantarilla(this,this.player,2000,height-50, 'alcantarilla')
+    
 
     this.anims.create({ //correr 1
     key: 'run_anim',
@@ -85,24 +83,17 @@ export default class Level extends Phaser.Scene
       frameRate: 10, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
+    this.anims.create({
+      key: 'seagull_fly',
+      frames: this.anims.generateFrameNumbers('sg', { start: 0, end: 8 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     //this.spawn();
 
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
-
-    this.tiempo;
-    this.tiempoTotal=0;
-    this.label = this.add.text(850, 10, "");
-    this.label.setScrollFactor(0);
-  }
-  init(){
-    console.log('inicio');
-    //por si es la pruimera vez q se inicia el juego
-    if(this.tiempoTotal==undefined)this.tiempoTotal=0;
-    this.tiempo=this.tiempoTotal;
-    console.log(this.tiempo);
-    
   }
   createAligned(scene, large, texture, scrollFactor)
   {
@@ -119,31 +110,19 @@ export default class Level extends Phaser.Scene
       x+=b.width;
     }
   }
-  
+  /**
+   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
+   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
+   */
+  /*spawn(from = null) {
+    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
+  }*/
+  /**
+   * Método que se ejecuta al coger una estrella. Se pasa la base
+   * sobre la que estaba la estrella cogida para evitar repeticiones
+   */
   starPickt () {
     this.player.point();
     
-  }
-  /**
-   * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
-  */
-  CreacionAlcantarillas(h){
-    this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
-    this.GroupAlcantarillas.create(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
-    this.NumAlcantarillas=2;
-  }
-  UltimaSobrePasada(){
-    for(let i=0 ;i<this.NumAlcantarillas;i++){
-     if(!this.GroupAlcantarillas[i].Mirar()){
-       console.log('vamossss');
-       return this.GroupAlcantarillas[i].MirarPos();
-      }
-    }
-    return this.GroupAlcantarillas[this.NumAlcantarillas-1].MirarPos();
-  }
-  update(t,dt){    
-    this.tiempoTotal=t;
-    let x=parseInt((t-this.tiempo)/1000);
-    this.label.text=('Time: ' + x);
   }
 }

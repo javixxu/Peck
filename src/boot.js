@@ -55,6 +55,7 @@
         this.load.image('center', 'center.png');
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
+        this.load.spritesheet('sg', 'seagullsSprite.png',{frameWidth:100, frameHeight:85});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
         this.load.spritesheet('run','ninya_run.png',{frameWidth:55, frameHeight:75, endFrame: 6});
         this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});
