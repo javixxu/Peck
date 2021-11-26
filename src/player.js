@@ -22,11 +22,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setBounceY(0.15);
     this.speed = 300;
     this.speedAux=this.speed;
-    //this.speedAux=this.speed;
     this.jumpSpeed = -400;
-    // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(850, 10, "");
-    this.label.setScrollFactor(0);
+    this.jumpAux = this.jumpSpeed;
+    this.maxLife=5;//vidas máximas
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
@@ -35,7 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
-    this.UI= new UIPlayer(this.scene,this,numslife,this.score,this.powerups);
+    this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     
     this.updateScore();
     
@@ -47,8 +45,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
   colaEffect(){
     this.speed+=10;
   }
+  puddleEffect(){
+    this.speed = 200;
+    this.jumpSpeed = -250;
+  }
   setSpeed(){
-    this.speed=this.speedAux
+    this.speed = this.speedAux;
+    this.jumpSpeed = this.jumpAux;
   }
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
@@ -56,11 +59,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
-    this.lifes-=6;
+    this.lifes+=2.5;
     this.updateScore();
-    this.UI.PerderVida(6);
+    this.UI.GanarVida(2.5);
   }
-  
+  bandageEffect(){
+    this.UI.GanarVida(1);
+  }
   /**
    * Actualiza la UI con la puntuación actual
    */
@@ -68,7 +73,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.label.text = 'PECK HITO 1: ' + this.score;
     this.lifes+=0.5;
   }
-  
+  AlcantarillaDamage(){
+    this.PerderVida(1);
+    this.x=this.scene.UltimaSobrePasada();
+  }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
    * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -77,7 +85,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-
+    // COLA
     if(this.scene.physics.overlap(this.scene.cola, this))
     {
       //console.log(this.speed);
@@ -92,14 +100,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //console.log(this.speed);
     }
-    
+    // PUDDLE
+    if(this.scene.physics.overlap(this.scene.puddle, this))
+    {
+        this.puddleEffect();
+        
+        let timer=this.scene.time.addEvent( {
+          delay:5000,
+          callback: this.setSpeed,
+          callbackScope: this
+        });
+    }
+    //CUERVO
+    if(this.scene.physics.collide(this.scene.crow, this))
+    {
+        this.PerderVida(0.5);
+    }
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     
       this.scene.scene.start('gameOver');
     }
-    let x=parseInt(t/1000);
-    this.label.text=('Time: ' + x);
+   
 
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){

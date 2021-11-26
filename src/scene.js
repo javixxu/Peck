@@ -68,7 +68,36 @@ export default class Level extends Phaser.Scene
     this.tiempoTotal=0;this.tiempo;
     this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);
-    
+    this.anims.create({ //correr 1
+    key: 'run_anim',
+    frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
+    frameRate: 10,
+    repeat: -1
+    });
+    this.anims.create({ //saltar
+      key: 'jump_anim',
+      frames: this.anims.generateFrameNumbers('jump', { start: 0, end: 2 }),
+      frameRate: 4, 
+      repeat: -1
+    });
+    this.anims.create({//en estático
+      key: 'still_anim',
+      frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+      frameRate: 8,
+      repeat: -1 
+    });
+    this.anims.create({// movimiento del cuervo
+      key: 'raven_right',
+      frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 9 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
+    this.anims.create({
+      key: 'seagull_fly',
+      frames: this.anims.generateFrameNumbers('sg', { start: 0, end: 8 }),
+      frameRate: 10, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
     //this.spawn();
 
     this.physics.world.setBounds( 0, 0, large, height );
