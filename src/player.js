@@ -28,6 +28,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
+    this.consume=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);//tecla para consumir powerUp
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -46,7 +47,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   colaEffect(){
     this.speed+=10;
-    this.UI.seeCola();
+    this.UI.seeCola(true);
   }
   puddleEffect(){
     this.speed = 200;
@@ -126,7 +127,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.scene.start('gameOver');
     }
    
-
+    if (this.consume.isDown){//si pulso E
+      this.UI.seeCola(false);
+    }
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
         this.body.setVelocityY(this.jumpSpeed);

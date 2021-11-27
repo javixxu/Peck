@@ -65,7 +65,7 @@
         this.vidaACT+=vidaM;
     }
    
-    seeCola(){
-        this.cola.setVisible(true);
+    seeCola(visible){
+        this.cola.setVisible(visible);
     }
 }
