@@ -36,6 +36,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     
     this.updateScore();
+
+    
     
   }
   PerderVida(golpe){
@@ -44,6 +46,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   colaEffect(){
     this.speed+=10;
+    this.UI.seeCola();
   }
   puddleEffect(){
     this.speed = 200;
@@ -90,6 +93,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
       //console.log(this.speed);
         this.colaEffect();
+      
         //console.log(this.speed);
         
         let timer=this.scene.time.addEvent( {

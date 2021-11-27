@@ -21,6 +21,9 @@
         //this.CreacionVidas(numslife);
        //FALTA LA ASIGNACION DE LOS POWER UPS
        this.CreacionVidasGroup();
+
+       this.cola=this.scene.add.image(100,70,'cola').setScrollFactor(0).setScale(0.5,0.5).setVisible(false);
+       
     }
    
     CreacionVidasGroup() {   
@@ -60,5 +63,9 @@
            x.setActive(true);
         }
         this.vidaACT+=vidaM;
+    }
+   
+    seeCola(){
+        this.cola.setVisible(true);
     }
 }
