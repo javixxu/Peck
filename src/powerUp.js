@@ -9,5 +9,6 @@ export default class PowerUp extends Phaser.GameObjects.Sprite{
       effect(){
           
       }
+        
 
 }

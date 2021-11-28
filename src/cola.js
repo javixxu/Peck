@@ -16,10 +16,10 @@ export default class Cola extends PowerUp {
     
      if (this.scene.physics.overlap(this.scene.player, this)) 
     {
+      this.scene.player.seeAtUI('cola');
       this.setActive(false);
       this.setVisible(false);
-      
-      
+      this.destroy();
     }
     
   }

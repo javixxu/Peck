@@ -35,7 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
-    this.empty=true;
+    
     
    
 
@@ -48,24 +48,35 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   colaEffect(){
     
-    this.speed*=1.25;
+    this.speed*=2;
      
     let timer=this.scene.time.addEvent( {
       delay:5000,
       callback: this.setSpeed,
       callbackScope: this
     });
-    
-   
-    
+ 
+  }
+  powerUpEffect(currentPowerUp){
+    if(currentPowerUp=='cola'){
+      this.colaEffect();
+    }
+    else if(currentPowerUp=='bandage'){
+      this.bandageEffect();
+    }
   }
   seeAtUI(currentPowerUp){
     if(currentPowerUp=='cola'){
        this.UI.seePowerUp(true,currentPowerUp);
        this.current=currentPowerUp;
     }
-   
+    else if(currentPowerUp=='bandage'){
+      this.UI.seePowerUp(true,currentPowerUp);
+       this.current=currentPowerUp;
+    }
+  
   }
+  
   puddleEffect(){
     this.speed = 200;
     this.jumpSpeed = -250;
@@ -91,13 +102,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    // COLA
-    if(this.scene.physics.overlap(this.scene.cola, this))
-    {
-      //console.log(this.speed);
-        this.seeAtUI('cola');
-       
-    }
+  
     // PUDDLE
     if(this.scene.physics.overlap(this.scene.puddle, this))
     {
@@ -121,8 +126,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
    
     if (this.consume.isDown){//si pulso E && this.empty==false
-      this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
-      this.colaEffect();
+     this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
+     this.powerUpEffect(this.current);
+    this.current='empty';
     
      
     }

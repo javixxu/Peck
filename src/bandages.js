@@ -8,6 +8,7 @@ export default class Bandages extends PowerUp{
       }
     effect(){
         this.scene.bandagePickt();
+        
     }
     preUpdate() {
      
@@ -15,8 +16,13 @@ export default class Bandages extends PowerUp{
         
          if (this.scene.physics.overlap(this.scene.player, this)) 
         {
-         this.effect();
+         //this.effect();
+         //this.destroy(); 
+         this.scene.player.seeAtUI('bandage');
+         this.setActive(false);
+         this.setVisible(false);
          this.destroy();
+        
         }
       }
 }
