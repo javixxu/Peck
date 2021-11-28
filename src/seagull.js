@@ -26,7 +26,7 @@ export default class Seagull extends Enemies
     //Si pongo collide la gaviota se mueve y hace giros cada vez mas grandes
     if(this.scene.physics.overlap(this.player, this.bird))
     {
-        //this.player.PerderVida(0.5);
+        this.player.PerderVida(0.5);
     }
   }
 }
