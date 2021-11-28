@@ -32,6 +32,7 @@
         this.load.image('pause','pause.png');
         this.load.image('resume', 'button.png');
         this.load.setPath ('assets/images/');
+        this.load.image('inventory','inventory.png');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
         this.load.image('player', 'cathy2.png');

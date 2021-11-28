@@ -35,8 +35,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
+    this.empty=true;
     
-    this.updateScore();
+   
 
     
     
@@ -46,6 +47,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.UI.PerderVida(golpe);
   }
   colaEffect(){
+    
     this.speed*=1.25;
      
     let timer=this.scene.time.addEvent( {
@@ -54,9 +56,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
       callbackScope: this
     });
     
+   
+    
   }
-  seeAtUI(){
-    this.UI.seeCola(true);
+  seeAtUI(currentPowerUp){
+    if(currentPowerUp=='cola'){
+       this.UI.seePowerUp(true,currentPowerUp);
+       this.current=currentPowerUp;
+    }
+   
   }
   puddleEffect(){
     this.speed = 200;
@@ -66,26 +74,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
   }
-  /**
-   * El jugador ha recogido una estrella por lo que este método añade un punto y
-   * actualiza la UI con la puntuación actual.
-   */
-  point() {
-    this.score++;
-    this.lifes+=2.5;
-    this.updateScore();
-    this.UI.GanarVida(2.5);
-  }
+  
   bandageEffect(){
     this.UI.GanarVida(1);
   }
-  /**
-   * Actualiza la UI con la puntuación actual
-   */
-  updateScore() {
-    //this.label.text = 'PECK HITO 1: ' + this.score;
-    this.lifes+=0.5;
-  }
+ 
   AlcantarillaDamage(){
     this.PerderVida(1);
     this.x=this.scene.UltimaSobrePasada();
@@ -102,13 +95,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.scene.physics.overlap(this.scene.cola, this))
     {
       //console.log(this.speed);
-        this.seeAtUI();
-      
-        //console.log(this.speed);
-        
-      
-
-        //console.log(this.speed);
+        this.seeAtUI('cola');
+       
     }
     // PUDDLE
     if(this.scene.physics.overlap(this.scene.puddle, this))
@@ -132,10 +120,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.scene.start('gameOver');
     }
    
-    if (this.consume.isDown){//si pulso E
-      this.UI.seeCola(false);//dejo de ver cocacola en la UI
+    if (this.consume.isDown){//si pulso E && this.empty==false
+      this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
       this.colaEffect();
-      
+    
+     
     }
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){

@@ -21,5 +21,6 @@ export default class Cola extends PowerUp {
       
       
     }
+    
   }
 }
