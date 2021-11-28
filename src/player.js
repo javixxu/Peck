@@ -46,7 +46,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.UI.PerderVida(golpe);
   }
   colaEffect(){
-    this.speed+=10;
+    this.speed*=1.25;
+     
+    let timer=this.scene.time.addEvent( {
+      delay:5000,
+      callback: this.setSpeed,
+      callbackScope: this
+    });
+    
+  }
+  seeAtUI(){
     this.UI.seeCola(true);
   }
   puddleEffect(){
@@ -93,15 +102,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.scene.physics.overlap(this.scene.cola, this))
     {
       //console.log(this.speed);
-        this.colaEffect();
+        this.seeAtUI();
       
         //console.log(this.speed);
         
-        let timer=this.scene.time.addEvent( {
-          delay:5000,
-          callback: this.setSpeed,
-          callbackScope: this
-        });
+      
 
         //console.log(this.speed);
     }
@@ -128,7 +133,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
    
     if (this.consume.isDown){//si pulso E
-      this.UI.seeCola(false);
+      this.UI.seeCola(false);//dejo de ver cocacola en la UI
+      this.colaEffect();
+      
     }
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
