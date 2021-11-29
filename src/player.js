@@ -28,14 +28,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
+    this.consume=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);//tecla para consumir powerUp
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
-    
-    this.updateScore();
+    this.current='empty';
     
   }
   PerderVida(golpe){
@@ -43,8 +43,36 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.UI.PerderVida(golpe);
   }
   colaEffect(){
-    this.speed+=10;
+    
+    this.speed*=2;
+     
+    let timer=this.scene.time.addEvent( {
+      delay:5000,
+      callback: this.setSpeed,
+      callbackScope: this
+    });
+ 
   }
+  powerUpEffect(currentPowerUp){
+    if(currentPowerUp=='cola'){
+      this.colaEffect();
+    }
+    else if(currentPowerUp=='bandage'){
+      this.bandageEffect();
+    }
+  }
+  seeAtUI(currentPowerUp){
+    if(currentPowerUp=='cola'){
+       this.UI.seePowerUp(true,currentPowerUp);
+       this.current=currentPowerUp;
+    }
+    else if(currentPowerUp=='bandage'){
+      this.UI.seePowerUp(true,currentPowerUp);
+       this.current=currentPowerUp;
+    }
+  
+  }
+  
   puddleEffect(){
     this.speed = 200;
     this.jumpSpeed = -250;
@@ -53,26 +81,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
   }
-  /**
-   * El jugador ha recogido una estrella por lo que este método añade un punto y
-   * actualiza la UI con la puntuación actual.
-   */
-  point() {
-    this.score++;
-    this.lifes+=2.5;
-    this.updateScore();
-    this.UI.GanarVida(2.5);
-  }
+  
   bandageEffect(){
     this.UI.GanarVida(1);
   }
-  /**
-   * Actualiza la UI con la puntuación actual
-   */
-  updateScore() {
-    //this.label.text = 'PECK HITO 1: ' + this.score;
-    this.lifes+=0.5;
-  }
+ 
   AlcantarillaDamage(){
     this.PerderVida(1);
     this.x=this.scene.UltimaSobrePasada();
@@ -85,21 +98,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    // COLA
-    if(this.scene.physics.overlap(this.scene.cola, this))
-    {
-      //console.log(this.speed);
-        this.colaEffect();
-        //console.log(this.speed);
-        
-        let timer=this.scene.time.addEvent( {
-          delay:5000,
-          callback: this.setSpeed,
-          callbackScope: this
-        });
-
-        //console.log(this.speed);
-    }
+  
     // PUDDLE
     if(this.scene.physics.overlap(this.scene.puddle, this))
     {
@@ -122,7 +121,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.scene.start('gameOver');
     }
    
-
+    if (this.consume.isDown){//si pulso E && this.empty==false
+     this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
+     this.powerUpEffect(this.current);
+     this.current='empty';
+    
+     
+    }
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
         this.body.setVelocityY(this.jumpSpeed);
