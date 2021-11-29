@@ -1,7 +1,5 @@
 /**
- * Escena de fin de juego. Cuando se han recogido todas las estrellas, se presenta un
- * texto que indica que el juego se ha acabado.
- * Si se pulsa cualquier tecla, se vuelve a iniciar el juego.
+ * Escena de gameOver. 
  */
 import Button from "./button.js";
 export default class gameOver extends Phaser.Scene

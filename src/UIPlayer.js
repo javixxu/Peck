@@ -21,6 +21,10 @@
         //this.CreacionVidas(numslife);
        //FALTA LA ASIGNACION DE LOS POWER UPS
        this.CreacionVidasGroup();
+       this.scene.add.image(70,100,'inventory').setScrollFactor(0).setScale(2.5,2.5);
+       this.cola=this.scene.add.image(62,90,'cola').setScrollFactor(0).setScale(0.5,0.5).setVisible(false);
+       this.bandage=this.scene.add.image(62,90,'bandage').setScrollFactor(0).setScale(0.5,0.5).setVisible(false);
+       
     }
    
     CreacionVidasGroup() {   
@@ -60,5 +64,13 @@
            x.setActive(true);
         }
         this.vidaACT+=vidaM;
+    }
+   
+    seePowerUp(visible,pU){
+        if(pU=='cola')
+        this.cola.setVisible(visible);
+        else if(pU=='bandage'){
+            this.bandage.setVisible(visible);
+        }
     }
 }
