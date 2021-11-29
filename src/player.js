@@ -35,11 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
-    
-    
-   
-
-    
+    this.current='empty';
     
   }
   PerderVida(golpe){
@@ -128,7 +124,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.consume.isDown){//si pulso E && this.empty==false
      this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
      this.powerUpEffect(this.current);
-    this.current='empty';
+     this.current='empty';
     
      
     }
