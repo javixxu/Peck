@@ -46,15 +46,15 @@ export default class Level extends Phaser.Scene
     this.cola= new Cola(this,600,300);
     this.crow=new Crow (this, this.player, 500,100, 'crow');
     this.seagull = new Seagull(this, this.player, 500, 250);
-    this.sparrow = new Sparrow(this, this.player, 50, 400);
+    this.sparrow = new Sparrow(this, this.player, 50, 200);
     new Bandages(this,100,100,'bandage');
     new Fence(this,this.player, 1500, height-120, 'fence');
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoriaCollider(this,this.player,6000,height-38);
     this.puddle = new Puddle(this, this.player, 500, height-10, 'puddle')
-    new Platform(this, this.player, 150, 350);
-    new Platform(this, this.player, 850, 350);
-    new Platform(this, this.player, 5000, 350);
+    new Platform(this, this.player, this.sparrow, 150, 350);
+    new Platform(this, this.player, this.sparrow, 850, 350);
+    new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas=this.add.group();
     this.creacionAlcantarillas(height-50);
     //menú de pausa

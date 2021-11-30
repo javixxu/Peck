@@ -13,11 +13,11 @@ export default class Platform extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada x
    * @param {number} y Coordenada y
    */
-  constructor(scene, player, x, y) {
+  constructor(scene, player, sparrow, x, y) {
     super(scene, x, y, 'platform');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
     this.scene.physics.add.collider(this, player);
+    this.scene.physics.add.collider(this, sparrow);
   }
-
 }
