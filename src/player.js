@@ -115,6 +115,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     {
         this.PerderVida(0.5);
     }
+    //GORRIÓN 
+    if(this.scene.physics.collide(this.scene.sparrow, this))
+    {
+        this.PerderVida(0.5);
+    }
+
     if(this.lifes<=0){
       console.log("PERDER");
       //Que se acabe la partida     

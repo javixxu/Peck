@@ -27,11 +27,5 @@ export default class Sparrow extends Enemies {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    //this.crowAttack();
-    
   }
-  sparrowAttack(){
-    
-  }
-  
 }
