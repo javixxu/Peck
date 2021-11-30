@@ -55,6 +55,7 @@
 
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
         this.load.spritesheet('sg', 'seagullsSprite.png',{frameWidth:100, frameHeight:85});
+        this.load.spritesheet('sparrow', 'gorrion.png', {frameWidth:51, frameHeight:50});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
         this.load.spritesheet('run','ninya_run.png',{frameWidth:55, frameHeight:75, endFrame: 6});
         this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});
@@ -122,6 +123,12 @@
         this.anims.create({
           key: 'seagull_fly',
           frames: this.anims.generateFrameNumbers('sg', { start: 0, end: 8 }),
+          frameRate: 10, // Velocidad de la animación
+          repeat: -1    // Animación en bucle
+        });
+        this.anims.create({
+          key: 'sparrow_fly',
+          frames: this.anims.generateFrameNumbers('sparrow', { start: 0, end: 4 }),
           frameRate: 10, // Velocidad de la animación
           repeat: -1    // Animación en bucle
         });

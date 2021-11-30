@@ -2,8 +2,6 @@
  * Escena de pausa de juego. 
  * Si se pulsa el botón de resume, se vuelve a iniciar el juego.
  */
- import Button from "./button.js";
-
  export default class PauseMenu extends Phaser.Scene
  {
    /**
