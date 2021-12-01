@@ -138,6 +138,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.scene.physics.collide(this.scene.sparrow, this))
     {
         this.PerderVida(0.5);
+        this.changeInvulnerability();
     }
 
     if(this.lifes<=0){
