@@ -32,7 +32,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
+    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
+    this.bend=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     this.current='empty';
@@ -138,6 +139,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
       if(this.body.onFloor()){
         this.body.setVelocityY(this.jumpSpeed);
       }
+    }
+    if(this.bend.isDown){
+      console.log('dsaddas');
+        this.play('bend_anim');
     }
     if (this.cursors.left.isDown ||this.left.isDown) {
       this.body.setVelocityX(-this.speed);
