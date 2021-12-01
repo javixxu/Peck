@@ -27,6 +27,7 @@ export default class Seagull extends Enemies
     if(this.scene.physics.overlap(this.player, this.bird))
     {
         this.player.PerderVida(0.5);
+        this.player.changeInvulnerability();
     }
   }
 }

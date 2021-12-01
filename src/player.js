@@ -28,6 +28,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
    
     this.lifes=numslife;
+    this.invulnerability=false;
     this.consume=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);//tecla para consumir powerUp
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -39,8 +40,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     
   }
   PerderVida(golpe){
-    this.lifes-=golpe;
-    this.UI.PerderVida(golpe);
+    if(!this.invulnerability){
+      this.lifes-=golpe;
+      this.UI.PerderVida(golpe);
+    }
+    
   }
   colaEffect(){
     
@@ -90,6 +94,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.PerderVida(1);
     this.x=this.scene.UltimaSobrePasada();
   }
+  //Te hace invulnerable
+  changeInvulnerability(){
+    this.invulnerability=true;
+     
+    let timer=this.scene.time.addEvent( {
+      delay:5000,
+      callback: this.setInvulnerability,
+      callbackScope: this
+    });
+  }
+  //Te hace vulnerable
+  setInvulnerability(){
+    this.invulnerability=false;
+  }
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
    * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -114,6 +132,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if(this.scene.physics.collide(this.scene.crow, this))
     {
         this.PerderVida(0.5);
+        this.changeInvulnerability();
     }
     //GORRIÓN 
     if(this.scene.physics.collide(this.scene.sparrow, this))
