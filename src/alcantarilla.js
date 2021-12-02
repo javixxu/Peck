@@ -18,7 +18,7 @@ export default class alcantarilla extends Obstacles
          }
          if(this.x<this.player.x)this.Sobrepasado=true;
          else if(this.x>this.player.x)this.Sobrepasado=false;
-         console.log( this.collision);
+         
     }
      
     Mirar(){return this.Sobrepasado; } 
