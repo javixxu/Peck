@@ -58,7 +58,7 @@
         this.load.spritesheet('sparrow', 'gorrion.png', {frameWidth:51, frameHeight:50});
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
         this.load.spritesheet('run','ninya_run.png',{frameWidth:55, frameHeight:75, endFrame: 6});
-        this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:40, frameHeight:75, endFrame: 4});
+        this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});
         this.load.spritesheet('bend','bend.png',{frameWidth:58, frameHeight:75, endFrame: 4})
 
         this.load.on('fileprogress', function (file) {

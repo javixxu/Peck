@@ -100,7 +100,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.invulnerability=true;
      
     let timer=this.scene.time.addEvent( {
-      delay:5000,
+      delay:2000,
       callback: this.setInvulnerability,
       callbackScope: this
     });
@@ -152,8 +152,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
      this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
      this.powerUpEffect(this.current);
      this.current='empty';
-    
-     
     }
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
