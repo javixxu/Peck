@@ -11,6 +11,7 @@ import VictoriaCollider from './victoriacollider.js';
 import alcantarilla from './alcantarilla.js';
 import Bandages from './bandages.js';
 import Sparrow from './sparrow.js';
+import Spikes from './spikes.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -48,6 +49,7 @@ export default class Level extends Phaser.Scene
     this.seagull = new Seagull(this, this.player, 500, 250);
     this.sparrow = new Sparrow(this, this.player, 50, 200);
     new Bandages(this,100,100,'bandage');
+    this.spikes=new Spikes(this,this.player,1800,470,'spikes');
     new Fence(this,this.player, 1500, height-120, 'fence');
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoriaCollider(this,this.player,6000,height-38);
