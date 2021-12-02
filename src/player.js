@@ -158,11 +158,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setVelocityY(this.jumpSpeed);
       }
     }
-    else if(this.bend.isDown){
-      this.play('bend_anim',true);
+    else if(this.cursors.down.isDown){
+      if(this.body.onFloor()){
+        
+      this.play('bend_anim');
       console.log('agachado');
+      }
     }
-    if (this.cursors.left.isDown ||this.left.isDown) {
+    else if (this.cursors.left.isDown ||this.left.isDown) {
       this.body.setVelocityX(-this.speed);
       this.setFlip(true,false);
       this.play('run_anim', true);

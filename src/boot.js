@@ -59,7 +59,7 @@
         this.load.spritesheet('still','cathy2.png',{frameWidth:50, frameHeight:75});
         this.load.spritesheet('run','ninya_run.png',{frameWidth:55, frameHeight:75, endFrame: 6});
         this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});
-        this.load.spritesheet('bend','bend.png',{frameWidth:58, frameHeight:75, endFrame: 4})
+        this.load.spritesheet('bend','cathy_bend.png',{frameWidth:150, frameHeight:65, endFrame: 1});
 
         this.load.on('fileprogress', function (file) {
             console.log(file.src);
@@ -136,7 +136,7 @@
         });
         this.anims.create({
           key: 'bend_anim',
-          frames: this.anims.generateFrameNumbers('bend', { start: 0, end: 4 }),
+          frames: this.anims.generateFrameNumbers('bend', { start: 0, end: 1 }),
           frameRate: 11, // Velocidad de la animación
           //repeat: 0    // Animación en bucle
         });
