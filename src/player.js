@@ -161,8 +161,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
     else if(this.bend.isDown){
-
-      this.play('bend_anim');
+      this.play('bend_anim',true);
       console.log('agachado');
     }
     if (this.cursors.left.isDown ||this.left.isDown) {
