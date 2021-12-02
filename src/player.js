@@ -33,7 +33,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.right=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.left=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.Jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);    
+    this.jump=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); 
+    this.bend=this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C); 
     this.powerups;
     this.UI= new UIPlayer(this.scene,this,numslife,this.maxLife,this.score,this.powerups);
     this.current='empty';
@@ -99,7 +100,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.invulnerability=true;
      
     let timer=this.scene.time.addEvent( {
-      delay:5000,
+      delay:2000,
       callback: this.setInvulnerability,
       callbackScope: this
     });
@@ -151,15 +152,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
      this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
      this.powerUpEffect(this.current);
      this.current='empty';
-    
-     
     }
     if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
       if(this.body.onFloor()){
         this.body.setVelocityY(this.jumpSpeed);
       }
     }
-    if (this.cursors.left.isDown ||this.left.isDown) {
+    else if(this.cursors.down.isDown){
+      if(this.body.onFloor()){
+        
+      this.play('bend_anim');
+      console.log('agachado');
+      }
+    }
+    else if (this.cursors.left.isDown ||this.left.isDown) {
       this.body.setVelocityX(-this.speed);
       this.setFlip(true,false);
       this.play('run_anim', true);
