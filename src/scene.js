@@ -5,6 +5,7 @@ import Floor from './floor.js';
 import Cola from './cola.js';
 import Car from './car.js';
 import Fence from './fence.js';
+import Debris from './debris.js';
 import Seagull from './seagull.js';
 import Puddle from './puddle.js';
 import VictoriaCollider from './victoriacollider.js';
@@ -49,6 +50,7 @@ export default class Level extends Phaser.Scene
     this.sparrow = new Sparrow(this, this.player, 50, 200);
     new Bandages(this,100,100,'bandage');
     new Fence(this,this.player, 1500, height-120, 'fence');
+    new Debris(this,this.player, 2155, height-50, 'debris')
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoriaCollider(this,this.player,6000,height-38);
     this.puddle = new Puddle(this, this.player, 500, height-10, 'puddle')
