@@ -40,10 +40,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.current='empty';
     
   }
-  PerderVida(golpe){
+  playerDamage(hit){
     if(!this.invulnerability){
-      this.lifes-=golpe;
-      this.UI.PerderVida(golpe);
+      this.lifes-=hit;
+      this.UI.loseLife(hit);
     }
     
   }
@@ -84,11 +84,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   
   bandageEffect(){
-    this.UI.GanarVida(1);
+    this.UI.addLife(1);
   }
  
-  AlcantarillaDamage(){
-    this.PerderVida(1);
+  sewerEffect(){
+    this.playerDamage(1);
     this.x=this.scene.UltimaSobrePasada();
   }
   //Te hace invulnerable

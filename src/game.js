@@ -2,7 +2,7 @@ import Boot from './boot.js';
 import Menu from './mainmenu.js';
 import gameOver from './gameOver.js';
 import Level from './scene.js';
-import victoriascene from './victoriascene.js'
+import Victoryscene from './victoryscene.js'
 import PauseMenu from './pausemenu.js';
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -18,7 +18,7 @@ import PauseMenu from './pausemenu.js';
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Menu,Level, gameOver, victoriascene, PauseMenu],
+    scene: [Boot, Menu, Level, gameOver, Victoryscene, PauseMenu],
     physics: { 
         default: 'arcade', 
         arcade: { 

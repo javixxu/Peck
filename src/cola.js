@@ -2,16 +2,13 @@ import PowerUp from "./powerUp.js";
 
 export default class Cola extends PowerUp {
  
-  constructor(scene, x, y) {
+  constructor(scene, player, x, y) {
     super(scene, x, y, 'cola');
+    this.player=player;
   }
 
-  /**
-   * Redefinición del preUpdate de Phaser
-   * @override
-   */
-   preUpdate() {
-     
+  
+  preUpdate() {
     super.preUpdate();
     
      if (this.scene.physics.overlap(this.scene.player, this)) 
@@ -22,8 +19,6 @@ export default class Cola extends PowerUp {
         this.setVisible(false);
         this.destroy();
       }
-     
     }
-    
   }
 }
