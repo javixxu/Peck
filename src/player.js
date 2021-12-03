@@ -78,10 +78,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   
   }
   
-  puddleEffect(){
-    this.speed = 200;
-    this.jumpSpeed = -250;
-  }
   setSpeed(){
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
@@ -118,25 +114,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
   
-    // PUDDLE
-    if(this.scene.physics.overlap(this.scene.puddle, this))
-    {
-        this.puddleEffect();
-        
-        let timer=this.scene.time.addEvent( {
-          delay:5000,
-          callback: this.setSpeed,
-          callbackScope: this
-        });
-    }
     //CUERVO
-    if(this.scene.physics.collide(this.scene.crow, this))
+    if(this.scene.physics.overlap(this.scene.crow, this))
     {
-        this.PerderVida(0.5);
+        this.PerderVida(1);
         this.changeInvulnerability();
     }
     //GORRIÓN 
-    if(this.scene.physics.collide(this.scene.sparrow, this))
+    if(this.scene.physics.overlap(this.scene.sparrow, this))
     {
         this.PerderVida(0.5);
         this.changeInvulnerability();

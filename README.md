@@ -1,6 +1,8 @@
 # PECK
 ## _Grupo 11_
 
+https://javixxu.github.io/PVLI-G11/
+
 Documento de diseño de videojuego.
 
 Nombre de los autores y correo electrónico de contacto: 
@@ -9,7 +11,7 @@ Nombre de los autores y correo electrónico de contacto:
 - Javier Comas de Frutos javcomas@ucm.es
 - Adrián Montero Castrillo admont02@ucm.es
 
-Versión 1.4 –31 octubre 2021
+Versión 1.5 –2 diciembre 2021
 
 ## Características
 
@@ -75,7 +77,8 @@ Aparecemos en Bodega Bay, controlando a Cathy, con su jaula de periquitos en man
 - Movimiento: La partida se desarrolla en un solo plano lateral, en el que Cathy únicamente podrá moverse hacia izquierda o derecha. Además tendrá la capacidad de saltar y agacharse para esquivar obstáculos.
 - Vida: Cathy tendrá 5 corazones que podrá perder al colisionar con los diferentes pájaros enemigos. Si se queda sin corazones, muere y se pierde la partida (regresando al menú principal). En los niveles habrá diferentes trampas que también harán daño. Dependiendo del tipo de pájaro y trampa, perderá más o menos vida.
 La vida se resetea al pasar de nivel.
-- Recoger objetos: Al pasar por encima  de un objeto automáticamente lo consumirá y surtirá efecto
+- Recoger/Consumir objetos: Al pasar por encima  de un objeto , lo almacenaremos en nuestro inventario(si está vacío). En el inventario solo podremos llevar un objeto, que podremos consumir con la tecla E. No podremos sustituir el objeto guardado por otro.
+
 
 #### 2.1.2 Mecánicas de escenario
 El escenario consta de una serie de plataformas y obstáculos por las que la protagonista deberá moverse y esquivar para alcanzar la meta. Cathy podrá recoger distintos objetos que le proporcionarán power-ups con ventajas que le ayudarán a escapar.
@@ -139,14 +142,13 @@ El menú de pausa tendrá las opciones de:
 El menú principal dará acceso a:
 - Iniciar la Partida
 - Información sobre los controles
-- Redes sociales del juego
 - Salir del juego
 
 
 ## 3.2 Interfaz y control  
-Si pulsamos la tecla “ESC” nos abrirá el menú de pausa.
+En la parte superior izquierda de la pantalla,  se encuentran la vida del jugador (representada por corazones), como el inventario donde podremos llevar un power-up.
+Por otro lado, en la parte derecha, encontraremos un contador de tiempo de lo que lleva la partida en curso y un botón de pausa, que al ser pulsado pausa la escena de juego y abre el menú de pausa.
 
-En la parte superior izquierda se encuentra la vida del jugador, representada mediante corazones, y a la derecha, el contador de tiempo.
 
 # 4. Contenido
 ## 4.1 Historia
@@ -167,7 +169,7 @@ Protagonista: Cathy Brenner. Ocupa 1,5 x 1,5.
 
 Los enemigos tendrán la habilidad de atacar a Cathy colisionando con ella. Irán apareciendo aleatoriamente del cielo, volando hacia ella.
 
-- Cuervo: Enemigo hostil que ataca por la espalda en línea recta, dándose la vuelta al llegar al límite de la pantalla. Ocupa la mitad que la protagonista.
+- Cuervo: Cuervo: Enemigo hostil que ataca en línea recta, dándose la vuelta cada cierto tiempo persiguiendo a Cathy. Ocupa la mitad que la protagonista.
 
 
 ![N|Solid](https://cdn.discordapp.com/attachments/884555645414699018/891738880787750963/unknown.png)
@@ -195,7 +197,9 @@ Controles de movimiento:
 - Teclas “S” ó “Down Arrow” para agacharse
 - Teclas “W”, “Up Arrow” ó “Space Bar” para saltar
 - Teclas “A” ó “LeftArrow” para movernos hacia la izquierda
-- Menú de pausa: Al pulsar la tecla “ESC” aparecerá en la pantalla el menú de pausa que contendrá distintas opciones.
+- Tecla “E” para consumir el power-up almacenado
+
+- Menú de pausa: Al pulsar el botón de pausa de la parte derecha de la pantalla,  aparecerá en la pantalla el menú de pausa que contendrá distintas opciones.
 
 ## 4.4 Objetos
 Los objetos aparecerán aleatoriamente por el escenario de juego, y se activan automáticamente al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres objetos:

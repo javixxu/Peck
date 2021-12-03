@@ -39,6 +39,7 @@
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
         this.load.image('bandage','star1.png');
+        this.load.image('spikes','spikes.png');
         this.load.image('ganar','victoria.jpg');
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('cola','cola.png');
@@ -48,6 +49,7 @@
           }
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
+        
         this.load.image ('debris', 'escombros.png');
         this.load.image('seagull', 'seagull.png');
         this.load.image('gameover','GameOver.png');
