@@ -49,6 +49,8 @@
           }
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
+        
+        this.load.image ('debris', 'escombros.png');
         this.load.image('seagull', 'seagull.png');
         this.load.image('gameover','GameOver.png');
         this.load.image('puddle','mud.png');
