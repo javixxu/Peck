@@ -96,7 +96,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.invulnerability=true;
      
     let timer=this.scene.time.addEvent( {
-      delay:2000,
+      delay:5000,
       callback: this.setInvulnerability,
       callbackScope: this
     });
@@ -113,19 +113,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-  
-    //CUERVO
-    if(this.scene.physics.overlap(this.scene.crow, this))
-    {
-        this.PerderVida(1);
-        this.changeInvulnerability();
-    }
-    //GORRIÓN 
-    if(this.scene.physics.overlap(this.scene.sparrow, this))
-    {
-        this.PerderVida(0.5);
-        this.changeInvulnerability();
-    }
 
     if(this.lifes<=0){
       console.log("PERDER");

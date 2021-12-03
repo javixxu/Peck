@@ -8,7 +8,7 @@ export default class Sparrow extends Enemies {
     super(scene, player, x, y, name);
     
     this.scene.physics.add.existing(this);
-    //this.body.allowGravity = false;
+    this.player=player;
     this.body.setBounceY(1);
     this.body.setCollideWorldBounds();
     this.play('sparrow_fly');
@@ -27,5 +27,14 @@ export default class Sparrow extends Enemies {
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
+  }
+
+  sparrowAtack()
+  {
+    if(this.scene.physics.overlap(this.player, this))
+    {
+        this.player.PerderVida(0.5);
+        this.player.changeInvulnerability();
+    }
   }
 }
