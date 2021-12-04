@@ -27,6 +27,6 @@ export default class gameOver extends Phaser.Scene
 
   }
 spawn(){
-    this.scene.start('level');
-}
+  this.scene.start('level');
+  }
 }

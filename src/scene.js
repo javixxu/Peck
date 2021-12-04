@@ -8,8 +8,8 @@ import Fence from './fence.js';
 import Debris from './debris.js';
 import Seagull from './seagull.js';
 import Puddle from './puddle.js';
-import VictoriaCollider from './victoriacollider.js';
-import alcantarilla from './alcantarilla.js';
+import VictoryCollider from './victorycollider.js';
+import Sewer from './sewer.js';
 import Bandages from './bandages.js';
 import Sparrow from './sparrow.js';
 import Spikes from './spikes.js';
@@ -54,13 +54,13 @@ export default class Level extends Phaser.Scene
     new Fence(this,this.player, 1500, height-120, 'fence');
     new Debris(this,this.player, 2155, height-50, 'debris')
     //new Car(this, this.player, 1000, height-38, 'car');
-    new VictoriaCollider(this,this.player,6000,height-38);
-    this.puddle = new Puddle(this, this.player, 500, height-10, 'puddle')
+    new VictoryCollider(this,this.player,6000,height-38);
+    //this.puddle = new Puddle(this, this.player, 500, height-10, 'puddle')
     new Platform(this, this.player, this.sparrow, 150, 350);
     new Platform(this, this.player, this.sparrow, 850, 350);
     new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas=this.add.group();
-    this.creacionAlcantarillas(height-50);
+    this.createSewer(height-50);
     //menú de pausa
     this.pause = this.add.image(975,25,'pause').setScale(0.1);
     this.pause.setScrollFactor(0);
@@ -74,8 +74,6 @@ export default class Level extends Phaser.Scene
     this.tiempoTotal=0;this.tiempo;
     this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);
-    
-    //this.spawn();
 
     this.physics.world.setBounds( 0, 0, large, height );
     this.cameras.main.setBounds(0, 0, large, height);
@@ -112,21 +110,20 @@ export default class Level extends Phaser.Scene
   /**
    * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
   */
-   creacionAlcantarillas(h){
-
-    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2000,h, 'alcantarilla'));     
-    this.groupAlcantarillas.add(new alcantarilla(this,this.player,2500,h,'alcantarilla'));
-    this.groupAlcantarillas.add(new alcantarilla(this,this.player,3500,h,'alcantarilla'));
-    
+  createSewer(h){
+    this.groupAlcantarillas.add(new Sewer(this,this.player,2000,h, 'alcantarilla'));     
+    this.groupAlcantarillas.add(new Sewer(this,this.player,2500,h,'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this,this.player,3500,h,'alcantarilla'));
   }
   UltimaSobrePasada(){
     let w=this.groupAlcantarillas.getChildren();let desplazamiento=175
+
     for(let i=this.groupAlcantarillas.getLength()-1 ;i>-1;i--){     
-     if(w[i].Mirar()){
-       return w[i].MirarPos()-desplazamiento;
+     if(w[i].isPassed()){
+       return w[i].getPos()-desplazamiento;
       }
     }
-    return w[0].MirarPos()-desplazamiento;
+    return w[0].getPos()-desplazamiento;
   }
   update(t,dt){    
     this.tiempoTotal=t;

@@ -13,7 +13,7 @@ export default class Seagull extends Enemies
     this.bird=this.scene.physics.add.sprite(offset, 0, 'sg'); //Sprite de la gaviota
     this.bird.body.allowGravity = false; //Quitarle la gravedad a la gaviota
     this.bird.play('seagull_fly'); //Animacion de la gaviota
-    //Rellenar el grupo
+    //Rellenar el container
     this.container.add([centro, this.bird ]);
   }
 
@@ -26,8 +26,8 @@ export default class Seagull extends Enemies
     //Si pongo collide la gaviota se mueve y hace giros cada vez mas grandes
     if(this.scene.physics.overlap(this.player, this.bird))
     {
-        this.player.PerderVida(0.5);
-        this.player.changeInvulnerability();
+      this.player.playerDamage(0.5);
+      this.player.changeInvulnerability();
     }
   }
 }

@@ -9,6 +9,7 @@ export default class Crow extends Enemies {
     
     this.scene.physics.add.existing(this);
     this.body.allowGravity = false;
+    this.player=player;
     this.body.setCollideWorldBounds();
     this.play('raven_right');
     this.scene.tweens.add({
@@ -21,16 +22,23 @@ export default class Crow extends Enemies {
       repeat: -1,
     })
   }
-  /**
-   * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
-   */
+ 
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
-    this.crowAttack();
-    
+    this.crowMovement();
+    this.crowAtack();
   }
-  crowAttack(){
+
+  crowMovement(){
     this.scene.physics.moveToObject(this,this.scene.player,300);
   }
-  
+
+  crowAtack()
+  {
+    if(this.scene.physics.overlap(this.player, this))
+    {
+      this.player.playerDamage(1);
+      this.player.changeInvulnerability();
+    }
+  }
 }
