@@ -42,6 +42,7 @@
         this.load.image('spikes','spikes.png');
         this.load.image('ganar','victoria.jpg');
         this.load.image('alcantarilla','alcantarilla.png');
+        this.load.image('panel','panel.png');
         this.load.image('cola','cola.png');
         this.load.image('pausebg', '3.png');
         for (var i = 0; i < 200; i++) {
