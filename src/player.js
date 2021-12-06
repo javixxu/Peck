@@ -42,6 +42,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   playerDamage(hit){
     if(!this.invulnerability){
+      console.log('dañoo'+hit)
       this.lifes-=hit;
       this.UI.loseLife(hit);
     }

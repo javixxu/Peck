@@ -25,5 +25,5 @@
       this.scene.stop('level');
       this.scene.start('menu');
       });
-  }
+  } 
 }

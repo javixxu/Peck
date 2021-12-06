@@ -13,6 +13,7 @@ import Sewer from './sewer.js';
 import Bandages from './bandages.js';
 import Sparrow from './sparrow.js';
 import Spikes from './spikes.js';
+import Harrier from './harrier.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -47,6 +48,7 @@ export default class Level extends Phaser.Scene
     }
     this.cola= new Cola(this,600,300);
     this.crow=new Crow (this, this.player, 500,100, 'crow');
+    this.harrier=new Harrier(this,this.player,1500,180,'harrier');
     this.seagull = new Seagull(this, this.player, 500, 250);
     this.sparrow = new Sparrow(this, this.player, 50, 200);
     new Bandages(this,100,100,'bandage');
@@ -66,12 +68,14 @@ export default class Level extends Phaser.Scene
     this.pause.setScrollFactor(0);
     this.pause.setInteractive();
     this.pause.on("pointerdown", () =>{
+      this.tiempoPausa=true;
       this.scene.launch('pausemenu'),
       this.scene.pause()
-      
+     
     });
 
     this.tiempoTotal=0;this.tiempo;
+    this.tiempoPausa=false;
     this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);
 
@@ -101,9 +105,7 @@ export default class Level extends Phaser.Scene
 
       x+=b.width;
     }
-  }
-  
-  
+  }  
   bandagePickt(){
     this.player.bandageEffect();
   }
@@ -125,8 +127,9 @@ export default class Level extends Phaser.Scene
     }
     return w[0].getPos()-desplazamiento;
   }
+  
   update(t,dt){    
-    this.tiempoTotal=t;
+    this.tiempoTotal=t;    
     let x=parseInt((t-this.tiempo)/1000);
     this.label.text=('Time: ' + x);
   }
