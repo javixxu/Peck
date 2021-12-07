@@ -1,7 +1,7 @@
 import Boot from './boot.js';
 import Menu from './mainmenu.js';
 import gameOver from './gameOver.js';
-import Level from './scene.js';
+import Level from './level.js';
 import Victoryscene from './victoryscene.js'
 import PauseMenu from './pausemenu.js';
 /**
