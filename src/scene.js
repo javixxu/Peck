@@ -14,6 +14,7 @@ import Bandages from './bandages.js';
 import Sparrow from './sparrow.js';
 import Spikes from './spikes.js';
 import Harrier from './harrier.js';
+import Birdseed from './birdseed.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -47,6 +48,7 @@ export default class Level extends Phaser.Scene
       this.ground = new Floor(this, this.player, i, height-10);
     }
     this.cola= new Cola(this,600,300);
+    this.birdseed=new Birdseed(this,100,450).setScale(2,2);
     this.crow=new Crow (this, this.player, 500,100, 'crow');
     this.harrier=new Harrier(this,this.player,1500,180,'harrier');
     this.seagull = new Seagull(this, this.player, 500, 250);

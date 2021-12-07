@@ -76,6 +76,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.UI.seePowerUp(true,currentPowerUp);
        this.current=currentPowerUp;
     }
+    else if(currentPowerUp=='birdseed'){
+      this.UI.seePowerUp(true,currentPowerUp);
+       this.current=currentPowerUp;
+    }
+
   
   }
   
