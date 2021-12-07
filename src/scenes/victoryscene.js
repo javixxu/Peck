@@ -19,8 +19,8 @@
   create() {
   this.add.image(500,150,'ganar');
 
-  this.botonStart= this.add.image(975,25,'replay').setScale(0.1).setScrollFactor(0).setInteractive();
-  this.pause.on("pointerdown", () =>{
+  this.botonStart= this.add.image(925,25,'replay').setScale(0.25).setScrollFactor(0).setInteractive();
+  this.botonStart.on("pointerdown", () =>{
     this.scene.start('level');
    });
   /*
