@@ -64,9 +64,8 @@ export default class Level extends Phaser.Scene
     this.groupAlcantarillas=this.add.group();
     this.createSewer(height-50);
     //menú de pausa
-    this.pause = this.add.image(975,25,'pause').setScale(0.1);
-    this.pause.setScrollFactor(0);
-    this.pause.setInteractive();
+    this.pause = this.add.image(975,25,'pause').setScale(0.1).setScrollFactor(0).setInteractive();
+  
     this.pause.on("pointerdown", () =>{
       this.tiempoPausa=true;
       this.scene.launch('pausemenu'),

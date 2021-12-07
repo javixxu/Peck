@@ -13,8 +13,8 @@
     */
   create() {
     this.background = this.add.image(500,250,'panel');
-    this.resume = this.add.image(500,100,'resume').setScale(0.5,0.5).setInteractive();
-    this.exit= this.add.image(500,400,'resume').setScale(0.5,0.5).setInteractive();
+    this.resume = this.add.image(500,150,'resume').setScale(4,4).setInteractive();
+    this.exit= this.add.image(500,500,'exit').setScale(4,4).setInteractive();
    
     this.resume.on("pointerdown", ()=> {
     this.scene.stop();

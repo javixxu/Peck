@@ -31,6 +31,7 @@
         this.load.image('replay','replay.png');
         this.load.image('pause','pause.png');
         this.load.image('resume', 'button.png');
+        this.load.image('exit', 'exit.png');
 
         this.load.setPath ('assets/images/');
         this.load.image('inventory','inventory.png');
