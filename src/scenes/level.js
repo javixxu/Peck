@@ -1,20 +1,20 @@
-import Player from './player.js';
-import Platform from './platform.js';
-import Crow from './birds/crow.js';
-import Floor from './floor.js';
-import Cola from './powerups/cola.js';
-import Car from './obstacles/car.js';
-import Fence from './obstacles/fence.js';
-import Debris from './obstacles/debris.js';
-import Seagull from './birds/seagull.js';
-import Puddle from './obstacles/puddle.js';
-import VictoryCollider from './victorycollider.js';
-import Sewer from './obstacles/sewer.js';
-import Bandages from './powerups/bandages.js';
-import Sparrow from './birds/sparrow.js';
-import Spikes from './obstacles/spikes.js';
-import Harrier from './birds/harrier.js';
-import Birdseed from './powerups/birdseed.js';
+import Player from '../player.js';
+import Platform from '../platform.js';
+import Crow from '../birds/crow.js';
+import Floor from '../floor.js';
+import Cola from '../powerups/cola.js';
+import Car from '../obstacles/car.js';
+import Fence from '../obstacles/fence.js';
+import Debris from '../obstacles/debris.js';
+import Seagull from '../birds/seagull.js';
+import Puddle from '../obstacles/puddle.js';
+import VictoryCollider from '../victorycollider.js';
+import Sewer from '../obstacles/sewer.js';
+import Bandages from '../powerups/bandages.js';
+import Sparrow from '../birds/sparrow.js';
+import Spikes from '../obstacles/spikes.js';
+import Birdseed from '../powerups/birdseed.js';
+import Harrier from '../birds/harrier.js'
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
