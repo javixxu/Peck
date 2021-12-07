@@ -1,7 +1,7 @@
 /**
  * Escena de gameOver. 
  */
-import Button from "./button.js";
+
 export default class gameOver extends Phaser.Scene
 {
   /**
@@ -18,7 +18,10 @@ export default class gameOver extends Phaser.Scene
 
     this.add.image(500,150,'gameover');
    
-    this.botonStart=new Button(this,500,330,'replay');
+    this.botonStart= this.add.image(975,25,'replay').setScale(0.1).setScrollFactor(0).setInteractive();
+    this.pause.on("pointerdown", () =>{
+      this.scene.start('level');
+     });
     /*
     this.input.keyboard.on('keydown', function (event) { 
       this.scene.start('level');
@@ -26,7 +29,5 @@ export default class gameOver extends Phaser.Scene
     */
 
   }
-spawn(){
-  this.scene.start('level');
-  }
+
 }

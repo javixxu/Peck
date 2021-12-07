@@ -1,18 +1,20 @@
-import Player from './player.js';
-import Platform from './platform.js';
-import Crow from './crow.js';
-import Floor from './floor.js';
-import Cola from './cola.js';
-import Car from './car.js';
-import Fence from './fence.js';
-import Debris from './debris.js';
-import Seagull from './seagull.js';
-import Puddle from './puddle.js';
-import VictoryCollider from './victorycollider.js';
-import Sewer from './sewer.js';
-import Bandages from './bandages.js';
-import Sparrow from './sparrow.js';
-import Spikes from './spikes.js';
+import Player from '../player.js';
+import Platform from '../platform.js';
+import Crow from '../birds/crow.js';
+import Floor from '../floor.js';
+import Cola from '../powerups/cola.js';
+import Car from '../obstacles/car.js';
+import Fence from '../obstacles/fence.js';
+import Debris from '../obstacles/debris.js';
+import Seagull from '../birds/seagull.js';
+import Puddle from '../obstacles/puddle.js';
+import VictoryCollider from '../victorycollider.js';
+import Sewer from '../obstacles/sewer.js';
+import Bandages from '../powerups/bandages.js';
+import Sparrow from '../birds/sparrow.js';
+import Spikes from '../obstacles/spikes.js';
+import Birdseed from '../powerups/birdseed.js';
+import Harrier from '../birds/harrier.js'
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -46,7 +48,9 @@ export default class Level extends Phaser.Scene
       this.ground = new Floor(this, this.player, i, height-10);
     }
     this.cola= new Cola(this,600,300);
+    this.birdseed=new Birdseed(this,100,450).setScale(2,2);
     this.crow=new Crow (this, this.player, 500,100, 'crow');
+    this.harrier=new Harrier(this,this.player,1500,180,'harrier');
     this.seagull = new Seagull(this, this.player, 500, 250);
     this.sparrow = new Sparrow(this, this.player, 50, 200);
     new Bandages(this,100,100,'bandage');
@@ -62,16 +66,17 @@ export default class Level extends Phaser.Scene
     this.groupAlcantarillas=this.add.group();
     this.createSewer(height-50);
     //menú de pausa
-    this.pause = this.add.image(975,25,'pause').setScale(0.1);
-    this.pause.setScrollFactor(0);
-    this.pause.setInteractive();
+    this.pause = this.add.image(975,25,'pause').setScale(0.1).setScrollFactor(0).setInteractive();
+  
     this.pause.on("pointerdown", () =>{
+      this.tiempoPausa=true;
       this.scene.launch('pausemenu'),
       this.scene.pause()
-      
+     
     });
 
     this.tiempoTotal=0;this.tiempo;
+    this.tiempoPausa=false;
     this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);
 
@@ -101,9 +106,7 @@ export default class Level extends Phaser.Scene
 
       x+=b.width;
     }
-  }
-  
-  
+  }  
   bandagePickt(){
     this.player.bandageEffect();
   }
@@ -125,8 +128,9 @@ export default class Level extends Phaser.Scene
     }
     return w[0].getPos()-desplazamiento;
   }
+  
   update(t,dt){    
-    this.tiempoTotal=t;
+    this.tiempoTotal=t;    
     let x=parseInt((t-this.tiempo)/1000);
     this.label.text=('Time: ' + x);
   }

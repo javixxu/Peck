@@ -42,6 +42,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   playerDamage(hit){
     if(!this.invulnerability){
+      console.log('dañoo'+hit)
       this.lifes-=hit;
       this.UI.loseLife(hit);
     }
@@ -75,6 +76,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.UI.seePowerUp(true,currentPowerUp);
        this.current=currentPowerUp;
     }
+    else if(currentPowerUp=='birdseed'){
+      this.UI.seePowerUp(true,currentPowerUp);
+       this.current=currentPowerUp;
+    }
+
   
   }
   

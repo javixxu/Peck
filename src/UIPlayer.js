@@ -21,6 +21,7 @@
        this.scene.add.image(70,100,'inventory').setScrollFactor(0).setScale(2.5,2.5);
        this.cola=this.scene.add.image(62,90,'cola').setScrollFactor(0).setScale(0.5,0.5).setVisible(false);
        this.bandage=this.scene.add.image(62,90,'bandage').setScrollFactor(0).setScale(0.5,0.5).setVisible(false);
+       this.birdseed=this.scene.add.image(70,100,'birdseed').setScrollFactor(0).setVisible(false);
        
     }
    
@@ -71,6 +72,9 @@
 
         else if (pU=='bandage') {
             this.bandage.setVisible(visible);
+        }
+        else if (pU=='birdseed') {
+            this.birdseed.setVisible(visible);
         }
     }
 }

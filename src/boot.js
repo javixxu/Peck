@@ -31,6 +31,8 @@
         this.load.image('replay','replay.png');
         this.load.image('pause','pause.png');
         this.load.image('resume', 'button.png');
+        this.load.image('exit', 'exit.png');
+
         this.load.setPath ('assets/images/');
         this.load.image('inventory','inventory.png');
         this.load.image('platform', 'platform.png');
@@ -40,11 +42,14 @@
         this.load.image('corazon','HEART.png');
         this.load.image('bandage','star1.png');
         this.load.image('spikes','spikes.png');
+        this.load.image('birdseed','birdseed.png');
         this.load.image('ganar','victoria.jpg');
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('panel','panel.png');
         this.load.image('cola','cola.png');
         this.load.image('pausebg', '3.png');
+        this.load.image('harrier','harrier.png');
+        
         for (var i = 0; i < 200; i++) {
             this.load.image('cola'+ i, 'cola.png');
           }
