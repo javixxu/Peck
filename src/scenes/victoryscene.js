@@ -34,7 +34,7 @@
     this.botonStart.on("pointerdown", () =>{
     this.winmusic.stop();
     this.scene.start('level');
-  });
+    });
   /*
   this.input.keyboard.on('keydown', function (event) { 
     this.scene.start('level');
