@@ -17,12 +17,24 @@
     * @override
     */
   create() {
-  this.add.image(500,150,'ganar');
+    const config = {
+      mute: false,
+      volume: 0.1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.winmusic = this.sound.add("winmusic",config);
+    this.winmusic.play();
+    this.add.image(500,150,'ganar');
 
-  this.botonStart= this.add.image(925,25,'replay').setScale(0.25).setScrollFactor(0).setInteractive();
-  this.botonStart.on("pointerdown", () =>{
+    this.botonStart= this.add.image(925,25,'replay').setScale(0.25).setScrollFactor(0).setInteractive();
+    this.botonStart.on("pointerdown", () =>{
+    this.winmusic.stop();
     this.scene.start('level');
-   });
+  });
   /*
   this.input.keyboard.on('keydown', function (event) { 
     this.scene.start('level');

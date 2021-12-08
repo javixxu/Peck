@@ -11,10 +11,21 @@ export default class Sewer extends Obstacles
      }
     preUpdate(){
         if(!this.collision && this.scene.physics.overlap(this.player,this)){
-            this.player.sewerEffect();   
+            this.player.sewerEffect();
+            const config = {
+                mute: false,
+                volume: 0.7,
+                rate: 1,
+                detune: 0,
+                seek: 0,
+                loop: false,
+                delay: 0,
+              };
+              this.fallSound= this.scene.sound.add("fall",config);
+              this.fallSound.play();  
             this.collision=true;                             
             this.collisionTimer();
-         }
+        }
 
          if (this.x<this.player.x)this.passed=true;
          else if (this.x>this.player.x)this.passed=false;

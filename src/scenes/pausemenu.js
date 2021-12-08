@@ -18,6 +18,7 @@
    
     this.resume.on("pointerdown", ()=> {
     this.scene.stop();
+    
     this.scene.resume('level');
     });
     this.exit.on("pointerdown", ()=> {
