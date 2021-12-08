@@ -7,10 +7,7 @@
   constructor() {
     super({ key: 'pausemenu' });
   }
-   /**
-    * Creación de la escena. Tan solo contiene el texto que indica que el juego se ha acabado
-    * @override
-    */
+  
   create() {
     this.background = this.add.image(500,250,'panel');
     this.resume = this.add.image(500,150,'resume').setScale(4,4).setInteractive();
