@@ -64,7 +64,7 @@ export default class Level extends Phaser.Scene
     this.harrier=new Harrier(this,this.player,1500,180,'harrier');
     this.seagull = new Seagull(this, this.player, 500, 250);
     this.sparrow = new Sparrow(this, this.player, 50, 200);
-    new Bandages(this,100,100,'bandage');
+    new Bandages(this,850,250,'bandage');
     this.spikes=new Spikes(this,this.player,1800,470,'spikes');
     new Fence(this,this.player, 1500, height-120, 'fence');
     new Debris(this,this.player, 2155, height-50, 'debris')
@@ -79,8 +79,7 @@ export default class Level extends Phaser.Scene
 
     this.soundtrack.play();
     //menú de pausa
-    this.pause = this.add.image(975,25,'pause').setScale(0.1).setScrollFactor(0).setInteractive();
-  
+    this.pause = this.add.image(970,30,'pause').setScale(0.1).setScrollFactor(0).setInteractive();
     this.pause.on("pointerdown", () =>{
       this.tiempoPausa=true;
       this.scene.launch('pausemenu'),
@@ -88,7 +87,7 @@ export default class Level extends Phaser.Scene
       this.scene.pause()
     });
 
-    this.tiempoTotal=0;this.tiempo;
+    this.tiempoTotal=0; this.tiempo;
     this.tiempoPausa=false;
     this.label = this.add.text(800, 10, "");
     this.label.setScrollFactor(0);

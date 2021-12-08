@@ -41,7 +41,7 @@ export default class Harrier extends Enemies {
         }
         //tener cuidado con el timer de invencibilidad del jugador
         if(this.collision&&this.scene.physics.overlap(this.player, this)){
-            this.player.playerDamage(2.5);          
+            this.player.playerDamage(1);          
             this.collision=false;
             console.log('CHOQUEE')
         }

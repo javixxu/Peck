@@ -18,7 +18,7 @@ export default class gameOver extends Phaser.Scene
 
     const config = {
       mute: false,
-      volume: 0.1,
+      volume: 0.4,
       rate: 1,
       detune: 0,
       seek: 0,
@@ -26,15 +26,26 @@ export default class gameOver extends Phaser.Scene
       delay: 0,
     };
     this.gameovermusic = this.sound.add("gameovermusic",config);
+    this.clicksound= this.sound.add("buttonclick");
     this.gameovermusic.play();
     
     this.add.image(500,150,'gameover');
    
-    this.botonStart= this.add.image(925,25,'replay').setScale(0.25).setScrollFactor(0).setInteractive();
+    this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+    this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setInteractive();
+
     this.botonStart.on("pointerdown", () =>{
       this.scene.start('level');
       this.gameovermusic.stop();
+      this.clicksound.play();
      });
+
+    this.exit.on("pointerdown", ()=> {
+      this.scene.stop();
+      this.clicksound.play();
+      this.gameovermusic.stop();
+      this.scene.start('menu');
+    });
     /*
     this.input.keyboard.on('keydown', function (event) { 
       this.scene.start('level');
