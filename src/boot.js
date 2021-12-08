@@ -70,6 +70,11 @@
         this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});
         this.load.spritesheet('bend','cathy_bend.png',{frameWidth:150, frameHeight:65, endFrame: 1});
 
+
+        this.load.setPath ('sounds/');
+        this.load.audio('pickup', 'pickup.wav');
+        this.load.audio ('usepowerup', 'poweruosound.mp3')
+
         this.load.on('fileprogress', function (file) {
             console.log(file.src);
           });
