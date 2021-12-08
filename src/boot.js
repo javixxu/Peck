@@ -38,6 +38,7 @@
 
         //IMAGENES
         this.load.setPath ('assets/images/');
+        this.load.image('menubackground', 'fondo2.png');
         this.load.image('inventory','inventory.png');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');

@@ -16,6 +16,7 @@ export default class Menu extends Phaser.Scene {
         };
         this.music= this.sound.add("menumusic",config);
         this.music.play();
+        this.background = this.add.image (500, 270, 'menubackground').setScale(2);
         this.playButton=this.add.image(350,250,'button').setScale(2).setScrollFactor(0).setInteractive();
         this.helpButton=this.add.image(600,250,'controlsButton').setScale(2).setScrollFactor(0).setInteractive();
         this.playButton.on("pointerdown", () =>{
