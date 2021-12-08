@@ -83,7 +83,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   
   }
-  
+  powerupSound()
+  {
+    const config = {
+      mute: false,
+      volume: 0.3,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.powerSound= this.scene.sound.add("usepowerup",config);
+    this.powerSound.play();
+  }
   setSpeed(){
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
@@ -127,6 +140,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
    
     if (this.consume.isDown){//si pulso E && this.empty==false
+      this. powerupSound();
      this.UI.seePowerUp(false,this.current);//dejo de ver cocacola en la UI
      this.powerUpEffect(this.current);
      this.current='empty';
