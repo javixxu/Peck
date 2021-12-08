@@ -15,6 +15,7 @@ import Sparrow from '../birds/sparrow.js';
 import Spikes from '../obstacles/spikes.js';
 import Birdseed from '../powerups/birdseed.js';
 import Harrier from '../birds/harrier.js'
+import PauseMenu from './pausemenu.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -36,8 +37,18 @@ export default class Level extends Phaser.Scene
     const width=this.scale.width;
     const height = this.scale.height;
     const large=width*10;
-    //background
-    //createAligned(large, 'city', 1);
+    //MUSICA DE FONDO
+    const config = {
+      mute: false,
+      volume: 0.1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0,
+    };
+    this.soundtrack = this.sound.add("backsound",config);
+    
     this.createAligned(this, large,'city',1);
     
     
@@ -65,14 +76,16 @@ export default class Level extends Phaser.Scene
     new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas=this.add.group();
     this.createSewer(height-50);
+
+    this.soundtrack.play();
     //menú de pausa
     this.pause = this.add.image(975,25,'pause').setScale(0.1).setScrollFactor(0).setInteractive();
   
     this.pause.on("pointerdown", () =>{
       this.tiempoPausa=true;
       this.scene.launch('pausemenu'),
+      this.soundtrack.pause(),
       this.scene.pause()
-     
     });
 
     this.tiempoTotal=0;this.tiempo;
@@ -129,7 +142,8 @@ export default class Level extends Phaser.Scene
     return w[0].getPos()-desplazamiento;
   }
   
-  update(t,dt){    
+  update(t,dt){ 
+    this.soundtrack.resume();   
     this.tiempoTotal=t;    
     let x=parseInt((t-this.tiempo)/1000);
     this.label.text=('Time: ' + x);

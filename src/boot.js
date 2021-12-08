@@ -40,7 +40,7 @@
         this.load.image('player', 'cathy2.png');
         this.load.image('city', 'city.png');
         this.load.image('corazon','HEART.png');
-        this.load.image('bandage','star1.png');
+        this.load.image('bandage','bamdages.png');
         this.load.image('spikes','spikes.png');
         this.load.image('birdseed','birdseed.png');
         this.load.image('ganar','victoria.jpg');
@@ -73,7 +73,14 @@
 
         this.load.setPath ('sounds/');
         this.load.audio('pickup', 'pickup.wav');
-        this.load.audio ('usepowerup', 'poweruosound.mp3')
+        this.load.audio ('usepowerup', 'poweruosound.wav');
+        this.load.audio('hurt', 'femalehurt.wav');
+        this.load.audio('fall', 'losesound.wav');
+        this.load.audio('backsound', 'soundtrack.wav');
+        this.load.audio('menumusic', 'menumusic.wav');
+        this.load.audio('buttonclick', 'bottonclick.wav');
+        this.load.audio('gameovermusic', 'deadmusic.wav');
+        this.load.audio('winmusic', 'victorysound.mp3');
 
         this.load.on('fileprogress', function (file) {
             console.log(file.src);

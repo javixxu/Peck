@@ -40,10 +40,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.current='empty';
     
   }
+  hurtSoundEffect(){
+    const config = {
+      mute: false,
+      volume: 0.3,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.hurtSound= this.scene.sound.add("hurt",config);
+    this.hurtSound.play();
+  }
   playerDamage(hit){
     if(!this.invulnerability){
       console.log('dañoo'+hit)
       this.lifes-=hit;
+      this.hurtSoundEffect();
       this.UI.loseLife(hit);
     }
     
@@ -108,6 +122,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
  
   sewerEffect(){
     this.playerDamage(1);
+    this.hurtSound.stop();
     this.x=this.scene.UltimaSobrePasada();
   }
   //Te hace invulnerable
@@ -124,17 +139,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
   setInvulnerability(){
     this.invulnerability=false;
   }
-  /**
-   * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-   * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
-   * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
-   * @override
-   */
+
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
 
     if(this.lifes<=0){
       console.log("PERDER");
+      this.scene.soundtrack.stop();
       //Que se acabe la partida     
       this.scene.scene.start('gameOver');
     }

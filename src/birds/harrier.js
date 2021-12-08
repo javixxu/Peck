@@ -27,7 +27,7 @@ export default class Harrier extends Enemies {
                 this.body.setVelocity(-this.fallSpeed,this.fallSpeed);
                 this.lastPos=this.x;               
             }
-            //CASO HAY LLEGADO A SU LIMITE DE MOVIMIENTO RECTO Y QUEREMOS Q ASCIENDA
+            //CASO HA LLEGADO A SU LIMITE DE MOVIMIENTO RECTO Y QUEREMOS Q ASCIENDA
             else if(this.x<this.lastPos-100){
                this.body.setVelocityY(-this.fallSpeed);
                this.descenso=false;               
