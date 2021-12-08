@@ -26,13 +26,17 @@
             progressBar.fillStyle(0xffffff, 1);
             progressBar.fillRect(350, 280, 300 * value, 30);
         });
+
+        //BOTONES
         this.load.setPath('assets/botones/');
-        this.load.image('button','button.png');
+        this.load.image('button','play.png');
         this.load.image('replay','replay.png');
         this.load.image('pause','pause.png');
-        this.load.image('resume', 'button.png');
+        this.load.image('sound', 'sound.png');
         this.load.image('exit', 'exit.png');
+        this.load.image('controlsButton', 'controls.png')
 
+        //IMAGENES
         this.load.setPath ('assets/images/');
         this.load.image('inventory','inventory.png');
         this.load.image('platform', 'platform.png');
@@ -55,13 +59,13 @@
           }
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
-        
         this.load.image ('debris', 'escombros.png');
         this.load.image('seagull', 'seagull.png');
         this.load.image('gameover','GameOver.png');
         this.load.image('puddle','mud.png');
         this.load.image('center', 'center.png');
 
+        //SPRITES
         this.load.spritesheet('crow','ravens.png',{frameWidth:100, frameHeight:75});
         this.load.spritesheet('sg', 'seagullsSprite.png',{frameWidth:100, frameHeight:85});
         this.load.spritesheet('sparrow', 'gorrion.png', {frameWidth:51, frameHeight:50});
@@ -70,7 +74,7 @@
         this.load.spritesheet('jump','ninya_jumping.png',{frameWidth:58, frameHeight:75, endFrame: 2});
         this.load.spritesheet('bend','cathy_bend.png',{frameWidth:150, frameHeight:65, endFrame: 1});
 
-
+        //SONIDOS
         this.load.setPath ('sounds/');
         this.load.audio('pickup', 'pickup.wav');
         this.load.audio ('usepowerup', 'poweruosound.wav');
@@ -168,7 +172,7 @@
     * nivel del juego
     */
     create(){
-        this.scene.start('menu');
-        this.createAnims();
+      this.scene.start('menu');
+      this.createAnims();
     }
 }
