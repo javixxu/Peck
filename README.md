@@ -209,9 +209,7 @@ Los objetos aparecerán aleatoriamente por el escenario de juego, y se activan a
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/893092168477061130/llave.png)
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/892690851443134484/unknown.png?width=492&height=657)
 
-- Alpiste: Cathy usa el alpiste para atraer a los diferentes pájaros a una zona durante 3 segundos, distraerlos y huir.
 
-![N|Solid](https://media.discordapp.net/attachments/884555645414699018/892903072542634054/unknown.png?width=584&height=657)
 - Vendas: Recuperan un corazón entero de salud, nunca superando la vida máxima de 5 corazones.
 
 ![N|Solid](https://previews.123rf.com/images/jemastock/jemastock1708/jemastock170811033/84161725-adhesivos-venda-salud-icono-imagen-vector-ilustraci%C3%B3n-dise%C3%B1o.jpg)
