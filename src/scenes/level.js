@@ -28,6 +28,9 @@ export default class Level extends Phaser.Scene
    */
   constructor() {
     super({ key: 'level' });
+    this.midVol = 0.1;
+    this.fullVol = 0.3;
+    this.generalVolume = this.fullVol;
   }
   /**
    * Creación de los elementos de la escena principal de juego
@@ -70,7 +73,7 @@ export default class Level extends Phaser.Scene
     new Debris(this,this.player, 2155, height-50, 'debris')
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoryCollider(this,this.player,6000,height-38);
-    //this.puddle = new Puddle(this, this.player, 500, height-10, 'puddle')
+    this.puddle = new Puddle(this, this.player, 3000, height-10, 'puddle')
     new Platform(this, this.player, this.sparrow, 150, 350);
     new Platform(this, this.player, this.sparrow, 850, 350);
     new Platform(this, this.player, this.sparrow, 5000, 350);
@@ -147,5 +150,19 @@ export default class Level extends Phaser.Scene
     let x=parseInt((t-this.tiempo)/1000);
     this.label.text=('Time: ' + x);
   }
-  
+  // sonido de los powerups al cogerlos
+  powerUpSoundEffect()
+  {
+      const config = {
+          mute: false,
+          volume: this.generalVolume,
+          rate: 1,
+          detune: 0,
+          seek: 0,
+          loop: false,
+          delay: 0,
+      };
+      this.pickupSound = this.sound.add("pickup",config);
+      this.pickupSound.play();
+  }
 }

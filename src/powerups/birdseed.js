@@ -4,7 +4,6 @@ export default class Birdseed extends PowerUp {
  
   constructor(scene, player, x, y) {
     super(scene, x, y, 'birdseed');
-    this.player=player;
   }
 
   
@@ -14,7 +13,7 @@ export default class Birdseed extends PowerUp {
      if (this.scene.physics.overlap(this.scene.player, this)) 
     {
       if(this.scene.player.current=='empty'){
-        this.soundEffect();
+        this.scene.powerUpSoundEffect();
         this.scene.player.seeAtUI('birdseed');
         this.setActive(false);
         this.setVisible(false);
