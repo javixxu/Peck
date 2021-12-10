@@ -45,6 +45,5 @@ export default class Harrier extends Enemies {
             this.collision=false;
             console.log('CHOQUEE')
         }
-
     }
 }

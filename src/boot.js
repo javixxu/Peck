@@ -33,6 +33,8 @@
         this.load.image('replay','replay.png');
         this.load.image('pause','pause.png');
         this.load.image('sound', 'sound.png');
+        this.load.image('midsound', 'midsound.png');
+        this.load.image('mute', 'mutesound.png');
         this.load.image('exit', 'exit.png');
         this.load.image('controlsButton', 'controls.png')
 
