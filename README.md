@@ -77,7 +77,7 @@ Aparecemos en Bodega Bay, controlando a Cathy, con su jaula de periquitos en man
 - Movimiento: La partida se desarrolla en un solo plano lateral, en el que Cathy únicamente podrá moverse hacia izquierda o derecha. Además tendrá la capacidad de saltar y agacharse para esquivar obstáculos.
 - Vida: Cathy tendrá 5 corazones que podrá perder al colisionar con los diferentes pájaros enemigos. Si se queda sin corazones, muere y se pierde la partida (regresando al menú principal). En los niveles habrá diferentes trampas que también harán daño. Dependiendo del tipo de pájaro y trampa, perderá más o menos vida.
 La vida se resetea al pasar de nivel.
-- Recoger/Consumir objetos: Al pasar por encima  de un objeto , lo almacenaremos en nuestro inventario(si está vacío). En el inventario solo podremos llevar un objeto, que podremos consumir con la tecla E. No podremos sustituir el objeto guardado por otro.
+- Recoger/Consumir objetos: Al pasar por encima  de un objeto , lo almacenaremos en nuestro inventario (si está vacío). En el inventario solo podremos llevar un objeto, que podremos consumir con la tecla E. No podremos sustituir el objeto guardado por otro.
 
 
 #### 2.1.2 Mecánicas de escenario
@@ -182,7 +182,7 @@ Los enemigos tendrán la habilidad de atacar a Cathy colisionando con ella. Irá
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/891737841741234226/unknown.png?width=758&height=657)
 
-Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino será la posición del jugador en el momento en el que se genere el enemigo (no se actualizará de constante), es decir, si el jugador se mueve, no será perseguido. El movimiento que realiza este enemigo es con forma de semi parábola cóncava.
+Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino será la posición del jugador en el momento en el que se genere el enemigo (no se actualizará de constante), es decir, si el jugador se mueve, no será perseguido. El movimiento que realiza este enemigo es con forma de parábola cóncava.
 
 ![N|Solid](https://st4.depositphotos.com/20277160/38579/v/600/depositphotos_385794022-stock-illustration-vector-of-flying-eagle-mascot.jpg)
 
@@ -202,7 +202,7 @@ Controles de movimiento:
 - Menú de pausa: Al pulsar el botón de pausa de la parte derecha de la pantalla,  aparecerá en la pantalla el menú de pausa que contendrá distintas opciones.
 
 ## 4.4 Objetos
-Los objetos aparecerán aleatoriamente por el escenario de juego, y se activan automáticamente al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres objetos:
+Los objetos aparecerán aleatoriamente por el escenario de juego, y se recogen al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres objetos:
 
 - Llave para la jaula: al recogerla, Cathy abre su jaula y lanza  un periquito para eliminar varios cuervos cuando el periquito explota cerca de estos. Cathy dispone 2 periquitos por nivel , en su jaula 
 
