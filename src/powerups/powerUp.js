@@ -7,18 +7,4 @@ export default class PowerUp extends Phaser.GameObjects.Sprite
         this.scene.physics.add.existing(this, true);
     }
 
-    soundEffect()
-    {
-        const config = {
-            mute: false,
-            volume: 0.3,
-            rate: 1,
-            detune: 0,
-            seek: 0,
-            loop: false,
-            delay: 0,
-        };
-        this.pickupSound= this.scene.sound.add("pickup",config);
-        this.pickupSound.play();
-    }
 }

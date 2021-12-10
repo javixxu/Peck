@@ -16,7 +16,7 @@ export default class Bandages extends PowerUp {
     if (this.scene.physics.overlap(this.scene.player, this)) 
     {
       if(this.scene.player.current=='empty'){
-        this.soundEffect();
+        this.scene.powerUpPickSoundEffect();
         this.scene.player.seeAtUI('bandage');
         this.setActive(false);
         this.setVisible(false);
