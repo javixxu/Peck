@@ -27,7 +27,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.maxLife = 5;//vidas máximas
     // Sonido
     
-    
     this.cursors = this.scene.input.keyboard.createCursorKeys();
 
     this.lifes = numslife;
@@ -42,32 +41,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.current = 'empty';
 
   }
-  hurtSoundEffect(vol) {
-    const config = {
-      mute: false,
-      volume: vol,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: false,
-      delay: 0,
-    };
-    this.hurtSound = this.scene.sound.add("hurt", config);
-    this.hurtSound.play();
-  }
+  
   playerDamage(hit) {
     if (!this.invulnerability) {
       console.log('dañoo' + hit)
       this.lifes -= hit;
-      this.hurtSoundEffect(this.generalVolume);
+      this.scene.hurtSoundEffect();
       this.UI.loseLife(hit);
     }
-
   }
   colaEffect() {
 
     this.speed *= 2;
-
     let timer = this.scene.time.addEvent({
       delay: 5000,
       callback: this.setSpeed,
@@ -97,19 +82,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.current = currentPowerUp;
     }
   }
-  powerupSound(vol) {
-    const config = {
-      mute: false,
-      volume: vol,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: false,
-      delay: 0,
-    };
-    this.powerSound = this.scene.sound.add("usepowerup", config);
-    this.powerSound.play();
-  }
   setSpeed() {
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
@@ -121,7 +93,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   sewerEffect() {
     this.playerDamage(1);
-    this.hurtSound.stop();
     this.x = this.scene.UltimaSobrePasada();
   }
   //Te hace invulnerable
@@ -150,7 +121,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     if (this.consume.isDown) {//si pulso E && this.empty==false
-      this.powerupSound(this.generalVolume);
+      this.scene.powerUpConsumeSoundEffect();
       this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
       this.powerUpEffect(this.current);
       this.current = 'empty';
