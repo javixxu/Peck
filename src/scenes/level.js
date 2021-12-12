@@ -69,12 +69,12 @@ export default class Level extends Phaser.Scene {
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 50);
 
-    this.background = this.add.image(500, 250, 'panel');
-    this.resume = this.add.image(500, 100, 'button').setScale(1.2).setInteractive();
-    this.exit = this.add.image(500, 400, 'exit').setScale(1.5).setInteractive();
-    this.fullsound = this.add.image(500, 250, 'sound').setScale(1.5).setInteractive();
-    this.midsound = this.add.image(500, 250, 'midsound').setScale(1.5).setInteractive();
-    this.mutesound = this.add.image(500, 250, 'mute').setScale(1.5).setInteractive();
+    this.background = this.add.image(500, 250, 'panel').setScrollFactor(0);
+    this.resume = this.add.image(500, 100, 'button').setScale(1.2).setScrollFactor(0).setInteractive();
+    this.exit = this.add.image(500, 400, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+    this.fullsound = this.add.image(500, 250, 'sound').setScale(1.5).setScrollFactor(0).setInteractive();
+    this.midsound = this.add.image(500, 250, 'midsound').setScale(1.5).setScrollFactor(0).setInteractive();
+    this.mutesound = this.add.image(500, 250, 'mute').setScale(1.5).setScrollFactor(0).setInteractive();
     this.background.setVisible(false);
     this.resume.setVisible(false);
     this.exit.setVisible(false);
