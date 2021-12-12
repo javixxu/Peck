@@ -12,7 +12,7 @@ export default class Sparrow extends Enemies {
     this.body.setBounceY(1);
     this.body.setCollideWorldBounds();
     this.play('sparrow_fly');
-    this.scene.tweens.add({
+    this.tween=this.scene.tweens.add({
       targets: this,
       x:150,
       duration:1600,
@@ -26,8 +26,15 @@ export default class Sparrow extends Enemies {
    * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
    */
   preUpdate(t,dt) {
-    super.preUpdate(t,dt);
-    this.sparrowAtack();
+    if(this.scene.playing==false){
+      this.tween.pause();
+    }
+    else{
+       this.tween.resume();
+       super.preUpdate(t,dt);
+       this.sparrowAtack();
+    }
+   
   }
 
   sparrowAtack()

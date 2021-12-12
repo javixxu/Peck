@@ -31,6 +31,7 @@ export default class Level extends Phaser.Scene {
     this.fullVol = 0.3;
     this.generalVolume = this.fullVol;
     this.muted = false;
+    this.playing=true;
   }
   /**
    * Creación de los elementos de la escena principal de juego
@@ -86,9 +87,9 @@ export default class Level extends Phaser.Scene {
     //menú de pausa
     this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
     this.pause.on("pointerdown", () => {
+      this.playing=false;
       this.soundtrack.stop();
       this.tiempoPausa = true;
-
       this.physics.pause();
 
       this.background.setVisible(true);
@@ -127,6 +128,7 @@ export default class Level extends Phaser.Scene {
 
       this.resume.on("pointerdown", () => {
         //this.scene.stop();
+        this.playing=true;
         this.clickSoundEffect();
         this.background.setVisible(false);
         this.resume.setVisible(false);
@@ -134,7 +136,6 @@ export default class Level extends Phaser.Scene {
         this.fullsound.setVisible(false);
         this.midsound.setVisible(false);
         this.mutesound.setVisible(false);
-        
         this.physics.resume();
         this.soundtrack.stop();
         this.backgroundMusic();
