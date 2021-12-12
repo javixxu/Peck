@@ -15,7 +15,6 @@ import Sparrow from '../birds/sparrow.js';
 import Spikes from '../obstacles/spikes.js';
 import Birdseed from '../powerups/birdseed.js';
 import Harrier from '../birds/harrier.js'
-import PauseMenu from './pausemenu.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -27,9 +26,11 @@ export default class Level extends Phaser.Scene {
    */
   constructor() {
     super({ key: 'level' });
+    this.muteVol = 0;
     this.midVol = 0.1;
     this.fullVol = 0.3;
     this.generalVolume = this.fullVol;
+    this.muted = false;
   }
   /**
    * Creación de los elementos de la escena principal de juego
@@ -39,17 +40,7 @@ export default class Level extends Phaser.Scene {
     const width = this.scale.width;
     const height = this.scale.height;
     const large = width * 10;
-    //MUSICA DE FONDO
-    const config = {
-      mute: false,
-      volume: this.generalVolume,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: true,
-      delay: 0,
-    };
-    this.soundtrack = this.sound.add("backsound", config);
+    
 
     this.createAligned(this, large, 'city', 1);
 
@@ -78,16 +69,83 @@ export default class Level extends Phaser.Scene {
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 50);
 
-    this.soundtrack.play();
+    this.background = this.add.image(500, 250, 'panel');
+    this.resume = this.add.image(500, 100, 'button').setScale(1.2).setInteractive();
+    this.exit = this.add.image(500, 400, 'exit').setScale(1.5).setInteractive();
+    this.fullsound = this.add.image(500, 250, 'sound').setScale(1.5).setInteractive();
+    this.midsound = this.add.image(500, 250, 'midsound').setScale(1.5).setInteractive();
+    this.mutesound = this.add.image(500, 250, 'mute').setScale(1.5).setInteractive();
+    this.background.setVisible(false);
+    this.resume.setVisible(false);
+    this.exit.setVisible(false);
+    this.fullsound.setVisible(false);
+    this.midsound.setVisible(false);
+    this.mutesound.setVisible(false);
+
+    this.backgroundMusic();
     //menú de pausa
     this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
     this.pause.on("pointerdown", () => {
+      this.soundtrack.stop();
       this.tiempoPausa = true;
-      this.scene.launch('pausemenu'),
-        this.soundtrack.pause(),
-        this.scene.pause()
-    });
 
+      this.physics.pause();
+
+      this.background.setVisible(true);
+      this.resume.setVisible(true);
+      this.exit.setVisible(true);
+      if (this.generalVolume === this.fullVol) {
+        this.fullsound.setVisible(true);
+      }
+      else if (this.generalVolume === this.midVol) {
+        this.midsound.setVisible(true);
+      }
+      else{
+        this.mutesound.setVisible(true);
+      }
+      this.fullsound.on("pointerdown", () => {
+        
+        this.fullsound.setVisible(false);
+        this.midsound.setVisible(true);
+        this.clickSoundEffect();
+        this.generalVolume = this.midVol;
+      });
+      this.midsound.on("pointerdown", () => {
+        this.midsound.setVisible(false);
+        this.mutesound.setVisible(true);
+        this.clickSoundEffect();
+        this.muted = true;
+        this.generalVolume = this.muteVol;
+      });
+      this.mutesound.on("pointerdown", () => {
+        this.mutesound.setVisible(false);
+        this.fullsound.setVisible(true);
+        this.clickSoundEffect();
+        this.muted = false;
+        this.generalVolume = this.fullVol;
+      });
+
+      this.resume.on("pointerdown", () => {
+        //this.scene.stop();
+        this.clickSoundEffect();
+        this.background.setVisible(false);
+        this.resume.setVisible(false);
+        this.exit.setVisible(false);
+        this.fullsound.setVisible(false);
+        this.midsound.setVisible(false);
+        this.mutesound.setVisible(false);
+        
+        this.physics.resume();
+        this.soundtrack.stop();
+        this.backgroundMusic();
+      });
+      this.exit.on("pointerdown", () => {
+        //this.scene.stop();
+        this.scene.stop();
+        this.clickSoundEffect();
+        this.scene.start('menu');
+      });
+    });
     this.tiempoTotal = 0; this.tiempo;
     this.tiempoPausa = false;
     this.label = this.add.text(800, 10, "");
@@ -103,6 +161,7 @@ export default class Level extends Phaser.Scene {
     if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
     this.tiempo = this.tiempoTotal;
     console.log(this.tiempo);
+    
 
   }
   createAligned(scene, large, texture, scrollFactor) {
@@ -146,6 +205,20 @@ export default class Level extends Phaser.Scene {
     this.tiempoTotal = t;
     let x = parseInt((t - this.tiempo) / 1000);
     this.label.text = ('Time: ' + x);
+  }
+  //MUSICA DE FONDO
+  backgroundMusic(){
+    const config = {
+      mute: this.muted,
+      volume: this.generalVolume,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0,
+    };
+    this.soundtrack = this.sound.add("backsound", config);
+    this.soundtrack.play();
   }
   // sonido de los powerups al cogerlos
   powerUpPickSoundEffect() {
@@ -202,5 +275,18 @@ export default class Level extends Phaser.Scene {
     };
     this.fallSound = this.sound.add("fall", config);
     this.fallSound.play();
+  }
+  clickSoundEffect() {
+    const config = {
+      mute: false,
+      volume: this.generalVolume,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.clicksound = this.sound.add("buttonclick", config);
+    this.clicksound.play();
   }
 }
