@@ -12,7 +12,7 @@ export default class Crow extends Enemies {
     this.player=player;
     this.body.setCollideWorldBounds();
     this.play('raven_right');
-    this.scene.tweens.add({
+   this.tween= this.scene.tweens.add({
       targets: this,
       x:1000,
       duration:1700,
@@ -24,9 +24,16 @@ export default class Crow extends Enemies {
   }
  
   preUpdate(t,dt) {
-    super.preUpdate(t,dt);
-    this.crowMovement();
-    this.crowAtack();
+    if(this.scene.playing==false){
+      this.tween.pause();
+    }
+    else{
+      this.tween.resume();
+      super.preUpdate(t,dt);
+      this.crowMovement();
+      this.crowAtack();
+    }
+    
   }
 
   crowMovement(){

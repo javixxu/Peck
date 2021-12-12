@@ -12,13 +12,15 @@ export default class Seagull extends Enemies
     const centro=this.scene.add.image(0, 0, 'center'); //Imagen del centro
     this.bird=this.scene.physics.add.sprite(offset, 0, 'sg'); //Sprite de la gaviota
     this.bird.body.allowGravity = false; //Quitarle la gravedad a la gaviota
-    this.bird.play('seagull_fly'); //Animacion de la gaviota
+    if(this.scene.playing===true){this.bird.play('seagull_fly');}
+     //Animacion de la gaviota
     //Rellenar el container
     this.container.add([centro, this.bird ]);
   }
 
   preUpdate(t,dt) {
-    super.preUpdate(t,dt);
+    if(this.scene.playing==true){
+       super.preUpdate(t,dt);
     const angle=0.02; //Rotacion 
     this.container.rotation-=angle; //Rotacion del container
     this.bird.rotation+=angle; //correcion para que la gaviota no se gire raro
@@ -29,5 +31,7 @@ export default class Seagull extends Enemies
       this.player.playerDamage(1.5);
       this.player.changeInvulnerability();
     }
+    }
+   
   }
 }

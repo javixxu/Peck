@@ -111,7 +111,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   preUpdate(t, dt) {
-    super.preUpdate(t, dt);
+    if(this.scene.playing===true){
+       super.preUpdate(t, dt);
 
     if (this.lifes <= 0) {
       console.log("PERDER");
@@ -154,6 +155,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
       if (!this.body.onFloor()) {
         this.play('jump_anim')
       }
+    }
+   
     }
   }
 }

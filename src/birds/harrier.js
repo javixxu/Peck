@@ -20,7 +20,8 @@ export default class Harrier extends Enemies {
 
     }
     preUpdate(t,dt) {
-        super.preUpdate(t,dt);
+        if(this.scene.playing==true){
+            super.preUpdate(t,dt);
         if(this.x-this.player.x<=250){
             //CASO 1 EL BICHO TIENE QUE BAJAR DE FORMA DIAGONAL
             if(this.descenso&&this.y-90<this.playerY){
@@ -45,5 +46,7 @@ export default class Harrier extends Enemies {
             this.collision=false;
             console.log('CHOQUEE')
         }
+        }
+        
     }
 }
