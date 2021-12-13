@@ -69,7 +69,7 @@ export default class Level extends Phaser.Scene {
     new Platform(this, this.player, this.sparrow, 850, 350);
     new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas = this.add.group();
-    this.createSewer(height - 50);
+    this.createSewer(height - 30);
 
     this.background = this.add.image(500, 250, 'panel').setScrollFactor(0);
     this.resume = this.add.image(500, 100, 'button').setScale(1.2).setScrollFactor(0).setInteractive();

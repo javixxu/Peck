@@ -4,6 +4,7 @@ export default class Bandages extends PowerUp {
 
   constructor(scene, x, y) {
     super(scene, x, y, 'bandage');
+    this.body.setSize(50, 50);
   }
 
   effect(){

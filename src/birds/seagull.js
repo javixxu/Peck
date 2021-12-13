@@ -12,6 +12,7 @@ export default class Seagull extends Enemies
     const centro=this.scene.add.image(0, 0, 'center'); //Imagen del centro
     this.bird=this.scene.physics.add.sprite(offset, 0, 'sg'); //Sprite de la gaviota
     this.bird.body.allowGravity = false; //Quitarle la gravedad a la gaviota
+    this.bird.body.setSize(75, 55);
     if(this.scene.playing===true){this.bird.play('seagull_fly');}
      //Animacion de la gaviota
     //Rellenar el container

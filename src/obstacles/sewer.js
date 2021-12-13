@@ -6,6 +6,7 @@ export default class Sewer extends Obstacles
         super(scene, x, y, name);
         this.x=x;
         this.player=player;
+        this.body.setSize(100, 25);
         this.passed=false;
         this.collision=false;      
      }
