@@ -42,7 +42,7 @@ export default class Crow extends Enemies {
 
   crowAtack()
   {
-    if(this.scene.physics.overlap(this.player, this))
+    if(this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability())
     {
       this.player.playerDamage(1);
       this.player.changeInvulnerability();

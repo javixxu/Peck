@@ -10,14 +10,14 @@ export default class Sewer extends Obstacles
         this.collision=false;      
      }
     preUpdate(){
-        if(!this.collision && this.scene.physics.overlap(this.player,this)){
+        if(!this.collision && this.scene.physics.overlap(this.player,this) && !this.player.seeVulnerability()){
             this.scene.sewerSoundEffect();
             this.collision=true;                             
             this.collisionTimer();
         }
 
-         if (this.x<this.player.x)this.passed=true;
-         else if (this.x>this.player.x)this.passed=false;
+        if (this.x<this.player.x)this.passed=true;
+        else if (this.x>this.player.x)this.passed=false;
          
     }
      

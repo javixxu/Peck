@@ -9,7 +9,7 @@ export default class Spikes extends Obstacles
     preUpdate() {
         super.preUpdate();
         
-         if (this.scene.physics.overlap(this.player, this)) {
+         if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
             this.effect();
         }
     }
