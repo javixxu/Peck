@@ -100,7 +100,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.invulnerability = true;
 
     let timer = this.scene.time.addEvent({
-      delay: 5000,
+      delay: 1000,
       callback: this.setInvulnerability,
       callbackScope: this
     });
@@ -109,6 +109,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   setInvulnerability() {
     this.invulnerability = false;
   }
+  //Observadora de la invulnerabilidad
+  seeVulnerability(){ return this.invulnerability;}
 
   preUpdate(t, dt) {
     if(this.scene.playing===true){
@@ -121,7 +123,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.scene.scene.start('gameOver');
     }
 
-    if (this.consume.isDown) {//si pulso E && this.empty==false
+    if (this.consume.isDown && this.current!='empty') {//si pulso E && this.empty==false
       this.scene.powerUpConsumeSoundEffect();
       this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
       this.powerUpEffect(this.current);

@@ -39,7 +39,7 @@ export default class Sparrow extends Enemies {
 
   sparrowAtack()
   {
-    if(this.scene.physics.overlap(this.player, this))
+    if(this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability())
     {
         this.player.playerDamage(0.5);
         this.player.changeInvulnerability();
