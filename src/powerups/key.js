@@ -1,9 +1,9 @@
 import PowerUp from "./powerUp.js";
 
-export default class Birdseed extends PowerUp {
+export default class Key extends PowerUp {
  
   constructor(scene, player, x, y) {
-    super(scene, x, y, 'birdseed');
+    super(scene, x, y, 'key');
   }
 
   
@@ -14,7 +14,7 @@ export default class Birdseed extends PowerUp {
     {
       if(this.scene.player.current=='empty'){
         this.scene.powerUpPickSoundEffect();
-        this.scene.player.seeAtUI('birdseed');
+        this.scene.player.seeAtUI('key');
         this.setActive(false);
         this.setVisible(false);
         this.destroy();
