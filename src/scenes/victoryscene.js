@@ -16,7 +16,9 @@
     this.winmusic = this.sound.add("winmusic");
     this.clicksound= this.sound.add("buttonclick");
     this.winmusic.play();
-    this.add.image(500,150,'ganar');
+
+    this.add.image(500, 250, 'backgroundvictory');
+    this.add.image(500,150,'ganar').setScale(2);
 
     this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
     this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setInteractive();

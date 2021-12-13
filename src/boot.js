@@ -49,22 +49,25 @@
         this.load.image('corazon','HEART.png');
         this.load.image('bandage','bamdages.png');
         this.load.image('spikes','spikes.png');
-        this.load.image('birdseed','birdseed.png');
-        this.load.image('ganar','victoria.jpg');
+        this.load.image('key','key.png');
+        this.load.image ('backgroundvictory', 'backgroundvictory.png')
+        this.load.image('ganar','ok_bird.png');
         this.load.image('alcantarilla','alcantarilla.png');
         this.load.image('panel','panel.png');
         this.load.image('cola','cola.png');
         this.load.image('pausebg', '3.png');
         this.load.image('harrier','harrier.png');
-        
+       /** 
         for (var i = 0; i < 200; i++) {
-            this.load.image('cola'+ i, 'cola.png');
-          }
+          this.load.image('cola'+ i, 'cola.png');
+        }
+        */
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
         this.load.image ('debris', 'escombros.png');
         this.load.image('seagull', 'seagull.png');
-        this.load.image('gameover','GameOver.png');
+        this.load.image('gameover','deadbird.png');
+        this.load.image('gameoverbackground', 'go.png');
         this.load.image('puddle','mud.png');
         this.load.image('center', 'center.png');
 

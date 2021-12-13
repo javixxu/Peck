@@ -29,7 +29,8 @@ export default class gameOver extends Phaser.Scene
     this.clicksound= this.sound.add("buttonclick");
     this.gameovermusic.play();
     
-    this.add.image(500,150,'gameover');
+    this.add.image(500, 250, 'gameoverbackground');
+    this.add.image(500,150,'gameover').setScale(2);
    
     this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
     this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setInteractive();

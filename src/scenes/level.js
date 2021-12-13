@@ -13,7 +13,7 @@ import Sewer from '../obstacles/sewer.js';
 import Bandages from '../powerups/bandages.js';
 import Sparrow from '../birds/sparrow.js';
 import Spikes from '../obstacles/spikes.js';
-import Birdseed from '../powerups/birdseed.js';
+import Key from '../powerups/key.js';
 import Harrier from '../birds/harrier.js'
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -53,7 +53,7 @@ export default class Level extends Phaser.Scene {
       this.ground = new Floor(this, this.player, i, height - 10);
     }
     this.cola = new Cola(this, 600, 300);
-    this.birdseed = new Birdseed(this, 100, 450).setScale(2, 2);
+    this.birdseed = new Key(this, 100, 450);
     this.crow = new Crow(this, this.player, 500, 100, 'crow');
     this.harrier = new Harrier(this, this.player, 1500, 180, 'harrier');
     this.seagull = new Seagull(this, this.player, 500, 250);
@@ -69,7 +69,7 @@ export default class Level extends Phaser.Scene {
     new Platform(this, this.player, this.sparrow, 850, 350);
     new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas = this.add.group();
-    this.createSewer(height - 50);
+    this.createSewer(height - 30);
 
     this.background = this.add.image(500, 250, 'panel').setScrollFactor(0);
     this.resume = this.add.image(500, 100, 'button').setScale(1.2).setScrollFactor(0).setInteractive();

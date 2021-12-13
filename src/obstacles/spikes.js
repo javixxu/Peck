@@ -5,6 +5,7 @@ export default class Spikes extends Obstacles
     constructor(scene, player, x, y, name) {
         super(scene, x, y, name);
         this.player=player;
+        this.body.setSize(90, 35);
     }
     preUpdate() {
         super.preUpdate();

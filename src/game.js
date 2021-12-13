@@ -22,7 +22,7 @@ import Victoryscene from './scenes/victoryscene.js'
         default: 'arcade', 
         arcade: { 
             gravity: { y: 400 }, 
-            debug: false
+            debug: true
         } 
     }
 };
