@@ -19,14 +19,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
-    this.body.setBounceY(0.15);
     this.speed = 300;
     this.speedAux = this.speed;
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
     this.maxLife = 5;//vidas máximas
     // Sonido
-    
+
     this.cursors = this.scene.input.keyboard.createCursorKeys();
 
     this.lifes = numslife;
@@ -41,7 +40,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.current = 'empty';
 
   }
-  
+
   playerDamage(hit) {
     if (!this.invulnerability) {
       console.log('dañoo' + hit)
@@ -110,55 +109,54 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.invulnerability = false;
   }
   //Observadora de la invulnerabilidad
-  seeVulnerability(){ return this.invulnerability;}
+  seeVulnerability() { return this.invulnerability; }
 
   preUpdate(t, dt) {
-    if(this.scene.playing===true){
-       super.preUpdate(t, dt);
+    if (this.scene.playing === true) {
+      super.preUpdate(t, dt);
 
-    if (this.lifes <= 0) {
-      console.log("PERDER");
-      this.scene.soundtrack.stop();
-      //Que se acabe la partida     
-      this.scene.scene.start('gameOver');
-    }
+      if (this.lifes <= 0) {
+        console.log("PERDER");
+        this.scene.soundtrack.stop();
+        //Que se acabe la partida     
+        this.scene.scene.start('gameOver');
+      }
 
-    if (this.consume.isDown && this.current!='empty') {//si pulso E && this.empty==false
-      this.scene.powerUpConsumeSoundEffect();
-      this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
-      this.powerUpEffect(this.current);
-      this.current = 'empty';
-    }
-    if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
-      if (this.body.onFloor()) {
-        this.body.setVelocityY(this.jumpSpeed);
+      if (this.consume.isDown && this.current != 'empty') {//si pulso E && this.empty==false
+        this.scene.powerUpConsumeSoundEffect();
+        this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
+        this.powerUpEffect(this.current);
+        this.current = 'empty';
       }
-    }
-    if (this.cursors.left.isDown || this.left.isDown) {
-      this.body.setVelocityX(-this.speed);
-      this.setFlip(true, false);
-      this.play('run_anim', true);
-      if (!this.body.onFloor()) {
-        this.play('jump_anim')
+      if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
+        if (this.body.onFloor()) {
+          this.body.setVelocityY(this.jumpSpeed);
+        }
       }
-    }
-    else if (this.cursors.right.isDown || this.right.isDown) {
-      console.log(this.speed);
-      this.body.setVelocityX(this.speed);
-      this.setFlip(false, false);
-      this.play('run_anim', true);
-      if (!this.body.onFloor()) {
-        this.play('jump_anim')
+      if (this.cursors.left.isDown || this.left.isDown) {
+        this.body.setVelocityX(-this.speed);
+        this.setFlip(true, false);
+        this.play('run_anim', true);
+        if (!this.body.onFloor()) {
+          this.play('jump_anim')
+        }
       }
-    }
-    else {
-      this.body.setVelocityX(0);
-      this.play('still_anim');
-      if (!this.body.onFloor()) {
-        this.play('jump_anim')
+      else if (this.cursors.right.isDown || this.right.isDown) {
+        console.log(this.speed);
+        this.body.setVelocityX(this.speed);
+        this.setFlip(false, false);
+        this.play('run_anim', true);
+        if (!this.body.onFloor()) {
+          this.play('jump_anim')
+        }
       }
-    }
-   
+      else {
+        this.body.setVelocityX(0);
+        this.play('still_anim');
+        if (!this.body.onFloor()) {
+          this.play('jump_anim')
+        }
+      }
     }
   }
 }
