@@ -41,6 +41,7 @@
         //IMAGENES
         this.load.setPath ('assets/images/');
         this.load.image('menubackground', 'fondo2.png');
+        this.load.image('controles', 'controles.png');
         this.load.image('inventory','inventory.png');
         this.load.image('platform', 'platform.png');
         this.load.image('base', 'base.png');
@@ -65,7 +66,6 @@
         this.load.image('car', 'car.png');
         this.load.image('fence', 'fence.png');
         this.load.image ('debris', 'escombros.png');
-        this.load.image('seagull', 'seagull.png');
         this.load.image('gameover','deadbird.png');
         this.load.image('gameoverbackground', 'go.png');
         this.load.image('puddle','mud.png');
@@ -94,8 +94,8 @@
 
         //TILEMAP
         this.load.setPath ('tilemap/');
-        this.load.tilemapTiledJSON('map1', 'tiledMapa1.json');
-        this.load.image('patronesTilemap', 'tilemapMinecraft.png');
+        this.load.tilemapTiledJSON('map1', 'jsonAdri.json');
+        this.load.image('patronesLevel1', 'tilesetForest.png');
 
 
         this.load.on('fileprogress', function (file) {
