@@ -156,6 +156,18 @@ export default class Level extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
+
+    this.map = this.make.tilemap({ 
+      key: 'map1', 
+      tileWidth: 64, 
+      tileHeight: 64 
+    });
+    const tileset1 = this.map.addTilesetImage('mibb', 'patronesTilemap');
+    //this.backgroundLayer = this.map.createLayer('Background', tileset1);
+    const groundLayer = this.map.createLayer('Suelo', tileset1);
+    this.physics.add.collider(this.player, groundLayer);
+    groundLayer.setCollisionBetween(2, 4);
+
   }
   init() {
     console.log('inicio');
