@@ -92,6 +92,12 @@
         this.load.audio('gameovermusic', 'deadmusic.wav');
         this.load.audio('winmusic', 'victorysound.mp3');
 
+        //TILEMAP
+        this.load.setPath ('tilemap/');
+        this.load.tilemapTiledJSON('map1', 'tiledMapa1.json');
+        this.load.image('patronesTilemap', 'tilemapMinecraft.png');
+
+
         this.load.on('fileprogress', function (file) {
             console.log(file.src);
           });
@@ -180,5 +186,7 @@
     create(){
       this.scene.start('menu');
       this.createAnims();
+
+      
     }
 }
