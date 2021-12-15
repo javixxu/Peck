@@ -30,8 +30,8 @@ export default class Level extends Phaser.Scene {
     this.fullVol = 0.3;
     this.generalVolume = this.fullVol;
     this.muted = false;
-    this.playing=true;
-    this.time=0;
+    this.playing = true;
+    this.time = 0;
   }
   /**
    * Creación de los elementos de la escena principal de juego
@@ -41,12 +41,12 @@ export default class Level extends Phaser.Scene {
     const width = this.scale.width;
     const height = this.scale.height;
     const large = width * 10;
-    
+
 
     //this.createAligned(this, large, 'city', 1);
 
 
-    
+
     this.player = new Player(this, 200, 300, 5);
     this.cola = new Cola(this, 600, 300);
     this.birdseed = new Key(this, 300, 350);
@@ -67,22 +67,63 @@ export default class Level extends Phaser.Scene {
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 30);
     this.createTileMap();
+    this.createPause();
 
+
+
+    this.backgroundMusic();
+    //menú de pausa
+
+    this.tiempoTotal = 0; this.tiempo;
+    this.tiempoPausa = false;
+    this.timerLabel = this.add.text(800, 10, "").setScrollFactor(0);
+
+    this.physics.world.setBounds(0, 0, large, height);
+    this.cameras.main.setBounds(0, 0, large, height);
+    this.cameras.main.startFollow(this.player);
+
+  }
+  init() {
+    console.log('inicio');
+    //por si es la pruimera vez q se inicia el juego
+    if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
+    this.tiempo = this.tiempoTotal;
+    console.log(this.tiempo);
+
+
+  }
+  createTileMap() {
+    this.map1 = this.make.tilemap({
+      key: 'map1',
+      tileWidth: 64,
+      tileHeight: 64
+    });
+    const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
+    //this.backgroundLayer = this.map.createLayer('Background', tileset1);
+    const groundLayer = this.map1.createLayer('Floor', tileset1);
+    this.physics.add.collider(this.player, groundLayer);
+    groundLayer.setCollisionBetween(1, 999);
+    //MOMENTANEO
+    this.physics.add.collider(this.sparrow, groundLayer);
+    this.physics.add.collider(this.harrier, groundLayer);
+
+  }
+  /**
+ * Menú de pausa
+ */
+  createPause() {
     this.background = this.add.image(500, 250, 'panel').setScrollFactor(0).setVisible(false);
     this.controls = this.add.image(500, 250, 'controles').setScale(0.75).setScrollFactor(0).setVisible(false);
-    this.back=this.add.image(500, 400, 'exit').setScale(0.75).setScrollFactor(0).setVisible(false).setInteractive();
+    this.back = this.add.image(500, 400, 'exit').setScale(0.75).setScrollFactor(0).setVisible(false).setInteractive();
     this.resume = this.add.image(400, 160, 'button').setScale(1.2).setScrollFactor(0).setInteractive().setVisible(false);
     this.help = this.add.image(600, 160, 'controlsButton').setScale(2).setScrollFactor(0).setInteractive().setVisible(false);
     this.exit = this.add.image(600, 350, 'exit').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
     this.fullsound = this.add.image(400, 350, 'sound').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
     this.midsound = this.add.image(400, 350, 'midsound').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
     this.mutesound = this.add.image(400, 350, 'mute').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
-
-    this.backgroundMusic();
-    //menú de pausa
     this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
     this.pause.on("pointerdown", () => {
-      this.playing=false;
+      this.playing = false;
       this.soundtrack.stop();
       this.tiempoPausa = true;
       this.physics.pause();
@@ -97,11 +138,11 @@ export default class Level extends Phaser.Scene {
       else if (this.generalVolume === this.midVol) {
         this.midsound.setVisible(true);
       }
-      else{
+      else {
         this.mutesound.setVisible(true);
       }
       this.fullsound.on("pointerdown", () => {
-        
+
         this.fullsound.setVisible(false);
         this.midsound.setVisible(true);
         this.clickSoundEffect();
@@ -124,7 +165,7 @@ export default class Level extends Phaser.Scene {
 
       this.resume.on("pointerdown", () => {
         //this.scene.stop();
-        this.playing=true;
+        this.playing = true;
         this.clickSoundEffect();
         this.background.setVisible(false);
         this.resume.setVisible(false);
@@ -154,72 +195,30 @@ export default class Level extends Phaser.Scene {
         this.controls.setVisible(false);
         this.back.setVisible(false);
         this.clickSoundEffect();
-      this.background.setVisible(true);
-      this.resume.setVisible(true);
-      this.help.setVisible(true);
-      this.exit.setVisible(true);
-      if (this.generalVolume === this.fullVol) {
-        this.fullsound.setVisible(true);
-      }
-      else if (this.generalVolume === this.midVol) {
-        this.midsound.setVisible(true);
-      }
-      else{
-        this.mutesound.setVisible(true);
-      }
+        this.background.setVisible(true);
+        this.resume.setVisible(true);
+        this.help.setVisible(true);
+        this.exit.setVisible(true);
+        if (this.generalVolume === this.fullVol) {
+          this.fullsound.setVisible(true);
+        }
+        else if (this.generalVolume === this.midVol) {
+          this.midsound.setVisible(true);
+        }
+        else {
+          this.mutesound.setVisible(true);
+        }
 
-        
       });
 
       this.exit.on("pointerdown", () => {
         //this.scene.stop();
-        this.playing=true;
+        this.playing = true;
         this.scene.stop();
         this.clickSoundEffect();
         this.scene.start('menu');
       });
     });
-    this.tiempoTotal = 0; this.tiempo;
-    this.tiempoPausa = false;
-    this.timerLabel = this.add.text(800, 10, "").setScrollFactor(0);
-    
-    this.physics.world.setBounds(0, 0, large, height);
-    this.cameras.main.setBounds(0, 0, large, height);
-    this.cameras.main.startFollow(this.player);
-
-    
-   
-    
-    
-    
-    
-    
-
-  }
-  init() {
-    console.log('inicio');
-    //por si es la pruimera vez q se inicia el juego
-    if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
-    this.tiempo = this.tiempoTotal;
-    console.log(this.tiempo);
-    
-
-  }
-  createTileMap(){
-    this.map1 = this.make.tilemap({ 
-    key: 'map1', 
-    tileWidth: 64, 
-    tileHeight: 64 
-  });
-  const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
-  //this.backgroundLayer = this.map.createLayer('Background', tileset1);
-  const groundLayer = this.map1.createLayer('Floor', tileset1);
-  this.physics.add.collider(this.player, groundLayer); 
-  groundLayer.setCollisionBetween(1, 999);
-  //MOMENTANEO
-  this.physics.add.collider(this.sparrow, groundLayer);
-  this.physics.add.collider(this.harrier, groundLayer);
-  
   }
   createAligned(scene, large, texture, scrollFactor) {
     const w = scene.textures.get(texture).getSourceImage().width;
@@ -264,7 +263,7 @@ export default class Level extends Phaser.Scene {
     this.timerLabel.text = ('Time: ' + x);
   }
   //MUSICA DE FONDO
-  backgroundMusic(){
+  backgroundMusic() {
     const config = {
       mute: this.muted,
       volume: this.generalVolume,
