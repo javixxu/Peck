@@ -46,7 +46,7 @@ export default class Level extends Phaser.Scene {
     //this.createAligned(this, large, 'city', 1);
 
 
-
+    
     this.player = new Player(this, 200, 300, 5);
     this.cola = new Cola(this, 600, 300);
     this.birdseed = new Key(this, 300, 350);
@@ -66,19 +66,17 @@ export default class Level extends Phaser.Scene {
     //new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 30);
+    this.createTileMap();
 
-    this.background = this.add.image(500, 250, 'panel').setScrollFactor(0);
-    this.resume = this.add.image(500, 100, 'button').setScale(1.2).setScrollFactor(0).setInteractive();
-    this.exit = this.add.image(500, 400, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
-    this.fullsound = this.add.image(500, 250, 'sound').setScale(1.5).setScrollFactor(0).setInteractive();
-    this.midsound = this.add.image(500, 250, 'midsound').setScale(1.5).setScrollFactor(0).setInteractive();
-    this.mutesound = this.add.image(500, 250, 'mute').setScale(1.5).setScrollFactor(0).setInteractive();
-    this.background.setVisible(false);
-    this.resume.setVisible(false);
-    this.exit.setVisible(false);
-    this.fullsound.setVisible(false);
-    this.midsound.setVisible(false);
-    this.mutesound.setVisible(false);
+    this.background = this.add.image(500, 250, 'panel').setScrollFactor(0).setVisible(false);
+    this.controls = this.add.image(500, 250, 'controles').setScale(0.75).setScrollFactor(0).setVisible(false);
+    this.back=this.add.image(500, 400, 'exit').setScale(0.75).setScrollFactor(0).setVisible(false).setInteractive();
+    this.resume = this.add.image(400, 160, 'button').setScale(1.2).setScrollFactor(0).setInteractive().setVisible(false);
+    this.help = this.add.image(600, 160, 'controlsButton').setScale(2).setScrollFactor(0).setInteractive().setVisible(false);
+    this.exit = this.add.image(600, 350, 'exit').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
+    this.fullsound = this.add.image(400, 350, 'sound').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
+    this.midsound = this.add.image(400, 350, 'midsound').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
+    this.mutesound = this.add.image(400, 350, 'mute').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
 
     this.backgroundMusic();
     //menú de pausa
@@ -88,9 +86,10 @@ export default class Level extends Phaser.Scene {
       this.soundtrack.stop();
       this.tiempoPausa = true;
       this.physics.pause();
-
+      this.clickSoundEffect();
       this.background.setVisible(true);
       this.resume.setVisible(true);
+      this.help.setVisible(true);
       this.exit.setVisible(true);
       if (this.generalVolume === this.fullVol) {
         this.fullsound.setVisible(true);
@@ -129,6 +128,7 @@ export default class Level extends Phaser.Scene {
         this.clickSoundEffect();
         this.background.setVisible(false);
         this.resume.setVisible(false);
+        this.help.setVisible(false);
         this.exit.setVisible(false);
         this.fullsound.setVisible(false);
         this.midsound.setVisible(false);
@@ -137,6 +137,40 @@ export default class Level extends Phaser.Scene {
         this.soundtrack.stop();
         this.backgroundMusic();
       });
+      this.help.on("pointerdown", () => {
+
+        this.clickSoundEffect();
+        this.background.setVisible(false);
+        this.resume.setVisible(false);
+        this.help.setVisible(false);
+        this.exit.setVisible(false);
+        this.fullsound.setVisible(false);
+        this.midsound.setVisible(false);
+        this.mutesound.setVisible(false);
+        this.controls.setVisible(true);
+        this.back.setVisible(true);
+      });
+      this.back.on("pointerdown", () => {
+        this.controls.setVisible(false);
+        this.back.setVisible(false);
+        this.clickSoundEffect();
+      this.background.setVisible(true);
+      this.resume.setVisible(true);
+      this.help.setVisible(true);
+      this.exit.setVisible(true);
+      if (this.generalVolume === this.fullVol) {
+        this.fullsound.setVisible(true);
+      }
+      else if (this.generalVolume === this.midVol) {
+        this.midsound.setVisible(true);
+      }
+      else{
+        this.mutesound.setVisible(true);
+      }
+
+        
+      });
+
       this.exit.on("pointerdown", () => {
         //this.scene.stop();
         this.playing=true;
@@ -153,19 +187,6 @@ export default class Level extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
-    this.map1 = this.make.tilemap({ 
-      key: 'map1', 
-      tileWidth: 64, 
-      tileHeight: 64 
-    });
-    const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
-    //this.backgroundLayer = this.map.createLayer('Background', tileset1);
-    const groundLayer = this.map1.createLayer('Floor', tileset1);
-    this.physics.add.collider(this.player, groundLayer); 
-    groundLayer.setCollisionBetween(1, 999);
-    //MOMENTANEO
-    this.physics.add.collider(this.sparrow, groundLayer);
-    this.physics.add.collider(this.harrier, groundLayer);
     
    
     
@@ -183,6 +204,22 @@ export default class Level extends Phaser.Scene {
     console.log(this.tiempo);
     
 
+  }
+  createTileMap(){
+    this.map1 = this.make.tilemap({ 
+    key: 'map1', 
+    tileWidth: 64, 
+    tileHeight: 64 
+  });
+  const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
+  //this.backgroundLayer = this.map.createLayer('Background', tileset1);
+  const groundLayer = this.map1.createLayer('Floor', tileset1);
+  this.physics.add.collider(this.player, groundLayer); 
+  groundLayer.setCollisionBetween(1, 999);
+  //MOMENTANEO
+  this.physics.add.collider(this.sparrow, groundLayer);
+  this.physics.add.collider(this.harrier, groundLayer);
+  
   }
   createAligned(scene, large, texture, scrollFactor) {
     const w = scene.textures.get(texture).getSourceImage().width;
