@@ -1,7 +1,6 @@
 import Player from '../player.js';
 import Platform from '../platform.js';
 import Crow from '../birds/crow.js';
-import Floor from '../floor.js';
 import Cola from '../powerups/cola.js';
 import Car from '../obstacles/car.js';
 import Fence from '../obstacles/fence.js';
@@ -44,16 +43,13 @@ export default class Level extends Phaser.Scene {
     const large = width * 10;
     
 
-    this.createAligned(this, large, 'city', 1);
+    //this.createAligned(this, large, 'city', 1);
 
 
 
     this.player = new Player(this, 200, 300, 5);
-    for (let i = 0; i < large; i += 60) {
-      this.ground = new Floor(this, this.player, i, height - 10);
-    }
     this.cola = new Cola(this, 600, 300);
-    this.birdseed = new Key(this, 100, 450);
+    this.birdseed = new Key(this, 300, 350);
     this.crow = new Crow(this, this.player, 500, 100, 'crow');
     this.harrier = new Harrier(this, this.player, 1500, 180, 'harrier');
     this.seagull = new Seagull(this, this.player, 500, 250);
@@ -65,9 +61,9 @@ export default class Level extends Phaser.Scene {
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoryCollider(this, this.player, 6000, height - 38);
     this.puddle = new Puddle(this, this.player, 3000, height - 10, 'puddle')
-    new Platform(this, this.player, this.sparrow, 150, 350);
-    new Platform(this, this.player, this.sparrow, 850, 350);
-    new Platform(this, this.player, this.sparrow, 5000, 350);
+    //new Platform(this, this.player, this.sparrow, 150, 350);
+    //new Platform(this, this.player, this.sparrow, 850, 350);
+    //new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 30);
 
@@ -157,33 +153,26 @@ export default class Level extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
 
-    this.map = this.make.tilemap({ 
+    this.map1 = this.make.tilemap({ 
       key: 'map1', 
       tileWidth: 64, 
       tileHeight: 64 
     });
-    const tileset1 = this.map.addTilesetImage('mibb', 'patronesTilemap');
+    const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
     //this.backgroundLayer = this.map.createLayer('Background', tileset1);
-    const groundLayer = this.map.createLayer('Suelo', tileset1);
-    this.physics.add.collider(this.player, groundLayer);
-    groundLayer.setCollisionBetween(2, 4);
-    /*
-    tilemap adri prueba
-    this.map = this.make.tilemap({ 
-      key: 'adrimap', 
-      tileWidth: 64, 
-      tileHeight: 64 
-    });
-    const tileset1 = this.map.addTilesetImage('00Atlas', 'patronesAdri');
-    //this.backgroundLayer = this.map.createLayer('Background', tileset1);
-    const groundLayer = this.map.createLayer('Capa de patrones 1', tileset1);
-    this.physics.add.collider(this.player, groundLayer);
-    //groundLayer.setCollisionBetween(1, 4);
+    const groundLayer = this.map1.createLayer('Floor', tileset1);
+    this.physics.add.collider(this.player, groundLayer); 
+    groundLayer.setCollisionBetween(1, 999);
+    //MOMENTANEO
+    this.physics.add.collider(this.sparrow, groundLayer);
+    this.physics.add.collider(this.harrier, groundLayer);
+    
+   
     
     
     
     
-    */ 
+    
 
   }
   init() {
