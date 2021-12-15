@@ -96,6 +96,8 @@
         this.load.setPath ('tilemap/');
         this.load.tilemapTiledJSON('map1', 'tiledMapa1.json');
         this.load.image('patronesTilemap', 'tilemapMinecraft.png');
+        this.load.tilemapTiledJSON('adrimap', 'jsonAdri.json');
+        this.load.image('patronesAdri', '00Atlas.png');
 
 
         this.load.on('fileprogress', function (file) {

@@ -167,6 +167,23 @@ export default class Level extends Phaser.Scene {
     const groundLayer = this.map.createLayer('Suelo', tileset1);
     this.physics.add.collider(this.player, groundLayer);
     groundLayer.setCollisionBetween(2, 4);
+    /*
+    tilemap adri prueba
+    this.map = this.make.tilemap({ 
+      key: 'adrimap', 
+      tileWidth: 64, 
+      tileHeight: 64 
+    });
+    const tileset1 = this.map.addTilesetImage('00Atlas', 'patronesAdri');
+    //this.backgroundLayer = this.map.createLayer('Background', tileset1);
+    const groundLayer = this.map.createLayer('Capa de patrones 1', tileset1);
+    this.physics.add.collider(this.player, groundLayer);
+    //groundLayer.setCollisionBetween(1, 4);
+    
+    
+    
+    
+    */ 
 
   }
   init() {
