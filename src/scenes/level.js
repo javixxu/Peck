@@ -43,17 +43,17 @@ export default class Level extends Phaser.Scene {
     const large = width * 10;
 
 
-    //this.createAligned(this, large, 'city', 1);
+    this.createAligned(this, large, 'fondof', 1);
 
 
 
     this.player = new Player(this, 200, 300, 5);
     this.cola = new Cola(this, 600, 300);
     this.birdseed = new Key(this, 300, 350);
-    this.crow = new Crow(this, this.player, 500, 100, 'crow');
-    this.harrier = new Harrier(this, this.player, 1500, 180, 'harrier');
-    this.seagull = new Seagull(this, this.player, 500, 250);
-    this.sparrow = new Sparrow(this, this.player, 50, 200);
+    //this.crow = new Crow(this, this.player, 500, 100, 'crow');
+    //this.harrier = new Harrier(this, this.player, 1500, 180, 'harrier');
+    //this.seagull = new Seagull(this, this.player, 500, 250);
+    this.sparrow = new Sparrow(this, this.player, 500, 200);
     new Bandages(this, 850, 250, 'bandage');
     this.spikes = new Spikes(this, this.player, 1800, 470, 'spikes');
     new Fence(this, this.player, 1500, height - 120, 'fence');
@@ -104,8 +104,14 @@ export default class Level extends Phaser.Scene {
     this.physics.add.collider(this.player, groundLayer);
     groundLayer.setCollisionBetween(1, 999);
     //MOMENTANEO
-    this.physics.add.collider(this.sparrow, groundLayer);
-    this.physics.add.collider(this.harrier, groundLayer);
+    //this.physics.add.collider(this.sparrow, groundLayer);
+   // this.physics.add.collider(this.harrier, groundLayer);
+    for (const objeto of this.map1.getObjectLayer('Sparrows').objects) {
+      // `objeto.name` u `objeto.type` nos llegan de las propiedades del
+      // objeto en Tiled
+      
+      new Sparrow(this, this.player, objeto.x, objeto.y);
+  }
 
   }
   /**

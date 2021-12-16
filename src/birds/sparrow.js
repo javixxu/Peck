@@ -14,7 +14,7 @@ export default class Sparrow extends Enemies {
     this.play('sparrow_fly');
     this.tween=this.scene.tweens.add({
       targets: this,
-      x:150,
+      x:1000,
       duration:1600,
       ease: 'Sine.easeInOut',
       flipX: true,
