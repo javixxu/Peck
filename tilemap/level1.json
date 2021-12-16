@@ -23,15 +23,15 @@
          "objects":[
                 {
                  "gid":27,
-                 "height":50,
+                 "height":86,
                  "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":50,
-                 "x":1123,
-                 "y":215
+                 "width":86,
+                 "x":1871,
+                 "y":237
                 }, 
                 {
                  "gid":27,
@@ -42,17 +42,62 @@
                  "type":"",
                  "visible":true,
                  "width":70,
-                 "x":721,
-                 "y":243
+                 "x":525,
+                 "y":253
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":3,
+         "name":"Crows",
+         "objects":[
+                {
+                 "gid":29,
+                 "height":50,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":3415,
+                 "y":89
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":4,
+         "name":"Seagulls",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"Harriers",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":3,
+ "nextlayerid":6,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

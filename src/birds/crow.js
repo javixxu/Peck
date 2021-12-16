@@ -15,7 +15,7 @@ export default class Crow extends Enemies {
     this.play('raven_right');
    this.tween= this.scene.tweens.add({
       targets: this,
-      x:1700,
+      x: this.x+1700,
       duration:5000,
       ease: 'Sine.easeInOut',
       flipX: true,

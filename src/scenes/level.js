@@ -3,7 +3,6 @@ import Platform from '../platform.js';
 import Crow from '../birds/crow.js';
 import Cola from '../powerups/cola.js';
 import Car from '../obstacles/car.js';
-import Fence from '../obstacles/fence.js';
 import Debris from '../obstacles/debris.js';
 import Seagull from '../birds/seagull.js';
 import Puddle from '../obstacles/puddle.js';
@@ -48,25 +47,25 @@ export default class Level extends Phaser.Scene {
 
 
     this.player = new Player(this, 200, 300, 5);
-    this.cola = new Cola(this, 600, 300);
-    this.birdseed = new Key(this, 300, 350);
+    //this.cola = new Cola(this, 600, 300);
+    //this.birdseed = new Key(this, 300, 350);
     //this.crow = new Crow(this, this.player, 500, 100, 'crow');
     //this.harrier = new Harrier(this, this.player, 1500, 180, 'harrier');
     //this.seagull = new Seagull(this, this.player, 500, 250);
-    this.sparrow = new Sparrow(this, this.player, 500, 200);
-    new Bandages(this, 850, 250, 'bandage');
-    this.spikes = new Spikes(this, this.player, 1800, 470, 'spikes');
-    new Fence(this, this.player, 1500, height - 120, 'fence');
-    new Debris(this, this.player, 2155, height - 50, 'debris')
+    // this.sparrow = new Sparrow(this, this.player, 500, 200);
+    //new Bandages(this, 850, 250, 'bandage');
+    //this.spikes = new Spikes(this, this.player, 1800, 470, 'spikes');
+    //new Debris(this, this.player, 2155, height - 50, 'debris')
     //new Car(this, this.player, 1000, height-38, 'car');
     new VictoryCollider(this, this.player, 6000, height - 38);
-    this.puddle = new Puddle(this, this.player, 3000, height - 10, 'puddle')
+    //this.puddle = new Puddle(this, this.player, 3000, height - 10, 'puddle')
     //new Platform(this, this.player, this.sparrow, 150, 350);
     //new Platform(this, this.player, this.sparrow, 850, 350);
     //new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 30);
     this.createTileMap();
+    this.createEnemies();
     this.createPause();
 
 
@@ -100,19 +99,35 @@ export default class Level extends Phaser.Scene {
     });
     const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
     //this.backgroundLayer = this.map.createLayer('Background', tileset1);
-    const groundLayer = this.map1.createLayer('Floor', tileset1);
-    this.physics.add.collider(this.player, groundLayer);
-    groundLayer.setCollisionBetween(1, 999);
+    this.groundLayer = this.map1.createLayer('Floor', tileset1);
+    this.physics.add.collider(this.player, this.groundLayer);
+    this.groundLayer.setCollisionBetween(1, 999);
     //MOMENTANEO
     //this.physics.add.collider(this.sparrow, groundLayer);
-   // this.physics.add.collider(this.harrier, groundLayer);
-    for (const objeto of this.map1.getObjectLayer('Sparrows').objects) {
-      // `objeto.name` u `objeto.type` nos llegan de las propiedades del
-      // objeto en Tiled
-      
-      new Sparrow(this, this.player, objeto.x, objeto.y);
-  }
+    // this.physics.add.collider(this.harrier, groundLayer);
 
+
+  }
+  /**
+   * Creación de enemigos del Tiled
+   */
+  createEnemies() {
+    for (const sparrow of this.map1.getObjectLayer('Sparrows').objects) {
+      this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y);
+      this.physics.add.collider(this.sparrow, this.groundLayer);
+    }
+    for (const crow of this.map1.getObjectLayer('Crows').objects) {
+      this.crow = new Crow(this, this.player, crow.x, crow.y, 'crow');
+      this.physics.add.collider(this.crow, this.groundLayer);
+    }
+    for (const harrier of this.map1.getObjectLayer('Harriers').objects) {
+      this.harrier = new Harrier(this, this.player, crow.x, crow.y, 'crow');
+      this.physics.add.collider(this.harrier, this.groundLayer);
+    }
+    for (const seagull of this.map1.getObjectLayer('Seagulls').objects) {
+      this.seagull = new Harrier(this, this.player, crow.x, crow.y, 'crow');
+      this.physics.add.collider(this.seagull, this.groundLayer);
+    }
   }
   /**
  * Menú de pausa

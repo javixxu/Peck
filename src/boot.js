@@ -95,7 +95,7 @@
 
         //TILEMAP
         this.load.setPath ('tilemap/');
-        this.load.tilemapTiledJSON('map1', 'jsonAdri.json');
+        this.load.tilemapTiledJSON('map1', 'level1.json');
         this.load.image('patronesLevel1', 'tilesetForest.png');
 
 
