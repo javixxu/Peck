@@ -52,7 +52,7 @@ export default class Level extends Phaser.Scene {
     this.createObstacles();
     this.createPause();
     this.backgroundMusic();
-    
+
 
     this.tiempoTotal = 0; this.tiempo;
     this.tiempoPausa = false;
@@ -130,8 +130,8 @@ export default class Level extends Phaser.Scene {
     }
     //llaves
     for (const key of this.map1.getObjectLayer('Keys').objects) {
-      this.bandage = new Key(this, key.x, key.y);
-      this.physics.add.collider(this.bandage, this.groundLayer);
+      this.key = new Key(this, key.x, key.y);
+      this.physics.add.collider(this.key, this.groundLayer);
     }
   }
   /**
