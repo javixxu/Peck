@@ -41,6 +41,7 @@
         //IMAGENES
         this.load.setPath ('assets/images/');
         this.load.image('menubackground', 'fondo2.png');
+        this.load.image('fondof', 'FONDOF.png');
         this.load.image('controles', 'controles.png');
         this.load.image('inventory','inventory.png');
         this.load.image('platform', 'platform.png');
@@ -94,7 +95,7 @@
 
         //TILEMAP
         this.load.setPath ('tilemap/');
-        this.load.tilemapTiledJSON('map1', 'jsonAdri.json');
+        this.load.tilemapTiledJSON('map1', 'level1.json');
         this.load.image('patronesLevel1', 'tilesetForest.png');
 
 
