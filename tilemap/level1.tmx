@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="10000" height="10" tilewidth="50" tileheight="50" infinite="0" nextlayerid="6" nextobjectid="4">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="10000" height="10" tilewidth="50" tileheight="50" infinite="0" nextlayerid="12" nextobjectid="23">
  <tileset firstgid="1" name="tilesetForest" tilewidth="50" tileheight="50" tilecount="56" columns="8">
   <image source="tilesetForest.png" width="400" height="350"/>
+ </tileset>
+ <tileset firstgid="57" name="crowIcon" tilewidth="16" tileheight="16" tilecount="6" columns="2">
+  <image source="crowIcon.png" width="40" height="50"/>
+ </tileset>
+ <tileset firstgid="63" name="mud" tilewidth="16" tileheight="16" tilecount="20" columns="10">
+  <image source="../assets/images/mud.png" width="175" height="37"/>
+ </tileset>
+ <tileset firstgid="83" name="cola" tilewidth="16" tileheight="16" tilecount="3" columns="1">
+  <image source="../assets/images/cola.png" width="25" height="60"/>
+ </tileset>
+ <tileset firstgid="86" name="spikes" tilewidth="32" tileheight="32" tilecount="3" columns="3">
+  <image source="../assets/images/spikes.png" width="100" height="50"/>
+ </tileset>
+ <tileset firstgid="89" name="bandages" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="../assets/images/bandages.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="93" name="key" tilewidth="16" tileheight="16" tilecount="4" columns="1">
+  <image source="../assets/images/key.png" width="20" height="64"/>
  </tileset>
  <layer id="1" name="Floor" width="10000" height="10">
   <data encoding="base64">
@@ -16,5 +34,22 @@
   <object id="3" gid="29" x="3415" y="89" width="50" height="50"/>
  </objectgroup>
  <objectgroup id="4" name="Seagulls"/>
- <objectgroup id="5" name="Harriers"/>
+ <objectgroup id="5" name="Harriers">
+  <object id="8" gid="28" x="2393.18" y="125" width="50" height="50"/>
+ </objectgroup>
+ <objectgroup id="6" name="Puddles">
+  <object id="14" gid="76" x="58" y="402" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="7" name="Colas">
+  <object id="16" gid="83" x="292" y="284" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="8" name="Spikes">
+  <object id="17" gid="88" x="968" y="398" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="10" name="Bandages">
+  <object id="21" gid="90" x="1096" y="322" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="11" name="Keys">
+  <object id="22" gid="96" x="860" y="158" width="16" height="16"/>
+ </objectgroup>
 </map>
