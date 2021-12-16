@@ -1,9 +1,7 @@
 import Player from '../player.js';
-import Platform from '../platform.js';
 import Crow from '../birds/crow.js';
 import Cola from '../powerups/cola.js';
 import Car from '../obstacles/car.js';
-import Debris from '../obstacles/debris.js';
 import Seagull from '../birds/seagull.js';
 import Puddle from '../obstacles/puddle.js';
 import VictoryCollider from '../victorycollider.js';
@@ -14,9 +12,7 @@ import Spikes from '../obstacles/spikes.js';
 import Key from '../powerups/key.js';
 import Harrier from '../birds/harrier.js'
 /**
- * Escena principal del juego. La escena se compone de una serie de plataformas 
- * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
- * El juego comienza generando aleatoriamente una base sobre la que generar una estrella. 
+ * Nivel 1 del juego 
  */
 export default class Level extends Phaser.Scene {
   /**
@@ -47,31 +43,16 @@ export default class Level extends Phaser.Scene {
 
 
     this.player = new Player(this, 200, 300, 5);
-    //this.cola = new Cola(this, 600, 300);
-    //this.birdseed = new Key(this, 300, 350);
-    //this.crow = new Crow(this, this.player, 500, 100, 'crow');
-    //this.harrier = new Harrier(this, this.player, 1500, 180, 'harrier');
-    //this.seagull = new Seagull(this, this.player, 500, 250);
-    // this.sparrow = new Sparrow(this, this.player, 500, 200);
-    //new Bandages(this, 850, 250, 'bandage');
-    //this.spikes = new Spikes(this, this.player, 1800, 470, 'spikes');
-    //new Debris(this, this.player, 2155, height - 50, 'debris')
-    //new Car(this, this.player, 1000, height-38, 'car');
     new VictoryCollider(this, this.player, 6000, height - 38);
-    //this.puddle = new Puddle(this, this.player, 3000, height - 10, 'puddle')
-    //new Platform(this, this.player, this.sparrow, 150, 350);
-    //new Platform(this, this.player, this.sparrow, 850, 350);
-    //new Platform(this, this.player, this.sparrow, 5000, 350);
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 30);
     this.createTileMap();
     this.createEnemies();
+    this.createPowerUps();
+    this.createObstacles();
     this.createPause();
-
-
-
     this.backgroundMusic();
-    //menú de pausa
+    
 
     this.tiempoTotal = 0; this.tiempo;
     this.tiempoPausa = false;
@@ -112,23 +93,63 @@ export default class Level extends Phaser.Scene {
    * Creación de enemigos del Tiled
    */
   createEnemies() {
+    //gorriones
     for (const sparrow of this.map1.getObjectLayer('Sparrows').objects) {
       this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y);
       this.physics.add.collider(this.sparrow, this.groundLayer);
     }
+    //cuervos
     for (const crow of this.map1.getObjectLayer('Crows').objects) {
       this.crow = new Crow(this, this.player, crow.x, crow.y, 'crow');
       this.physics.add.collider(this.crow, this.groundLayer);
     }
+    //aguiluchos
     for (const harrier of this.map1.getObjectLayer('Harriers').objects) {
-      this.harrier = new Harrier(this, this.player, crow.x, crow.y, 'crow');
+      this.harrier = new Harrier(this, this.player, harrier.x, harrier.y, 'harrier');
       this.physics.add.collider(this.harrier, this.groundLayer);
     }
+    //gaviotas
     for (const seagull of this.map1.getObjectLayer('Seagulls').objects) {
-      this.seagull = new Harrier(this, this.player, crow.x, crow.y, 'crow');
+      this.seagull = new Seagull(this, this.player, seagull.x, seagull.y, 'seagull');
       this.physics.add.collider(this.seagull, this.groundLayer);
     }
   }
+  /**
+ * Creación de powerUps
+ */
+  createPowerUps() {
+    //cola
+    for (const cola of this.map1.getObjectLayer('Colas').objects) {
+      this.cola = new Cola(this, cola.x, cola.y);
+      this.physics.add.collider(this.cola, this.groundLayer);
+    }
+    //vendas
+    for (const bandage of this.map1.getObjectLayer('Bandages').objects) {
+      this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
+      this.physics.add.collider(this.bandage, this.groundLayer);
+    }
+    //llaves
+    for (const key of this.map1.getObjectLayer('Keys').objects) {
+      this.bandage = new Key(this, key.x, key.y);
+      this.physics.add.collider(this.bandage, this.groundLayer);
+    }
+  }
+  /**
+ * Creación de obstáculos
+ */
+  createObstacles() {
+    //puddle
+    for (const puddle of this.map1.getObjectLayer('Puddles').objects) {
+      this.puddle = new Puddle(this, this.player, puddle.x, puddle.y, 'puddle');
+      this.physics.add.collider(this.puddle, this.groundLayer);
+    }
+    //spikes
+    for (const spikes of this.map1.getObjectLayer('Spikes').objects) {
+      this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
+      this.physics.add.collider(this.spikes, this.groundLayer);
+    }
+  }
+
   /**
  * Menú de pausa
  */

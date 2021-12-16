@@ -1,6 +1,6 @@
 import Enemies from "./enemies.js";
 /**
- * Clase que representa el cuervo.
+ * Clase que representa el aguilucho.
  */
 export default class Harrier extends Enemies {
     constructor(scene, player, x, y, name) {

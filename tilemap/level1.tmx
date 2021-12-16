@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="10000" height="10" tilewidth="50" tileheight="50" infinite="0" nextlayerid="6" nextobjectid="4">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="10000" height="10" tilewidth="50" tileheight="50" infinite="0" nextlayerid="12" nextobjectid="16">
  <tileset firstgid="1" name="tilesetForest" tilewidth="50" tileheight="50" tilecount="56" columns="8">
   <image source="tilesetForest.png" width="400" height="350"/>
+ </tileset>
+ <tileset firstgid="57" name="crowIcon" tilewidth="16" tileheight="16" tilecount="6" columns="2">
+  <image source="crowIcon.png" width="40" height="50"/>
+ </tileset>
+ <tileset firstgid="63" name="mud" tilewidth="16" tileheight="16" tilecount="20" columns="10">
+  <image source="../assets/images/mud.png" width="175" height="37"/>
  </tileset>
  <layer id="1" name="Floor" width="10000" height="10">
   <data encoding="base64">
@@ -16,5 +22,14 @@
   <object id="3" gid="29" x="3415" y="89" width="50" height="50"/>
  </objectgroup>
  <objectgroup id="4" name="Seagulls"/>
- <objectgroup id="5" name="Harriers"/>
+ <objectgroup id="5" name="Harriers">
+  <object id="8" gid="28" x="2393.18" y="125" width="50" height="50"/>
+ </objectgroup>
+ <objectgroup id="6" name="Puddles">
+  <object id="14" gid="76" x="58" y="402" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="7" name="Colas"/>
+ <objectgroup id="8" name="Spikes"/>
+ <objectgroup id="10" name="Bandages"/>
+ <objectgroup id="11" name="Keys"/>
 </map>
