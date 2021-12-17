@@ -26,7 +26,7 @@ export default class Level extends Phaser.Scene {
     this.generalVolume = this.fullVol;
     this.muted = false;
     this.playing = true;
-    this.time = 0;
+    this.timeScene = 0;
   }
   /**
    * Creación de los elementos de la escena principal de juego
@@ -54,7 +54,7 @@ export default class Level extends Phaser.Scene {
     this.backgroundMusic();
 
 
-    this.tiempoTotal = 0; this.tiempo;
+    this.tiempoaux ; this.tiempo;
     this.tiempoPausa = false;
     this.timerLabel = this.add.text(800, 10, "").setScrollFactor(0);
 
@@ -65,10 +65,8 @@ export default class Level extends Phaser.Scene {
   }
   init() {
     console.log('inicio');
-    //por si es la pruimera vez q se inicia el juego
-    if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
-    this.tiempo = this.tiempoTotal;
-    console.log(this.tiempo);
+    this.timeScene = 0;
+    console.log(this.timeScene);
 
 
   }
@@ -297,11 +295,23 @@ export default class Level extends Phaser.Scene {
     }
     return w[0].getPos() - desplazamiento;
   }
-
+timeTimer(){
+  let timer = this.time.addEvent({
+    delay: 1000,
+    callback: this.updateTime,
+    callbackScope: this
+  });
+}
+updateTime() {
+  this.timeScene++;
+}
   update(t, dt) {
-    this.soundtrack.resume();
-    this.tiempoTotal = t;
-    let x = parseInt((t - this.tiempo) / 1000);
+    this.soundtrack.resume(); 
+    if(this.playing)
+    {  
+      this.timeTimer();
+    }
+    let x = parseInt( this.timeScene/100);
     this.timerLabel.text = ('Time: ' + x);
   }
   //MUSICA DE FONDO
