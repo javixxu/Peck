@@ -17,6 +17,7 @@ export default class Harrier extends Enemies {
         this.ascenso=false;      
         this.lastPos;
         this.collision=true;
+        this.play('harrier_anim');
 
     }
     preUpdate(t,dt) {
