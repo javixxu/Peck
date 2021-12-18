@@ -70,9 +70,9 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 51, frameHeight: 50 });
-    this.load.spritesheet('still', 'cathy2.png', { frameWidth: 50, frameHeight: 75 });
     this.load.spritesheet('run', 'cathy_run.png', { frameWidth: 55, frameHeight: 80, endFrame: 8 });
     this.load.spritesheet('jump', 'cathy_jump.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
+    this.load.spritesheet('idle', 'cathy_idle.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
     this.load.spritesheet('harrieranim', 'aguilucho.png', {frameWidth:149, frameHeight:65});
 
     //SONIDOS
@@ -144,7 +144,7 @@ export default class Boot extends Phaser.Scene {
     });
     this.anims.create({//en estático
       key: 'still_anim',
-      frames: this.anims.generateFrameNumbers('still', { start: 0, end: 6 }),
+      frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 2 }),
       frameRate: 8,
       repeat: -1
     });
