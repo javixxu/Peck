@@ -57,11 +57,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cola', 'cola.png');
     this.load.image('pausebg', '3.png');
     this.load.image('harrier', 'harrier.png');
-    /** 
-     for (var i = 0; i < 200; i++) {
-       this.load.image('cola'+ i, 'cola.png');
-     }
-     */
+    this.load.image ('beach','backgroundbeach.png');
     this.load.image('car', 'car.png');
     this.load.image('fence', 'fence.png');
     this.load.image('debris', 'escombros.png');

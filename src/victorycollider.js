@@ -11,7 +11,8 @@ export default class VictoryCollider extends Phaser.GameObjects.Sprite {
         super.preUpdate();
         if (this.scene.physics.overlap(this.scene.player, this)) {
             this.scene.soundtrack.stop();
-            this.scene.scene.start('victoryscene');
+            if(this.scene.scene.key=='level2') this.scene.scene.start('victoryscene');
+            else {this.win=true; this.scene.scene.start('level2');}
         }
     }
 }
