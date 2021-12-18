@@ -38,7 +38,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI = new UIPlayer(this.scene, this, numslife, this.maxLife, this.score, this.powerups);
     this.current = 'empty';
-
+    
   }
 
   playerDamage(hit) {
@@ -115,13 +115,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.scene.playing === true) {
       super.preUpdate(t, dt);
 
-      if (this.lifes <= 0) {
-        console.log("PERDER");
-        this.scene.soundtrack.stop();
-        //Que se acabe la partida     
-        this.scene.scene.start('gameOver');
-      }
-
       if (this.consume.isDown && this.current != 'empty') {//si pulso E && this.empty==false
         this.scene.powerUpConsumeSoundEffect();
         this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
@@ -159,4 +152,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
   }
+
 }

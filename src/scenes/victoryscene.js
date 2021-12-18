@@ -36,11 +36,5 @@
       this.scene.start('menu');
     });
   
-  /*
-  this.input.keyboard.on('keydown', function (event) { 
-    this.scene.start('level');
-  }, this);
-  */
   }
- 
 }

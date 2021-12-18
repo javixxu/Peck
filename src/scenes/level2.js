@@ -2,6 +2,7 @@ import Player from '../player.js';
 import Crow from '../birds/crow.js';
 import Cola from '../powerups/cola.js';
 import Car from '../obstacles/car.js';
+import Obstacles from '../obstacles/obstacles.js';
 import Seagull from '../birds/seagull.js';
 import Puddle from '../obstacles/puddle.js';
 import VictoryCollider from '../victorycollider.js';
@@ -62,23 +63,24 @@ export default class Level2 extends Phaser.Scene{
         if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
         this.tiempo = this.tiempoTotal;
         console.log(this.tiempo);
+        this.lose=true;  
     }
     createTileMap() {
-        this.map1 = this.make.tilemap({
-          key: 'map1',
-          tileWidth: 64,
-          tileHeight: 64
-        });
-        const tileset1 = this.map1.addTilesetImage('tilesetForest', 'patronesLevel1');
-        //this.backgroundLayer = this.map.createLayer('Background', tileset1);
-        this.groundLayer = this.map1.createLayer('Floor', tileset1);
-        this.physics.add.collider(this.player, this.groundLayer);
-        this.groundLayer.setCollisionBetween(1, 999);
-        //MOMENTANEO
-        //this.physics.add.collider(this.sparrow, groundLayer);
-        // this.physics.add.collider(this.harrier, groundLayer);
-    
-    
+        this.map2 = this.make.tilemap({
+            key: 'map2',
+            tileWidth: 64,
+            tileHeight: 64
+          });
+          const tileset1 = this.map2.addTilesetImage('tilesetbeach', 'patronesLevel2');
+          this.waterLayer = this.map2.createLayer('Water', tileset1);
+          this.sandLayer = this.map2.createLayer('Sand', tileset1);
+         
+          this.physics.add.collider(this.player, this.waterLayer);
+          this.physics.add.collider(this.player, this.sandLayer);
+          
+          this.sandLayer.setCollisionBetween(0, 999);
+          this.waterLayer.setCollisionBetween(0, 999);
+         
     }
     createAligned(scene, large, texture, scrollFactor) {
         const w = scene.textures.get(texture).getSourceImage().width; //Ancho de la imagen de fondo
@@ -99,22 +101,22 @@ export default class Level2 extends Phaser.Scene{
    */
   createEnemies(){
         //gorriones
-        for (const sparrow of this.map1.getObjectLayer('Sparrows').objects) {
+        for (const sparrow of this.map2.getObjectLayer('Sparrows').objects) {
             this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y);
             this.physics.add.collider(this.sparrow, this.groundLayer);
         }
         //cuervos
-        for (const crow of this.map1.getObjectLayer('Crows').objects) {
+        for (const crow of this.map2.getObjectLayer('Crows').objects) {
             this.crow = new Crow(this, this.player, crow.x, crow.y, 'crow');
             this.physics.add.collider(this.crow, this.groundLayer);
         }
         //aguiluchos
-        for (const harrier of this.map1.getObjectLayer('Harriers').objects) {
+        for (const harrier of this.map2.getObjectLayer('Harriers').objects) {
             this.harrier = new Harrier(this, this.player, harrier.x, harrier.y, 'harrier');
             this.physics.add.collider(this.harrier, this.groundLayer);
         }
         //gaviotas
-        for (const seagull of this.map1.getObjectLayer('Seagulls').objects) {
+        for (const seagull of this.map2.getObjectLayer('Seagulls').objects) {
             this.seagull = new Seagull(this, this.player, seagull.x, seagull.y, 'seagull');
             this.physics.add.collider(this.seagull, this.groundLayer);
         }
@@ -123,35 +125,37 @@ export default class Level2 extends Phaser.Scene{
      * Creación de powerUps
      */
     createPowerUps() {
-        //cola
-        for (const cola of this.map1.getObjectLayer('Colas').objects) {
-        this.cola = new Cola(this, cola.x, cola.y);
-        this.physics.add.collider(this.cola, this.groundLayer);
+         //vendas
+            for (const bandage of this.map2.getObjectLayer('Bandages').objects) {
+                this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
+                this.physics.add.collider(this.bandage, this.sandLayer);
+            }
+
+            //llaves
+            for (const k of this.map2.getObjectLayer('Keys').objects) {
+                this.keys = new Key(this, this.player, k.x, k.y);
+                this.physics.add.collider(this.keys, this.sandLayer);
+            }
         }
-        //vendas
-        for (const bandage of this.map1.getObjectLayer('Bandages').objects) {
-        this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
-        this.physics.add.collider(this.bandage, this.groundLayer);
-        }
-        //llaves
-        for (const key of this.map1.getObjectLayer('Keys').objects) {
-        this.key = new Key(this, key.x, key.y);
-        this.physics.add.collider(this.key, this.groundLayer);
-        }
-    }
     /**
      * Creación de obstáculos
      */
     createObstacles() {
-        //puddle
-        for (const puddle of this.map1.getObjectLayer('Puddles').objects) {
-        this.puddle = new Puddle(this, this.player, puddle.x, puddle.y, 'puddle');
-        this.physics.add.collider(this.puddle, this.groundLayer);
+        for (const fences of this.map2.getObjectLayer('Fences').objects) {
+            this.fences = new Obstacles(this, fences.x, fences.y, 'fence');
+            this.physics.add.collider(this.fences, this.sandLayer);
         }
-        //spikes
-        for (const spikes of this.map1.getObjectLayer('Spikes').objects) {
-        this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
-        this.physics.add.collider(this.spikes, this.groundLayer);
+        for (const victorycollider of this.map2.getObjectLayer('VictoryCollider').objects) {
+            this.victorycollider = new VictoryCollider(this, this.player, victorycollider.x, victorycollider.y);
+            this.physics.add.collider(this.victorycollider, this.sandLayer);
+        }
+        for (const debris of this.map2.getObjectLayer('Debris').objects) {
+            this.debris = new Obstacles(this, debris.x, debris.y, 'debris');
+            this.physics.add.collider(this.debris, this.sandLayer);
+        }
+        for (const car of this.map2.getObjectLayer('Cars').objects) {
+            this.car = new Obstacles(this, car.x, car.y, 'redcar');
+            this.physics.add.collider(this.car, this.sandLayer);
         }
     }
 
@@ -267,6 +271,58 @@ export default class Level2 extends Phaser.Scene{
         });
         });
     }
+    gameOver(){
+        this.physics.pause();
+        this.gameovermusic = this.sound.add("gameovermusic");
+        this.clicksound= this.sound.add("buttonclick");
+        this.gameovermusic.play();
+        
+        this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
+        this.add.image(500,150,'gameover').setScale(2).setScrollFactor(0);
+       
+        this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+      
+      
+        this.botonStart.on("pointerdown", () =>{
+          this.scene.start('level2');
+          this.gameovermusic.stop();
+          this.clicksound.play();
+         });
+      
+        this.exit.on("pointerdown", ()=> {
+          this.scene.stop();
+          this.clicksound.play();
+          this.gameovermusic.stop();
+          this.scene.start('menu');
+        });
+    }
+    victory()
+    {
+        this.physics.pause();
+        this.winmusic = this.sound.add("winmusic");
+        this.clicksound= this.sound.add("buttonclick");
+        this.winmusic.play();
+
+        this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
+        this.add.image(500,150,'ganar').setScale(2).setScrollFactor(0);
+
+        this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+
+        this.botonStart.on("pointerdown", () =>{
+        this.winmusic.stop();
+        this.clicksound.play();
+        this.scene.start('level2');
+        });
+
+        this.exit.on("pointerdown", ()=> {
+        this.scene.stop();
+        this.winmusic.stop();
+        this.clicksound.play();
+        this.scene.start('menu');
+        });
+    }
     bandagePickt() {
         this.player.bandageEffect();
     }
@@ -294,6 +350,14 @@ export default class Level2 extends Phaser.Scene{
         this.tiempoTotal = t;
         let x = parseInt((t - this.tiempo) / 1000);
         this.timerLabel.text = ('Time: ' + x);
+        if(this.player.lifes<=0){
+            if(this.lose){
+              this.lose=false;
+              this.gameOver();
+              this.soundtrack.stop(); 
+            }
+            this.hurtSound.stop();
+        }
     }
   //MUSICA DE FONDO
     backgroundMusic() {

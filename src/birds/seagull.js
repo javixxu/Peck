@@ -6,7 +6,7 @@ export default class Seagull extends Enemies
     super(scene, player, x, y);
     this.scene=scene; //Referencia a la escena
     this.player=player; //Referencia al player
-    let offset=100; //Distancia entre el centro y la gaviota
+    let offset=80; //Distancia entre el centro y la gaviota
     //CONTAINER
     this.container = this.scene.add.container(x, y);
     const centro=this.scene.add.image(0, 0, 'center'); //Imagen del centro
