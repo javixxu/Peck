@@ -38,8 +38,8 @@ export default class Level2 extends Phaser.Scene{
 
         this.createAligned(this, large, 'beach', 1);
 
-        this.player = new Player(this, 200, 300, 5);
-        new VictoryCollider(this, this.player, 6000, height - 38);
+        this.player = new Player(this, 50, 300, 5);
+        //new VictoryCollider(this, this.player, 6000, height - 38);
         this.groupAlcantarillas = this.add.group();
         this.createSewer(height - 30);
         this.createTileMap();
