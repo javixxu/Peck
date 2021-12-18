@@ -44,9 +44,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('controles', 'controles.png');
     this.load.image('inventory', 'inventory.png');
     this.load.image('platform', 'platform.png');
-    this.load.image('base', 'base.png');
-    this.load.image('player', 'cathy2.png');
-    this.load.image('city', 'city.png');
+    this.load.image('player', 'cathy_jump.png');
     this.load.image('corazon', 'HEART.png');
     this.load.image('bandage', 'bandages.png');
     this.load.image('spikes', 'spikes.png');
@@ -67,7 +65,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('puddle', 'mud.png');
     this.load.image('center', 'center.png');
     this.load.image ('redcar', 'redcar.png');
-    this.load.image ('greencr', 'greencar');
+    this.load.image ('greencar', 'greencar');
 
     //SPRITES
     this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });

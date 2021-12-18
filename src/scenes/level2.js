@@ -313,7 +313,7 @@ export default class Level2 extends Phaser.Scene{
         this.botonStart.on("pointerdown", () =>{
         this.winmusic.stop();
         this.clicksound.play();
-        this.scene.start('menu');
+        this.scene.start('level2');
         });
 
         this.exit.on("pointerdown", ()=> {
