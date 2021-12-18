@@ -60,8 +60,7 @@ export default class Level extends Phaser.Scene {
     
     console.log('inicio');
     this.timeScene = 0;
-    console.log(this.timeScene); 
-    this.lose=true;   
+    console.log(this.timeScene);    
   }
   createTileMap() {
     this.map1 = this.make.tilemap({
@@ -268,6 +267,7 @@ export default class Level extends Phaser.Scene {
     this.gameovermusic.stop();
     this.clicksound.play();
    });
+
   this.exit.on("pointerdown", ()=> {
     this.scene.stop();
     this.clicksound.play();
@@ -336,16 +336,16 @@ export default class Level extends Phaser.Scene {
     }
     return w[0].getPos() - desplazamiento;
   }
-  timeTimer(){
+timeTimer(){
   let timer = this.time.addEvent({
     delay: 1000,
     callback: this.updateTime,
     callbackScope: this
   });
-  }
-  updateTime() {
+}
+updateTime() {
   this.timeScene++;
-  }
+}
   update(t, dt) {
     this.soundtrack.resume(); 
     if(this.playing)
@@ -354,14 +354,6 @@ export default class Level extends Phaser.Scene {
     }
     let x = parseInt( this.timeScene/100);
     this.timerLabel.text = ('Time: ' + x);
-    if(this.player.lifes<=0){
-      if(this.lose){
-        this.lose=false;
-        this.gameOver();
-        this.soundtrack.stop(); 
-      }
-      this.hurtSound.stop();
-    }
   }
   //MUSICA DE FONDO
   backgroundMusic() {
