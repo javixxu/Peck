@@ -267,6 +267,58 @@ export default class Level2 extends Phaser.Scene{
         });
         });
     }
+    gameOver(){
+        this.physics.pause();
+        this.gameovermusic = this.sound.add("gameovermusic");
+        this.clicksound= this.sound.add("buttonclick");
+        this.gameovermusic.play();
+        
+        this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
+        this.add.image(500,150,'gameover').setScale(2).setScrollFactor(0);
+       
+        this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+      
+      
+        this.botonStart.on("pointerdown", () =>{
+          this.scene.start('level');
+          this.gameovermusic.stop();
+          this.clicksound.play();
+         });
+      
+        this.exit.on("pointerdown", ()=> {
+          this.scene.stop();
+          this.clicksound.play();
+          this.gameovermusic.stop();
+          this.scene.start('menu');
+        });
+    }
+    victory()
+    {
+        this.physics.pause();
+        this.winmusic = this.sound.add("winmusic");
+        this.clicksound= this.sound.add("buttonclick");
+        this.winmusic.play();
+
+        this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
+        this.add.image(500,150,'ganar').setScale(2).setScrollFactor(0);
+
+        this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+
+        this.botonStart.on("pointerdown", () =>{
+        this.winmusic.stop();
+        this.clicksound.play();
+        this.scene.start('menu');
+        });
+
+        this.exit.on("pointerdown", ()=> {
+        this.scene.stop();
+        this.winmusic.stop();
+        this.clicksound.play();
+        this.scene.start('menu');
+        });
+    }
     bandagePickt() {
         this.player.bandageEffect();
     }

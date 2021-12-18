@@ -38,7 +38,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI = new UIPlayer(this.scene, this, numslife, this.maxLife, this.score, this.powerups);
     this.current = 'empty';
-
+    //Para q solo salte una vez el panel de la scena y no se pete
+    this.lose=false;
   }
 
   playerDamage(hit) {
@@ -119,7 +120,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
         console.log("PERDER");
         this.scene.soundtrack.stop();
         //Que se acabe la partida     
-        this.scene.scene.start('gameOver');
+        //this.scene.scene.start('gameOver');
+        if(!this.lose){
+          this.scene.gameOver();
+          this.lose=true;
+        } 
       }
 
       if (this.consume.isDown && this.current != 'empty') {//si pulso E && this.empty==false
@@ -159,4 +164,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
   }
+
 }

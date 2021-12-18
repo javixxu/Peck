@@ -40,8 +40,6 @@ export default class Level extends Phaser.Scene {
 
     this.createAligned(this, large, 'fondof', 1);
 
-
-
     this.player = new Player(this, 200, 300, 5);
     new VictoryCollider(this, this.player, 6000, height - 38);
     this.groupAlcantarillas = this.add.group();
@@ -52,23 +50,17 @@ export default class Level extends Phaser.Scene {
     this.createObstacles();
     this.createPause();
     this.backgroundMusic();
-
-
-    this.tiempoaux ; this.tiempo;
-    this.tiempoPausa = false;
     this.timerLabel = this.add.text(800, 10, "").setScrollFactor(0);
 
     this.physics.world.setBounds(0, 0, large, height);
     this.cameras.main.setBounds(0, 0, large, height);
     this.cameras.main.startFollow(this.player);
-
   }
   init() {
+    
     console.log('inicio');
     this.timeScene = 0;
-    console.log(this.timeScene);
-
-
+    console.log(this.timeScene);    
   }
   createTileMap() {
     this.map1 = this.make.tilemap({
@@ -164,8 +156,7 @@ export default class Level extends Phaser.Scene {
     this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
     this.pause.on("pointerdown", () => {
       this.playing = false;
-      this.soundtrack.stop();
-      this.tiempoPausa = true;
+      this.soundtrack.stop();      
       this.physics.pause();
       this.clickSoundEffect();
       this.background.setVisible(true);
@@ -202,7 +193,6 @@ export default class Level extends Phaser.Scene {
         this.muted = false;
         this.generalVolume = this.fullVol;
       });
-
       this.resume.on("pointerdown", () => {
         //this.scene.stop();
         this.playing = true;
@@ -250,7 +240,6 @@ export default class Level extends Phaser.Scene {
         }
 
       });
-
       this.exit.on("pointerdown", () => {
         //this.scene.stop();
         this.playing = true;
@@ -258,6 +247,58 @@ export default class Level extends Phaser.Scene {
         this.clickSoundEffect();
         this.scene.start('menu');
       });
+    });
+  }
+  gameOver()
+  {
+  this.physics.pause();
+  this.gameovermusic = this.sound.add("gameovermusic");
+  this.clicksound= this.sound.add("buttonclick");
+  this.gameovermusic.play();
+  
+  this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
+  this.add.image(500,150,'gameover').setScale(2).setScrollFactor(0);
+ 
+  this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+  this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+
+  this.botonStart.on("pointerdown", () =>{
+    this.scene.start('level');
+    this.gameovermusic.stop();
+    this.clicksound.play();
+   });
+
+  this.exit.on("pointerdown", ()=> {
+    this.scene.stop();
+    this.clicksound.play();
+    this.gameovermusic.stop();
+    this.scene.start('menu');
+  });
+  }
+  victory()
+  {
+    this.physics.pause();
+    this.winmusic = this.sound.add("winmusic");
+    this.clicksound= this.sound.add("buttonclick");
+    this.winmusic.play();
+
+    this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
+    this.add.image(500,150,'ganar').setScale(2).setScrollFactor(0);
+
+    this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+    this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+
+    this.botonStart.on("pointerdown", () =>{
+    this.winmusic.stop();
+    this.clicksound.play();
+    this.scene.start('level2');
+    });
+
+    this.exit.on("pointerdown", ()=> {
+      this.scene.stop();
+      this.winmusic.stop();
+      this.clicksound.play();
+      this.scene.start('menu');
     });
   }
   createAligned(scene, large, texture, scrollFactor) {

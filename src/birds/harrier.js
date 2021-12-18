@@ -25,21 +25,29 @@ export default class Harrier extends Enemies {
             super.preUpdate(t,dt);
         if(this.x-this.player.x<=250){
             //CASO 1 EL BICHO TIENE QUE BAJAR DE FORMA DIAGONAL
-            if(this.descenso&&this.y-90<this.playerY){
+            if(this.descenso&&this.y+55<this.playerY){
                 this.body.setVelocity(-this.fallSpeed,this.fallSpeed);
-                this.lastPos=this.x;               
+                this.lastPos=this.x;  
+                console.log('descenso');             
             }
             //CASO HA LLEGADO A SU LIMITE DE MOVIMIENTO RECTO Y QUEREMOS Q ASCIENDA
-            else if(this.x<this.lastPos-100){
+            else if(this.x<this.lastPos-200){
                this.body.setVelocityY(-this.fallSpeed);
                this.descenso=false;               
-               this.ascenso=true;               
+               this.ascenso=true;   
+               console.log('ascenso');            
             }
             //CASO HAY LLEGADO A SU LIMITE DE MOVIMIENTO LATERAL DESCENDENTE Y QUEREMOS Q AVANCE RECTO UNOS METROS
             else if(!this.ascenso){                
                 this.body.setVelocityY(0); 
-                this.descenso=false;               
+                this.descenso=false;
+                console.log('recto');               
             }
+        }
+        //si se va fuera del rango queremos q ascienda
+        else if(!this.descenso){
+            this.body.setVelocityY(-this.fallSpeed);           
+            console.log('ascenso');     
         }
         //tener cuidado con el timer de invencibilidad del jugador
         if(this.collision&&this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()){
