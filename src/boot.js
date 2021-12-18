@@ -71,8 +71,8 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 51, frameHeight: 50 });
     this.load.spritesheet('still', 'cathy2.png', { frameWidth: 50, frameHeight: 75 });
-    this.load.spritesheet('run', 'ninya_run.png', { frameWidth: 55, frameHeight: 75, endFrame: 6 });
-    this.load.spritesheet('jump', 'ninya_jumping.png', { frameWidth: 58, frameHeight: 75, endFrame: 2 });
+    this.load.spritesheet('run', 'cathy_run.png', { frameWidth: 55, frameHeight: 80, endFrame: 8 });
+    this.load.spritesheet('jump', 'cathy_jump.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
     this.load.spritesheet('harrieranim', 'aguilucho.png', {frameWidth:149, frameHeight:65});
 
     //SONIDOS
