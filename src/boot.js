@@ -35,6 +35,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mute', 'mutesound.png');
     this.load.image('exit', 'exit.png');
     this.load.image('controlsButton', 'controls.png')
+    this.load.image('nextlevel','nextlevel.png');
 
     //IMAGENES
     this.load.setPath('assets/images/');
@@ -65,6 +66,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('gameoverbackground', 'go.png');
     this.load.image('puddle', 'mud.png');
     this.load.image('center', 'center.png');
+    this.load.image ('redcar', 'redcar.png');
+    this.load.image ('greencr', 'greencar');
 
     //SPRITES
     this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });
@@ -91,6 +94,8 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('tilemap/');
     this.load.tilemapTiledJSON('map1', 'level1.json');
     this.load.image('patronesLevel1', 'tilesetForest.png');
+    this.load.tilemapTiledJSON('map2', 'level2.json');
+    this.load.image('patronesLevel2','tilesetbeach.png');
 
 
     this.load.on('fileprogress', function (file) {

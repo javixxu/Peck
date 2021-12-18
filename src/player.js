@@ -38,8 +38,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI = new UIPlayer(this.scene, this, numslife, this.maxLife, this.score, this.powerups);
     this.current = 'empty';
-    //Para q solo salte una vez el panel de la scena y no se pete
-    this.lose=false;
+    
   }
 
   playerDamage(hit) {

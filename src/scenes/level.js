@@ -73,7 +73,7 @@ export default class Level extends Phaser.Scene {
     //this.backgroundLayer = this.map.createLayer('Background', tileset1);
     this.groundLayer = this.map1.createLayer('Floor', tileset1);
     this.physics.add.collider(this.player, this.groundLayer);
-    this.groundLayer.setCollisionBetween(1, 999);
+    this.groundLayer.setCollisionBetween(0, 999);
     //MOMENTANEO
     //this.physics.add.collider(this.sparrow, groundLayer);
     // this.physics.add.collider(this.harrier, groundLayer);
@@ -252,28 +252,28 @@ export default class Level extends Phaser.Scene {
   }
   gameOver()
   {
-  this.physics.pause();
-  this.gameovermusic = this.sound.add("gameovermusic");
-  this.clicksound= this.sound.add("buttonclick");
-  this.gameovermusic.play();
+    this.physics.pause();
+    this.gameovermusic = this.sound.add("gameovermusic");
+    this.clicksound= this.sound.add("buttonclick");
+    this.gameovermusic.play();
+    
+    this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
+    this.add.image(500,150,'gameover').setScale(2).setScrollFactor(0);
   
-  this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
-  this.add.image(500,150,'gameover').setScale(2).setScrollFactor(0);
- 
-  this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
-  this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+    this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+    this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
 
-  this.botonStart.on("pointerdown", () =>{
-    this.scene.start('level');
-    this.gameovermusic.stop();
-    this.clicksound.play();
-   });
-  this.exit.on("pointerdown", ()=> {
-    this.scene.stop();
-    this.clicksound.play();
-    this.gameovermusic.stop();
-    this.scene.start('menu');
-  });
+    this.botonStart.on("pointerdown", () =>{
+      this.scene.start('level');
+      this.gameovermusic.stop();
+      this.clicksound.play();
+    });
+    this.exit.on("pointerdown", ()=> {
+      this.scene.stop();
+      this.clicksound.play();
+      this.gameovermusic.stop();
+      this.scene.start('menu');
+    });
   }
   victory()
   {
@@ -285,13 +285,19 @@ export default class Level extends Phaser.Scene {
     this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
     this.add.image(500,150,'ganar').setScale(2).setScrollFactor(0);
 
-    this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
-    this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+    this.nextbutton = this.add.image (500, 435, 'nextlevel').setScale(1.5).setScrollFactor(0).setInteractive();
+    this.botonStart= this.add.image(330,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+    this.exit = this.add.image (670, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
 
+    this.nextbutton.on("pointerdown", () =>{
+      this.winmusic.stop();
+      this.clicksound.play();
+      this.scene.start('level2');
+    });
     this.botonStart.on("pointerdown", () =>{
     this.winmusic.stop();
     this.clicksound.play();
-    this.scene.start('level2');
+    this.scene.start('level');
     });
 
     this.exit.on("pointerdown", ()=> {
