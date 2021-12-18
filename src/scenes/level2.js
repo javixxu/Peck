@@ -62,6 +62,7 @@ export default class Level2 extends Phaser.Scene{
         if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
         this.tiempo = this.tiempoTotal;
         console.log(this.tiempo);
+        this.lose=true;  
     }
     createTileMap() {
         this.map1 = this.make.tilemap({
@@ -346,6 +347,14 @@ export default class Level2 extends Phaser.Scene{
         this.tiempoTotal = t;
         let x = parseInt((t - this.tiempo) / 1000);
         this.timerLabel.text = ('Time: ' + x);
+        if(this.player.lifes<=0){
+            if(this.lose){
+              this.lose=false;
+              this.gameOver();
+              this.soundtrack.stop(); 
+            }
+            this.hurtSound.stop();
+        }
     }
   //MUSICA DE FONDO
     backgroundMusic() {
