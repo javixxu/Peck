@@ -23,6 +23,7 @@ export default class Menu extends Phaser.Scene {
         this.playButton = this.add.image(400, 150, 'button').setScale(2).setScrollFactor(0).setInteractive();
         this.helpButton = this.add.image(600, 150, 'controlsButton').setScale(2).setScrollFactor(0).setInteractive();
         this.menucrow = this.add.sprite(720, 250, 'menu_crow');
+        this.add.text(100, 200, 'Button', { fontFamily: 'CustomFont' });
         //this.menucrow.setFlip(true, false);
         this.menucrow.play({ key: 'crow_menu', loop: true });
         this.playButton.on("pointerdown", () => {

@@ -307,7 +307,7 @@ export default class Level extends Phaser.Scene {
 
     this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
     this.add.image(500, 150, 'ganar').setScale(2).setScrollFactor(0);
-
+    
     this.nextbutton = this.add.image(500, 435, 'nextlevel').setScale(1.5).setScrollFactor(0).setInteractive();
     this.botonStart = this.add.image(330, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
     this.exit = this.add.image(670, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
