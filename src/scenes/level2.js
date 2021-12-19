@@ -102,22 +102,22 @@ export default class Level2 extends Phaser.Scene {
         //gorriones
         for (const sparrow of this.map2.getObjectLayer('Sparrows').objects) {
             this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y);
-            this.physics.add.collider(this.sparrow, this.groundLayer);
+            this.physics.add.collider(this.sparrow, this.sandLayer);
         }
         //cuervos
         for (const crow of this.map2.getObjectLayer('Crows').objects) {
             this.crow = new Crow(this, this.player, crow.x, crow.y, 'crow');
-            this.physics.add.collider(this.crow, this.groundLayer);
+            this.physics.add.collider(this.crow, this.sandLayer);
         }
         //aguiluchos
         for (const harrier of this.map2.getObjectLayer('Harriers').objects) {
             this.harrier = new Harrier(this, this.player, harrier.x, harrier.y, 'harrier');
-            this.physics.add.collider(this.harrier, this.groundLayer);
+            this.physics.add.collider(this.harrier, this.sandLayer);
         }
         //gaviotas
         for (const seagull of this.map2.getObjectLayer('Seagulls').objects) {
             this.seagull = new Seagull(this, this.player, seagull.x, seagull.y, 'seagull');
-            this.physics.add.collider(this.seagull, this.groundLayer);
+            this.physics.add.collider(this.seagull, this.sandLayer);
         }
     }
     /**
@@ -143,6 +143,7 @@ export default class Level2 extends Phaser.Scene {
         for (const fences of this.map2.getObjectLayer('Fences').objects) {
             this.fences = new Obstacles(this, fences.x, fences.y, 'fence');
             this.physics.add.collider(this.fences, this.sandLayer);
+            this.physics.add.collider(this.fences, this.player);
         }
         for (const victorycollider of this.map2.getObjectLayer('VictoryCollider').objects) {
             this.victorycollider = new VictoryCollider(this, this.player, victorycollider.x, victorycollider.y);
@@ -151,10 +152,12 @@ export default class Level2 extends Phaser.Scene {
         for (const debris of this.map2.getObjectLayer('Debris').objects) {
             this.debris = new Obstacles(this, debris.x, debris.y, 'debris');
             this.physics.add.collider(this.debris, this.sandLayer);
+            this.physics.add.collider(this.debris, this.player);
         }
         for (const car of this.map2.getObjectLayer('Cars').objects) {
             this.car = new Obstacles(this, car.x, car.y, 'redcar');
             this.physics.add.collider(this.car, this.sandLayer);
+            this.physics.add.collider(this.car, this.player);
         }
     }
 
@@ -269,6 +272,18 @@ export default class Level2 extends Phaser.Scene {
                 this.scene.start('menu');
             });
         });
+    }
+    createTrigger() {
+        // x, y, width, height
+        let trigger = this.add.zone(this.player.x, this.player.y, 300, 300);
+        // Añade un body
+        this.physics.world.enable(trigger);
+        trigger.body.setAllowGravity(false);
+        trigger.body.setImmovable(false);
+
+
+
+
     }
     gameOver() {
         this.physics.pause();
