@@ -284,7 +284,13 @@ export default class Level2 extends Phaser.Scene {
         this.trigger.body.setImmovable(false);
 
 
+        this.time.delayedCall(3000, this.destroyZone());
+        //;
 
+    }
+    destroyZone() {
+        //this.physics.world.destroy(this.trigger.body);
+        this.trigger.body.setAllowGravity(true);
 
     }
     gameOver() {
