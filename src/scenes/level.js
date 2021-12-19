@@ -249,13 +249,12 @@ export default class Level extends Phaser.Scene {
   createTrigger() {
     // x, y, width, height
     this.trigger = this.add.zone(this.player.x, this.player.y, 500, 300);
+    this.peri = this.add.sprite(this.player.x, this.player.y, 'parakeet');
+    this.peri.play({ key: 'explosion', repeat: 0 });
     // Añade un body
     this.physics.world.enable(this.trigger);
     this.trigger.body.setAllowGravity(false);
     this.trigger.body.setImmovable(false);
-
-
-
 
   }
   gameOver() {

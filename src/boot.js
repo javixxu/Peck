@@ -35,7 +35,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mute', 'mutesound.png');
     this.load.image('exit', 'exit.png');
     this.load.image('controlsButton', 'controls.png')
-    this.load.image('nextlevel','nextlevel.png');
+    this.load.image('nextlevel', 'nextlevel.png');
 
     //IMAGENES
     this.load.setPath('assets/images/');
@@ -56,25 +56,26 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cola', 'cola.png');
     this.load.image('pausebg', '3.png');
     this.load.image('harrier', 'harrier.png');
-    this.load.image ('beach','backgroundbeach.png');
-    this.load.image('car', 'car.png');
+    this.load.image('beach', 'backgroundbeach.png');
     this.load.image('fence', 'fence.png');
     this.load.image('debris', 'escombros.png');
     this.load.image('gameover', 'deadbird.png');
     this.load.image('gameoverbackground', 'go.png');
     this.load.image('puddle', 'mud.png');
     this.load.image('center', 'center.png');
-    this.load.image ('redcar', 'redcar.png');
-    this.load.image ('greencar', 'greencar');
+    this.load.image('car', 'car.png');
+    this.load.image('redcar', 'redcar.png');
+    this.load.image('greencar', 'greencar');
 
     //SPRITES
     this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 45, frameHeight: 45 });
+    this.load.spritesheet('parakeet', 'periquito.png', { frameWidth: 500, frameHeight: 300, endFrame: 17  });
     this.load.spritesheet('run', 'cathy_run.png', { frameWidth: 55, frameHeight: 80, endFrame: 8 });
     this.load.spritesheet('jump', 'cathy_jump.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
     this.load.spritesheet('idle', 'cathy_idle.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
-    this.load.spritesheet('harrieranim', 'aguilucho.png', {frameWidth:149, frameHeight:65});
+    this.load.spritesheet('harrieranim', 'aguilucho.png', { frameWidth: 149, frameHeight: 65 });
 
     //SONIDOS
     this.load.setPath('sounds/');
@@ -93,7 +94,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('map1', 'level1.json');
     this.load.image('patronesLevel1', 'tilesetForest.png');
     this.load.tilemapTiledJSON('map2', 'level2.json');
-    this.load.image('patronesLevel2','tilesetbeach.png');
+    this.load.image('patronesLevel2', 'tilesetbeach.png');
 
 
     this.load.on('fileprogress', function (file) {
@@ -170,16 +171,16 @@ export default class Boot extends Phaser.Scene {
       repeat: -1    // Animación en bucle
     });
     this.anims.create({
-      key: 'bend_anim',
-      frames: this.anims.generateFrameNumbers('bend', { start: 0, end: 1 }),
-      frameRate: 11, // Velocidad de la animación
-      //repeat: 0    // Animación en bucle
+      key: 'explosion',
+      frames: this.anims.generateFrameNumbers('parakeet', { start: 0, end: 17 }),
+      frameRate: 20, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
     });
     this.anims.create({
       key: 'harrier_anim',
       frames: this.anims.generateFrameNumbers('harrieranim', { start: 0, end: 8 }),
       frameRate: 10,
-      repeat: -1   
+      repeat: -1
     });
   }
   /**
