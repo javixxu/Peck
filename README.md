@@ -1,5 +1,7 @@
 # PECK
 ## _Grupo 11_
+### _UML_
+![uml](https://user-images.githubusercontent.com/82326212/146695043-7413bead-f2f4-4ee2-9cbc-4a8b9589814a.png)
 
 https://javixxu.github.io/PVLI-G11/
 
@@ -11,7 +13,7 @@ Nombre de los autores y correo electrónico de contacto:
 - Javier Comas de Frutos javcomas@ucm.es
 - Adrián Montero Castrillo admont02@ucm.es
 
-Versión 1.5 –2 diciembre 2021
+Versión 1.6 –20 diciembre 2021
 
 ## Características
 
@@ -74,7 +76,7 @@ Aparecemos en Bodega Bay, controlando a Cathy, con su jaula de periquitos en man
 # 2. Jugabilidad
 ## 2.1 Mecánica
 ### 2.1.1 Mecánicas del personaje
-- Movimiento: La partida se desarrolla en un solo plano lateral, en el que Cathy únicamente podrá moverse hacia izquierda o derecha. Además tendrá la capacidad de saltar y agacharse para esquivar obstáculos.
+- Movimiento: La partida se desarrolla en un solo plano lateral, en el que Cathy únicamente podrá moverse hacia izquierda o derecha. Además tendrá la capacidad de saltar  para esquivar obstáculos.
 - Vida: Cathy tendrá 5 corazones que podrá perder al colisionar con los diferentes pájaros enemigos. Si se queda sin corazones, muere y se pierde la partida (regresando al menú principal). En los niveles habrá diferentes trampas que también harán daño. Dependiendo del tipo de pájaro y trampa, perderá más o menos vida.
 La vida se resetea al pasar de nivel.
 - Recoger/Consumir objetos: Al pasar por encima  de un objeto , lo almacenaremos en nuestro inventario (si está vacío). En el inventario solo podremos llevar un objeto, que podremos consumir con la tecla E. No podremos sustituir el objeto guardado por otro.
@@ -199,7 +201,7 @@ Controles de movimiento:
 - Teclas “A” ó “LeftArrow” para movernos hacia la izquierda
 - Tecla “E” para consumir el power-up almacenado
 
-- Menú de pausa: Al pulsar el botón de pausa de la parte derecha de la pantalla,  aparecerá en la pantalla el menú de pausa que contendrá distintas opciones.
+- Menú de pausa: Al pulsar el botón de pausa situado en la parte superior derecha de la pantalla,  aparecerá  el menú de pausa que contendrá distintas opciones.
 
 ## 4.4 Objetos
 Los objetos aparecerán aleatoriamente por el escenario de juego, y se recogen al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres objetos:
