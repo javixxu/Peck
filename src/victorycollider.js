@@ -16,7 +16,6 @@ export default class VictoryCollider extends Phaser.GameObjects.Sprite {
             this.control=true;
             this.scene.soundtrack.stop();
             this.scene.victory();
-           
         }
     }
 }

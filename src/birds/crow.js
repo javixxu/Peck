@@ -34,7 +34,6 @@ export default class Crow extends Enemies {
       this.crowMovement();
       this.crowAtack();
     }
-
   }
 
   crowMovement() {
@@ -49,6 +48,5 @@ export default class Crow extends Enemies {
         this.player.changeInvulnerability();
       }
     }
-
   }
 }
