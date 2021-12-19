@@ -276,6 +276,8 @@ export default class Level2 extends Phaser.Scene {
     createTrigger() {
         // x, y, width, height
         this.trigger = this.add.zone(this.player.x, this.player.y, 500, 300);
+        this.peri = this.add.sprite(this.player.x, this.player.y, 'parakeet');
+        this.peri.play({ key: 'explosion', repeat: 0 });
         // Añade un body
         this.physics.world.enable(this.trigger);
         this.trigger.body.setAllowGravity(false);
@@ -313,15 +315,15 @@ export default class Level2 extends Phaser.Scene {
     }
     victory() {
         this.physics.pause();
-    const config = {
-      mute: false,
-      volume: this.generalVolume,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: false,
-      delay: 0,
-    };
+        const config = {
+            mute: false,
+            volume: this.generalVolume,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
+        };
         this.winmusic = this.sound.add("winmusic", config);
         this.clicksound = this.sound.add("buttonclick");
         this.winmusic.play();
