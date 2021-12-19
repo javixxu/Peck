@@ -66,6 +66,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     else if (currentPowerUp == 'bandage') {
       this.bandageEffect();
     }
+    else if (currentPowerUp == 'key') {
+      this.keyEffect();
+    }
   }
   seeAtUI(currentPowerUp) {
     if (currentPowerUp == 'cola') {
@@ -88,6 +91,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   bandageEffect() {
     this.UI.addLife(1);
+  }
+  keyEffect(){
+    this.scene.createTrigger();
   }
 
   sewerEffect() {
