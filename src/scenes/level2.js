@@ -16,9 +16,9 @@ import Harrier from '../birds/harrier.js'
 /**
  * Nivel 2 del juego 
  */
-export default class Level2 extends Phaser.Scene{
-    constructor(){
-        super({key: 'level2'});
+export default class Level2 extends Phaser.Scene {
+    constructor() {
+        super({ key: 'level2' });
         this.muteVol = 0;
         this.midVol = 0.1;
         this.fullVol = 0.3;
@@ -58,29 +58,29 @@ export default class Level2 extends Phaser.Scene{
         this.cameras.main.setBounds(0, 0, large, height);
         this.cameras.main.startFollow(this.player);
     }
-    init(){
+    init() {
         //por si es la pruimera vez q se inicia el juego
         if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
         this.tiempo = this.tiempoTotal;
         console.log(this.tiempo);
-        this.lose=true;  
+        this.lose = true;
     }
     createTileMap() {
         this.map2 = this.make.tilemap({
             key: 'map2',
             tileWidth: 64,
             tileHeight: 64
-          });
-          const tileset1 = this.map2.addTilesetImage('tilesetbeach', 'patronesLevel2');
-          this.waterLayer = this.map2.createLayer('Water', tileset1);
-          this.sandLayer = this.map2.createLayer('Sand', tileset1);
-         
-          this.physics.add.collider(this.player, this.waterLayer);
-          this.physics.add.collider(this.player, this.sandLayer);
-          
-          this.sandLayer.setCollisionBetween(0, 999);
-          this.waterLayer.setCollisionBetween(0, 999);
-         
+        });
+        const tileset1 = this.map2.addTilesetImage('tilesetbeach', 'patronesLevel2');
+        this.waterLayer = this.map2.createLayer('Water', tileset1);
+        this.sandLayer = this.map2.createLayer('Sand', tileset1);
+
+        this.physics.add.collider(this.player, this.waterLayer);
+        this.physics.add.collider(this.player, this.sandLayer);
+
+        this.sandLayer.setCollisionBetween(0, 999);
+        this.waterLayer.setCollisionBetween(0, 999);
+
     }
     createAligned(scene, large, texture, scrollFactor) {
         const w = scene.textures.get(texture).getSourceImage().width; //Ancho de la imagen de fondo
@@ -90,16 +90,16 @@ export default class Level2 extends Phaser.Scene{
 
         for (let i = 0; i < cant; i++) {
             const b = scene.add.image(x, scene.scale.height, texture)
-            .setOrigin(0, 1)
-            .setScrollFactor(scrollFactor);
+                .setOrigin(0, 1)
+                .setScrollFactor(scrollFactor);
 
             x += b.width;
         }
     }
-  /**
-   * Creación de enemigos del Tiled
-   */
-  createEnemies(){
+    /**
+     * Creación de enemigos del Tiled
+     */
+    createEnemies() {
         //gorriones
         for (const sparrow of this.map2.getObjectLayer('Sparrows').objects) {
             this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y);
@@ -125,18 +125,18 @@ export default class Level2 extends Phaser.Scene{
      * Creación de powerUps
      */
     createPowerUps() {
-         //vendas
-            for (const bandage of this.map2.getObjectLayer('Bandages').objects) {
-                this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
-                this.physics.add.collider(this.bandage, this.sandLayer);
-            }
-
-            //llaves
-            for (const k of this.map2.getObjectLayer('Keys').objects) {
-                this.keys = new Key(this, this.player, k.x, k.y);
-                this.physics.add.collider(this.keys, this.sandLayer);
-            }
+        //vendas
+        for (const bandage of this.map2.getObjectLayer('Bandages').objects) {
+            this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
+            this.physics.add.collider(this.bandage, this.sandLayer);
         }
+
+        //llaves
+        for (const k of this.map2.getObjectLayer('Keys').objects) {
+            this.keys = new Key(this, this.player, k.x, k.y);
+            this.physics.add.collider(this.keys, this.sandLayer);
+        }
+    }
     /**
      * Creación de obstáculos
      */
@@ -174,153 +174,152 @@ export default class Level2 extends Phaser.Scene{
         this.mutesound = this.add.image(400, 350, 'mute').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
         this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
         this.pause.on("pointerdown", () => {
-        this.playing = false;
-        this.soundtrack.stop();
-        this.tiempoPausa = true;
-        this.physics.pause();
-        this.clickSoundEffect();
-        this.background.setVisible(true);
-        this.resume.setVisible(true);
-        this.help.setVisible(true);
-        this.exit.setVisible(true);
-        if (this.generalVolume === this.fullVol) {
-            this.fullsound.setVisible(true);
-        }
-        else if (this.generalVolume === this.midVol) {
-            this.midsound.setVisible(true);
-        }
-        else {
-            this.mutesound.setVisible(true);
-        }
-        this.fullsound.on("pointerdown", () => {
-
-            this.fullsound.setVisible(false);
-            this.midsound.setVisible(true);
-            this.clickSoundEffect();
-            this.generalVolume = this.midVol;
-        });
-        this.midsound.on("pointerdown", () => {
-            this.midsound.setVisible(false);
-            this.mutesound.setVisible(true);
-            this.clickSoundEffect();
-            this.muted = true;
-            this.generalVolume = this.muteVol;
-        });
-        this.mutesound.on("pointerdown", () => {
-            this.mutesound.setVisible(false);
-            this.fullsound.setVisible(true);
-            this.clickSoundEffect();
-            this.muted = false;
-            this.generalVolume = this.fullVol;
-        });
-
-        this.resume.on("pointerdown", () => {
-            //this.scene.stop();
-            this.playing = true;
-            this.clickSoundEffect();
-            this.background.setVisible(false);
-            this.resume.setVisible(false);
-            this.help.setVisible(false);
-            this.exit.setVisible(false);
-            this.fullsound.setVisible(false);
-            this.midsound.setVisible(false);
-            this.mutesound.setVisible(false);
-            this.physics.resume();
+            this.playing = false;
             this.soundtrack.stop();
-            this.backgroundMusic();
-        });
-        this.help.on("pointerdown", () => {
-
-            this.clickSoundEffect();
-            this.background.setVisible(false);
-            this.resume.setVisible(false);
-            this.help.setVisible(false);
-            this.exit.setVisible(false);
-            this.fullsound.setVisible(false);
-            this.midsound.setVisible(false);
-            this.mutesound.setVisible(false);
-            this.controls.setVisible(true);
-            this.back.setVisible(true);
-        });
-        this.back.on("pointerdown", () => {
-            this.controls.setVisible(false);
-            this.back.setVisible(false);
+            this.tiempoPausa = true;
+            this.physics.pause();
             this.clickSoundEffect();
             this.background.setVisible(true);
             this.resume.setVisible(true);
             this.help.setVisible(true);
             this.exit.setVisible(true);
             if (this.generalVolume === this.fullVol) {
-            this.fullsound.setVisible(true);
+                this.fullsound.setVisible(true);
             }
             else if (this.generalVolume === this.midVol) {
-            this.midsound.setVisible(true);
+                this.midsound.setVisible(true);
             }
             else {
-            this.mutesound.setVisible(true);
+                this.mutesound.setVisible(true);
             }
+            this.fullsound.on("pointerdown", () => {
 
+                this.fullsound.setVisible(false);
+                this.midsound.setVisible(true);
+                this.clickSoundEffect();
+                this.generalVolume = this.midVol;
+            });
+            this.midsound.on("pointerdown", () => {
+                this.midsound.setVisible(false);
+                this.mutesound.setVisible(true);
+                this.clickSoundEffect();
+                this.muted = true;
+                this.generalVolume = this.muteVol;
+            });
+            this.mutesound.on("pointerdown", () => {
+                this.mutesound.setVisible(false);
+                this.fullsound.setVisible(true);
+                this.clickSoundEffect();
+                this.muted = false;
+                this.generalVolume = this.fullVol;
+            });
+
+            this.resume.on("pointerdown", () => {
+                //this.scene.stop();
+                this.playing = true;
+                this.clickSoundEffect();
+                this.background.setVisible(false);
+                this.resume.setVisible(false);
+                this.help.setVisible(false);
+                this.exit.setVisible(false);
+                this.fullsound.setVisible(false);
+                this.midsound.setVisible(false);
+                this.mutesound.setVisible(false);
+                this.physics.resume();
+                this.soundtrack.stop();
+                this.backgroundMusic();
+            });
+            this.help.on("pointerdown", () => {
+
+                this.clickSoundEffect();
+                this.background.setVisible(false);
+                this.resume.setVisible(false);
+                this.help.setVisible(false);
+                this.exit.setVisible(false);
+                this.fullsound.setVisible(false);
+                this.midsound.setVisible(false);
+                this.mutesound.setVisible(false);
+                this.controls.setVisible(true);
+                this.back.setVisible(true);
+            });
+            this.back.on("pointerdown", () => {
+                this.controls.setVisible(false);
+                this.back.setVisible(false);
+                this.clickSoundEffect();
+                this.background.setVisible(true);
+                this.resume.setVisible(true);
+                this.help.setVisible(true);
+                this.exit.setVisible(true);
+                if (this.generalVolume === this.fullVol) {
+                    this.fullsound.setVisible(true);
+                }
+                else if (this.generalVolume === this.midVol) {
+                    this.midsound.setVisible(true);
+                }
+                else {
+                    this.mutesound.setVisible(true);
+                }
+
+            });
+
+            this.exit.on("pointerdown", () => {
+                //this.scene.stop();
+                this.playing = true;
+                this.scene.stop();
+                this.clickSoundEffect();
+                this.scene.start('menu');
+            });
+        });
+    }
+    gameOver() {
+        this.physics.pause();
+        this.gameovermusic = this.sound.add("gameovermusic");
+        this.clicksound = this.sound.add("buttonclick");
+        this.gameovermusic.play();
+
+        this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
+        this.add.image(500, 150, 'gameover').setScale(2).setScrollFactor(0);
+
+        this.botonStart = this.add.image(400, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image(550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+
+
+        this.botonStart.on("pointerdown", () => {
+            this.scene.start('level2');
+            this.gameovermusic.stop();
+            this.clicksound.play();
         });
 
         this.exit.on("pointerdown", () => {
-            //this.scene.stop();
-            this.playing = true;
             this.scene.stop();
-            this.clickSoundEffect();
+            this.clicksound.play();
+            this.gameovermusic.stop();
             this.scene.start('menu');
         });
-        });
     }
-    gameOver(){
-        this.physics.pause();
-        this.gameovermusic = this.sound.add("gameovermusic");
-        this.clicksound= this.sound.add("buttonclick");
-        this.gameovermusic.play();
-        
-        this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
-        this.add.image(500,150,'gameover').setScale(2).setScrollFactor(0);
-       
-        this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
-        this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
-      
-      
-        this.botonStart.on("pointerdown", () =>{
-          this.scene.start('level2');
-          this.gameovermusic.stop();
-          this.clicksound.play();
-         });
-      
-        this.exit.on("pointerdown", ()=> {
-          this.scene.stop();
-          this.clicksound.play();
-          this.gameovermusic.stop();
-          this.scene.start('menu');
-        });
-    }
-    victory()
-    {
+    victory() {
         this.physics.pause();
         this.winmusic = this.sound.add("winmusic");
-        this.clicksound= this.sound.add("buttonclick");
+        this.clicksound = this.sound.add("buttonclick");
         this.winmusic.play();
 
         this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
-        this.add.image(500,150,'ganar').setScale(2).setScrollFactor(0);
+        this.add.image(500, 150, 'ganar').setScale(2).setScrollFactor(0);
 
-        this.botonStart= this.add.image(400,430,'replay').setScale(1.2).setScrollFactor(0).setInteractive();
-        this.exit = this.add.image (550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+        this.botonStart = this.add.image(400, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image(550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
 
-        this.botonStart.on("pointerdown", () =>{
-        this.winmusic.stop();
-        this.clicksound.play();
-        this.scene.start('level2');
+        this.botonStart.on("pointerdown", () => {
+            this.winmusic.stop();
+            this.clicksound.play();
+            this.scene.start('level2');
         });
 
-        this.exit.on("pointerdown", ()=> {
-        this.scene.stop();
-        this.winmusic.stop();
-        this.clicksound.play();
-        this.scene.start('menu');
+        this.exit.on("pointerdown", () => {
+            this.scene.stop();
+            this.winmusic.stop();
+            this.clicksound.play();
+            this.scene.start('menu');
         });
     }
     bandagePickt() {
@@ -338,9 +337,9 @@ export default class Level2 extends Phaser.Scene{
         let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
 
         for (let i = this.groupAlcantarillas.getLength() - 1; i > -1; i--) {
-        if (w[i].isPassed()) {
-            return w[i].getPos() - desplazamiento;
-        }
+            if (w[i].isPassed()) {
+                return w[i].getPos() - desplazamiento;
+            }
         }
         return w[0].getPos() - desplazamiento;
     }
@@ -350,67 +349,67 @@ export default class Level2 extends Phaser.Scene{
         this.tiempoTotal = t;
         let x = parseInt((t - this.tiempo) / 1000);
         this.timerLabel.text = ('Time: ' + x);
-        if(this.player.lifes<=0){
-            if(this.lose){
-              this.lose=false;
-              this.gameOver();
-              this.soundtrack.stop(); 
+        if (this.player.lifes <= 0) {
+            if (this.lose) {
+                this.lose = false;
+                this.gameOver();
+                this.soundtrack.stop();
             }
             this.hurtSound.stop();
         }
     }
-  //MUSICA DE FONDO
+    //MUSICA DE FONDO
     backgroundMusic() {
         const config = {
-        mute: this.muted,
-        volume: this.generalVolume,
-        rate: 1,
-        detune: 0,
-        seek: 0,
-        loop: true,
-        delay: 0,
+            mute: this.muted,
+            volume: this.generalVolume,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0,
         };
         this.soundtrack = this.sound.add("backsound", config);
         this.soundtrack.play();
     }
-  // sonido de los powerups al cogerlos
+    // sonido de los powerups al cogerlos
     powerUpPickSoundEffect() {
         const config = {
-        mute: false,
-        volume: this.generalVolume,
-        rate: 1,
-        detune: 0,
-        seek: 0,
-        loop: false,
-        delay: 0,
+            mute: false,
+            volume: this.generalVolume,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
         };
         this.pickupSound = this.sound.add("pickup", config);
         this.pickupSound.play();
     }
-  // sonido de los powerups al consumirlos
+    // sonido de los powerups al consumirlos
     powerUpConsumeSoundEffect() {
         const config = {
-        mute: false,
-        volume: this.generalVolume,
-        rate: 1,
-        detune: 0,
-        seek: 0,
-        loop: false,
-        delay: 0,
+            mute: false,
+            volume: this.generalVolume,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
         };
         this.powerSound = this.sound.add("usepowerup", config);
         this.powerSound.play();
     }
-  // sonido de al colisionar con obstaculos que hacen daño
+    // sonido de al colisionar con obstaculos que hacen daño
     hurtSoundEffect() {
         const config = {
-        mute: false,
-        volume: this.generalVolume,
-        rate: 1,
-        detune: 0,
-        seek: 0,
-        loop: false,
-        delay: 0,
+            mute: false,
+            volume: this.generalVolume,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
         };
         this.hurtSound = this.sound.add("hurt", config);
         this.hurtSound.play();
@@ -418,26 +417,26 @@ export default class Level2 extends Phaser.Scene{
     sewerSoundEffect() {
         this.player.sewerEffect();
         const config = {
-        mute: false,
-        volume: this.generalVolume + 0.2,
-        rate: 1,
-        detune: 0,
-        seek: 0,
-        loop: false,
-        delay: 0,
+            mute: false,
+            volume: this.generalVolume + 0.2,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
         };
         this.fallSound = this.sound.add("fall", config);
         this.fallSound.play();
     }
     clickSoundEffect() {
         const config = {
-        mute: false,
-        volume: this.generalVolume,
-        rate: 1,
-        detune: 0,
-        seek: 0,
-        loop: false,
-        delay: 0,
+            mute: false,
+            volume: this.generalVolume,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
         };
         this.clicksound = this.sound.add("buttonclick", config);
         this.clicksound.play();
