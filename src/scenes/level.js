@@ -284,7 +284,16 @@ export default class Level extends Phaser.Scene {
   }
   victory() {
     this.physics.pause();
-    this.winmusic = this.sound.add("winmusic");
+    const config = {
+      mute: false,
+      volume: this.generalVolume,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.winmusic = this.sound.add("winmusic", config);
     this.clicksound = this.sound.add("buttonclick");
     this.winmusic.play();
 

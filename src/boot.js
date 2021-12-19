@@ -70,7 +70,7 @@ export default class Boot extends Phaser.Scene {
     //SPRITES
     this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
-    this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 51, frameHeight: 50 });
+    this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 45, frameHeight: 45 });
     this.load.spritesheet('run', 'cathy_run.png', { frameWidth: 55, frameHeight: 80, endFrame: 8 });
     this.load.spritesheet('jump', 'cathy_jump.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
     this.load.spritesheet('idle', 'cathy_idle.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
