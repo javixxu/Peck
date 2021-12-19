@@ -32,7 +32,7 @@ export default class Crow extends Enemies {
       this.tween.resume();
       super.preUpdate(t, dt);
       this.crowMovement();
-      this.crowAtack();
+      this.Attack();
     }
   }
 
@@ -41,7 +41,7 @@ export default class Crow extends Enemies {
       this.scene.physics.moveToObject(this, this.scene.player, 300);
   }
 
-  crowAtack() {
+  Attack() {
     if (!this.destroyed) {
       if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
         this.player.playerDamage(1);
