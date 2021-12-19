@@ -67,7 +67,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('redcar', 'redcar.png');
     this.load.image('greencar', 'greencar');
 
-    //SPRITES
+    // SPRITESHEETS
     this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 45, frameHeight: 45 });
@@ -76,7 +76,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('jump', 'cathy_jump.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
     this.load.spritesheet('idle', 'cathy_idle.png', { frameWidth: 55, frameHeight: 80, endFrame: 2 });
     this.load.spritesheet('harrieranim', 'aguilucho.png', { frameWidth: 149, frameHeight: 65 });
-
+    this.load.spritesheet('menu_crow', 'menu_crow.png', { frameWidth: 150, frameHeight: 150, endFrame: 30 });
     //SONIDOS
     this.load.setPath('sounds/');
     this.load.audio('pickup', 'pickup.wav');
@@ -174,6 +174,12 @@ export default class Boot extends Phaser.Scene {
       key: 'explosion',
       frames: this.anims.generateFrameNumbers('parakeet', { start: 0, end: 17 }),
       frameRate: 20, // Velocidad de la animación
+      repeat: -1    // Animación en bucle
+    });
+    this.anims.create({
+      key: 'crow_menu',
+      frames: this.anims.generateFrameNumbers('menu_crow', { start: 0, end: 29 }),
+      frameRate: 9, // Velocidad de la animación
       repeat: -1    // Animación en bucle
     });
     this.anims.create({
