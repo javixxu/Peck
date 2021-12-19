@@ -58,10 +58,9 @@ export default class Level2 extends Phaser.Scene {
         this.cameras.main.startFollow(this.player);
     }
     init() {
-        //por si es la pruimera vez q se inicia el juego
-        if (this.tiempoTotal == undefined) this.tiempoTotal = 0;
-        this.tiempo = this.tiempoTotal;
-        console.log(this.tiempo);
+        console.log('inicio');
+        this.timeScene = 0;
+        console.log(this.timeScene);
         this.lose = true;
     }
     createTileMap() {
@@ -375,10 +374,22 @@ export default class Level2 extends Phaser.Scene {
         return w[0].getPos() - desplazamiento;
     }
 
+    timeTimer() {
+        let timer = this.time.addEvent({
+            delay: 1000,
+            callback: this.updateTime,
+            callbackScope: this
+        });
+    }
+    updateTime() {
+        this.timeScene++;
+    }
     update(t, dt) {
         this.soundtrack.resume();
-        this.tiempoTotal = t;
-        let x = parseInt((t - this.tiempo) / 1000);
+        if (this.playing) {
+            this.timeTimer();
+        }
+        let x = parseInt(this.timeScene / 100);
         this.timerLabel.text = ('Time: ' + x);
         if (this.player.lifes <= 0) {
             if (this.lose) {

@@ -32,12 +32,12 @@ export default class Sparrow extends Enemies {
     else {
       this.tween.resume();
       super.preUpdate(t, dt);
-      this.sparrowAtack();
+      this.Attack();
     }
 
   }
 
-  sparrowAtack() {
+  Attack() {
     if (!this.destroyed) {
       if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
         this.player.playerDamage(0.5);
