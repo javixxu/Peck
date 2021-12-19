@@ -1,7 +1,6 @@
 import UIPlayer from './UIPlayer.js';
 /**
- * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
- * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
+ * Clase que representa el jugador 
  */
 export default class Player extends Phaser.GameObjects.Sprite {
 
@@ -24,7 +23,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
     this.maxLife = 5;//vidas máximas
-    // Sonido
+
 
     this.cursors = this.scene.input.keyboard.createCursorKeys();
 
@@ -38,12 +37,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.powerups;
     this.UI = new UIPlayer(this.scene, this, numslife, this.maxLife, this.score, this.powerups);
     this.current = 'empty';
-    
+
   }
 
   playerDamage(hit) {
     if (!this.invulnerability) {
-      console.log('dañoo' + hit)
+      console.log('DAMAGE' + hit)
       this.lifes -= hit;
       this.scene.hurtSoundEffect();
       this.UI.loseLife(hit);
@@ -90,9 +89,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   bandageEffect() {
+    this.lifes++;
     this.UI.addLife(1);
   }
-  keyEffect(){
+  keyEffect() {
     this.scene.createTrigger();
   }
 

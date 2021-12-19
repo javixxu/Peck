@@ -256,15 +256,15 @@ export default class Level extends Phaser.Scene {
     this.trigger.body.setAllowGravity(false);
     this.trigger.body.setImmovable(false);
 
-    
-    this.time.delayedCall(3000,this.destroyZone());
+
+    this.time.delayedCall(3000, this.destroyZone());
     //;
 
   }
-  destroyZone(){
+  destroyZone() {
     //this.physics.world.destroy(this.trigger.body);
     this.trigger.body.setAllowGravity(true);
-   
+
   }
   gameOver() {
     this.physics.pause();
@@ -351,7 +351,7 @@ export default class Level extends Phaser.Scene {
    * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
   */
   createSewer(h) {
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h-75, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h - 75, 'alcantarilla'));
     this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h, 'alcantarilla'));
     this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h, 'alcantarilla'));
   }
