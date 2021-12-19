@@ -3,9 +3,15 @@ a {
 	text-align: right;
 	color:white;
 }
+@font-face {
+    font-family: CustomFont;
+    src: url('/assets/fuente.ttf');
+	font-weight:400;
+    font-weight:normal;
+}
 p{
 	font-family: 'Arial Black', sans-serif;
-	color:whitesmoke;
+	color:rgb(0, 0, 0);
 	font-size: 32px;
 	display: inline-block;
 	padding-inline: 45px;
