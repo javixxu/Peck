@@ -1,7 +1,6 @@
 import Player from '../player.js';
 import Crow from '../birds/crow.js';
 import Cola from '../powerups/cola.js';
-import Car from '../obstacles/car.js';
 import Obstacles from '../obstacles/obstacles.js';
 import Seagull from '../birds/seagull.js';
 import Puddle from '../obstacles/puddle.js';

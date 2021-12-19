@@ -9,7 +9,7 @@ export default class Seagull extends Enemies
     let offset=80; //Distancia entre el centro y la gaviota
     //CONTAINER
     this.container = this.scene.add.container(x, y);
-    const centro=this.scene.add.image(0, 0, 'center'); //Imagen del centro
+    const centro=this.scene.add.image(0, 0, 'center').setVisible(false); //Imagen del centro
     this.bird=this.scene.physics.add.sprite(offset, 0, 'sg'); //Sprite de la gaviota
     this.bird.body.allowGravity = false; //Quitarle la gravedad a la gaviota
     this.bird.body.setSize(75, 55);
