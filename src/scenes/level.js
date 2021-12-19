@@ -1,7 +1,6 @@
 import Player from '../player.js';
 import Crow from '../birds/crow.js';
 import Cola from '../powerups/cola.js';
-import Car from '../obstacles/car.js';
 import Seagull from '../birds/seagull.js';
 import Puddle from '../obstacles/puddle.js';
 import VictoryCollider from '../victorycollider.js';
@@ -37,7 +36,7 @@ export default class Level extends Phaser.Scene {
     const height = this.scale.height;
     const large = width * 10;
 
-
+    new Key(this,100,10)
     this.createAligned(this, large, 'fondof', 1);
 
     this.player = new Player(this, 200, 300, 5);
@@ -117,7 +116,7 @@ export default class Level extends Phaser.Scene {
     }
     //llaves
     for (const key of this.map1.getObjectLayer('Keys').objects) {
-      this.key = new Key(this, key.x, key.y);
+      this.key = new Key(this,this.player, key.x, key.y);
       this.physics.add.collider(this.key, this.groundLayer);
     }
   }
