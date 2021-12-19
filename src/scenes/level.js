@@ -74,10 +74,6 @@ export default class Level extends Phaser.Scene {
     this.groundLayer = this.map1.createLayer('Floor', tileset1);
     this.physics.add.collider(this.player, this.groundLayer);
     this.groundLayer.setCollisionBetween(0, 999);
-    //MOMENTANEO
-    //this.physics.add.collider(this.sparrow, groundLayer);
-    // this.physics.add.collider(this.harrier, groundLayer);
-
 
   }
   /**
@@ -132,12 +128,10 @@ export default class Level extends Phaser.Scene {
     //puddle
     for (const puddle of this.map1.getObjectLayer('Puddles').objects) {
       this.puddle = new Puddle(this, this.player, puddle.x, puddle.y, 'puddle');
-      this.physics.add.collider(this.puddle, this.groundLayer);
     }
     //spikes
     for (const spikes of this.map1.getObjectLayer('Spikes').objects) {
       this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
-      this.physics.add.collider(this.spikes, this.groundLayer);
     }
   }
 
