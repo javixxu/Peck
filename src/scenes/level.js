@@ -351,9 +351,9 @@ export default class Level extends Phaser.Scene {
    * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
   */
   createSewer(h) {
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 2000, h, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h-75, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h, 'alcantarilla'));
     this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 3500, h, 'alcantarilla'));
   }
   UltimaSobrePasada() {
     let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
