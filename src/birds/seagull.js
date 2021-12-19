@@ -1,38 +1,39 @@
 import Enemies from "./enemies.js";
 
-export default class Seagull extends Enemies
-{
+export default class Seagull extends Enemies {
   constructor(scene, player, x, y) {
     super(scene, player, x, y);
-    this.scene=scene; //Referencia a la escena
-    this.player=player; //Referencia al player
-    let offset=80; //Distancia entre el centro y la gaviota
+    this.scene = scene; //Referencia a la escena
+    this.player = player; //Referencia al player
+    let offset = 80; //Distancia entre el centro y la gaviota
     //CONTAINER
     this.container = this.scene.add.container(x, y);
-    const centro=this.scene.add.image(0, 0, 'center').setVisible(false); //Imagen del centro
-    this.bird=this.scene.physics.add.sprite(offset, 0, 'sg'); //Sprite de la gaviota
+    const centro = this.scene.add.image(0, 0, 'center').setVisible(false); //Imagen del centro
+    this.bird = this.scene.physics.add.sprite(offset, 0, 'sg'); //Sprite de la gaviota
     this.bird.body.allowGravity = false; //Quitarle la gravedad a la gaviota
     this.bird.body.setSize(75, 55);
-    if(this.scene.playing===true){this.bird.play('seagull_fly');}
-     //Animacion de la gaviota
+    if (this.scene.playing === true) { this.bird.play('seagull_fly'); }
+    //Animacion de la gaviota
     //Rellenar el container
-    this.container.add([centro, this.bird ]);
+    this.container.add([centro, this.bird]);
   }
 
-  preUpdate(t,dt) {
-    if(this.scene.playing==true){
-       super.preUpdate(t,dt);
-    const angle=0.02; //Rotacion 
-    this.container.rotation-=angle; //Rotacion del container
-    this.bird.rotation+=angle; //correcion para que la gaviota no se gire raro
+  preUpdate(t, dt) {
+    if (this.scene.playing == true) {
+      super.preUpdate(t, dt);
+      const angle = 0.02; //Rotacion 
+      this.container.rotation -= angle; //Rotacion del container
+      this.bird.rotation += angle; //correcion para que la gaviota no se gire raro
 
-    //Si pongo collide la gaviota se mueve y hace giros cada vez mas grandes
-    if(this.scene.physics.overlap(this.player, this.bird) && !this.player.seeVulnerability())
-    {
-      this.player.playerDamage(1.5);
-      this.player.changeInvulnerability();
+      //Si pongo collide la gaviota se mueve y hace giros cada vez mas grandes
+      if (!this.destroyed) {
+        if (this.scene.physics.overlap(this.player, this.bird) && !this.player.seeVulnerability()) {
+          this.player.playerDamage(1.5);
+          this.player.changeInvulnerability();
+        }
+      }
+
     }
-    }
-   
+
   }
 }

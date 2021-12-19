@@ -275,11 +275,11 @@ export default class Level2 extends Phaser.Scene {
     }
     createTrigger() {
         // x, y, width, height
-        let trigger = this.add.zone(this.player.x, this.player.y, 300, 300);
+        this.trigger = this.add.zone(this.player.x, this.player.y, 500, 300);
         // Añade un body
-        this.physics.world.enable(trigger);
-        trigger.body.setAllowGravity(false);
-        trigger.body.setImmovable(false);
+        this.physics.world.enable(this.trigger);
+        this.trigger.body.setAllowGravity(false);
+        this.trigger.body.setImmovable(false);
 
 
 
