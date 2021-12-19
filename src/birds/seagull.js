@@ -19,6 +19,7 @@ export default class Seagull extends Enemies {
   }
 
   preUpdate(t, dt) {
+
     if (this.scene.playing == true) {
       super.preUpdate(t, dt);
       const angle = 0.02; //Rotacion 
@@ -26,14 +27,21 @@ export default class Seagull extends Enemies {
       this.bird.rotation += angle; //correcion para que la gaviota no se gire raro
 
       //Si pongo collide la gaviota se mueve y hace giros cada vez mas grandes
-      if (!this.destroyed) {
-        if (this.scene.physics.overlap(this.player, this.bird) && !this.player.seeVulnerability()) {
-          this.player.playerDamage(1.5);
-          this.player.changeInvulnerability();
-        }
+
+      if (this.scene.physics.overlap(this.player, this.bird) && !this.player.seeVulnerability()) {
+        this.player.playerDamage(1.5);
+        this.player.changeInvulnerability();
+
+      }
+      if (this.scene.physics.overlap(this.bird, this.scene.trigger)) {
+        this.setActive(false);
+        this.setVisible(false);
+        this.bird.setVisible(false);
+        this.bird.setActive(false);
+        this.destroy();
+        this.bird.destroy();
       }
 
     }
-
   }
 }
