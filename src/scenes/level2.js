@@ -299,10 +299,9 @@ export default class Level2 extends Phaser.Scene {
         this.gameovermusic.play();
 
         this.add.image(500, 250, 'gameoverbackground').setScrollFactor(0);
-        this.add.image(500, 150, 'gameover').setScale(2).setScrollFactor(0);
 
-        this.botonStart = this.add.image(400, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
-        this.exit = this.add.image(550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+        this.botonStart = this.add.image(400, 300, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image(550, 300, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
 
 
         this.botonStart.on("pointerdown", () => {
