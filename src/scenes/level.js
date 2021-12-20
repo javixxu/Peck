@@ -291,6 +291,7 @@ export default class Level extends Phaser.Scene {
     });
   }
   victory() {
+    
     this.physics.pause();
     const config = {
       mute: false,
@@ -307,7 +308,8 @@ export default class Level extends Phaser.Scene {
 
     this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
     this.add.image(500, 150, 'ganar').setScale(2).setScrollFactor(0);
-    
+    this.finalTime = (this.timeScene/100).toString();
+    this.add.text(100, 200, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09'}).setScrollFactor(0);
     this.nextbutton = this.add.image(500, 435, 'nextlevel').setScale(1.5).setScrollFactor(0).setInteractive();
     this.botonStart = this.add.image(330, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
     this.exit = this.add.image(670, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
@@ -329,6 +331,7 @@ export default class Level extends Phaser.Scene {
       this.clicksound.play();
       this.scene.start('menu');
     });
+    
   }
   createAligned(scene, large, texture, scrollFactor) {
     const w = scene.textures.get(texture).getSourceImage().width;
