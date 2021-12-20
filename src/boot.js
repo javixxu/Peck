@@ -70,7 +70,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('greencar', 'greencar');
 
     // SPRITESHEETS
-    this.load.spritesheet('crow', 'ravens.png', { frameWidth: 100, frameHeight: 75 });
+    this.load.spritesheet('crow', 'ravens.png', { frameWidth:97, frameHeight: 95 });
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 45, frameHeight: 45 });
     this.load.spritesheet('parakeet', 'periquito.png', { frameWidth: 500, frameHeight: 300, endFrame: 17 });
@@ -198,7 +198,5 @@ export default class Boot extends Phaser.Scene {
   create() {
     this.scene.start('menu');
     this.createAnims();
-
-
   }
 }
