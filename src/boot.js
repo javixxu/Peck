@@ -40,6 +40,8 @@ export default class Boot extends Phaser.Scene {
     //IMAGENES
     this.load.setPath('assets/images/');
     this.load.image('menubackground', 'fondo2.png');
+    this.load.image('backgroundlvl1', 'backgroundtown.png');
+
     this.load.image('fondof', 'FONDOF.png');
     this.load.image('controles', 'controles.png');
     this.load.image('inventory', 'inventory.png');

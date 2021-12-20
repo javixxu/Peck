@@ -13,7 +13,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, numslife) {
 
     super(scene, x, y, 'player');
-    this.score = 0;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
@@ -25,19 +24,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.maxLife = 5;//vidas máximas
 
 
-    this.cursors = this.scene.input.keyboard.createCursorKeys();
+
 
     this.lifes = numslife;
     this.invulnerability = false;
-    this.consume = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);//tecla para consumir powerUp
-    this.right = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    this.left = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    this.Jump = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.jump = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.powerups;
+    this.createInput();
     this.UI = new UIPlayer(this.scene, this, numslife, this.maxLife, this.score, this.powerups);
     this.current = 'empty';
 
+  }
+  createInput() {
+    this.cursors = this.scene.input.keyboard.createCursorKeys();
+    this.consume = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);//tecla para consumir powerUp
+    this.right = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.left = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.jump = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.space = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
   }
 
   playerDamage(hit) {
@@ -127,34 +129,42 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.powerUpEffect(this.current);
         this.current = 'empty';
       }
-      if ((this.cursors.up.isDown || this.Jump.isDown || this.jump.isDown)) {
-        if (this.body.onFloor()) {
-          this.body.setVelocityY(this.jumpSpeed);
-        }
+      this.Move();
+      this.Jump();
+
+    }
+  }//pre
+  Move() {
+
+    if (this.cursors.left.isDown || this.left.isDown) {
+      this.body.setVelocityX(-this.speed);
+      this.setFlip(true, false);
+      this.play('run_anim', true);
+      if (!this.body.onFloor()) {
+        this.play('jump_anim')
       }
-      if (this.cursors.left.isDown || this.left.isDown) {
-        this.body.setVelocityX(-this.speed);
-        this.setFlip(true, false);
-        this.play('run_anim', true);
-        if (!this.body.onFloor()) {
-          this.play('jump_anim')
-        }
+    }
+    else if (this.cursors.right.isDown || this.right.isDown) {
+      console.log(this.speed);
+      this.body.setVelocityX(this.speed);
+      this.setFlip(false, false);
+      this.play('run_anim', true);
+      if (!this.body.onFloor()) {
+        this.play('jump_anim')
       }
-      else if (this.cursors.right.isDown || this.right.isDown) {
-        console.log(this.speed);
-        this.body.setVelocityX(this.speed);
-        this.setFlip(false, false);
-        this.play('run_anim', true);
-        if (!this.body.onFloor()) {
-          this.play('jump_anim')
-        }
+    }
+    else {
+      this.body.setVelocityX(0);
+      this.play('still_anim');
+      if (!this.body.onFloor()) {
+        this.play('jump_anim')
       }
-      else {
-        this.body.setVelocityX(0);
-        this.play('still_anim');
-        if (!this.body.onFloor()) {
-          this.play('jump_anim')
-        }
+    }
+  }
+  Jump() {
+    if ((this.cursors.up.isDown || this.space.isDown || this.jump.isDown)) {
+      if (this.body.onFloor()) {
+        this.body.setVelocityY(this.jumpSpeed);
       }
     }
   }
