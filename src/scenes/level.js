@@ -36,11 +36,10 @@ export default class Level extends Phaser.Scene {
     const height = this.scale.height;
     const large = width * 10;
 
-    new Key(this, 100, 10)
     this.createAligned(this, large, 'backgroundlvl1', 1);
 
-    this.player = new Player(this, 200, 300, 5);
-    new VictoryCollider(this, this.player, 6000, height - 38);
+    this.player = new Player(this, 0, 300, 5);
+    new VictoryCollider(this, this.player, 7300, 175);
     this.groupAlcantarillas = this.add.group();
     this.createSewer(height - 30);
     this.createTileMap();
@@ -81,7 +80,7 @@ export default class Level extends Phaser.Scene {
   createEnemies() {
     //gorriones
     for (const sparrow of this.map1.getObjectLayer('Sparrows').objects) {
-      this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y);
+      this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y,'sparrow');
       this.physics.add.collider(this.sparrow, this.groundLayer);
     }
     //cuervos
@@ -106,7 +105,7 @@ export default class Level extends Phaser.Scene {
   createPowerUps() {
     //cola
     for (const cola of this.map1.getObjectLayer('Colas').objects) {
-      this.cola = new Cola(this, cola.x, cola.y);
+      this.cola = new Cola(this,this.player, cola.x, cola.y);
       this.physics.add.collider(this.cola, this.groundLayer);
     }
     //vendas
@@ -245,6 +244,8 @@ export default class Level extends Phaser.Scene {
   }
   /**
    * Creación de Trigger del powerUp de la llave
+   * Realizado con ayuda de las transparencias
+   * de físicas de la asignatura
    */
   createTrigger() {
     // x, y, width, height
@@ -353,8 +354,8 @@ export default class Level extends Phaser.Scene {
   */
   createSewer(h) {
     this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h - 75, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h-120, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h-220, 'alcantarilla'));
   }
   UltimaSobrePasada() {
     let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
