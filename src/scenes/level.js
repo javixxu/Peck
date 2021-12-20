@@ -305,9 +305,9 @@ export default class Level extends Phaser.Scene {
     this.clicksound = this.sound.add("buttonclick");
     this.winmusic.play();
 
-    this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0)
+    this.add.image(500, 250, 'backgroundvictory1').setScrollFactor(0)
     this.finalTime = (this.timeScene/100).toString();
-    this.add.text(400, 100, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09' }).setScrollFactor(0);
+    this.add.text(410, 150, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09' }).setScrollFactor(0);
     this.nextbutton = this.add.image(500, 300, 'nextlevel').setScale(1.5).setScrollFactor(0).setInteractive();
     this.botonStart = this.add.image(390, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
     this.exit = this.add.image(615, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();

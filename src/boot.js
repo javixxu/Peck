@@ -51,7 +51,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bandage', 'bandages.png');
     this.load.image('spikes', 'spikes.png');
     this.load.image('key', 'key.png');
-    this.load.image('backgroundvictory', 'backgroundvictory.png')
+    this.load.image('backgroundvictory', 'backgroundvictory.png');
+    this.load.image('backgroundvictory1', 'backgroundvictory1.png');
     this.load.image('ganar', 'ok_bird.png');
     this.load.image('alcantarilla', 'alcantarilla.png');
     this.load.image('panel', 'panel.png');
