@@ -334,11 +334,10 @@ export default class Level2 extends Phaser.Scene {
         this.winmusic.play();
 
         this.add.image(500, 250, 'backgroundvictory').setScrollFactor(0);
-        this.add.image(500, 150, 'ganar').setScale(2).setScrollFactor(0);
-        this.finalTime = (this.timeScene/100).toString();
-        this.add.text(100, 200, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09'}).setScrollFactor(0);
-        this.botonStart = this.add.image(400, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
-        this.exit = this.add.image(550, 430, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
+        this.finalTime = (this.timeScene / 100).toString();
+        this.add.text(370, 100, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09' }).setScrollFactor(0);
+        this.botonStart = this.add.image(410, 300, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
+        this.exit = this.add.image(615, 300, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
 
         this.botonStart.on("pointerdown", () => {
             this.winmusic.stop();
