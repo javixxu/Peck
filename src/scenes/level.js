@@ -37,7 +37,7 @@ export default class Level extends Phaser.Scene {
     const large = width * 10;
 
     new Key(this, 100, 10)
-    this.createAligned(this, large, 'fondof', 1);
+    this.createAligned(this, large, 'backgroundlvl1', 1);
 
     this.player = new Player(this, 200, 300, 5);
     new VictoryCollider(this, this.player, 6000, height - 38);
