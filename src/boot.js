@@ -13,6 +13,7 @@ export default class Boot extends Phaser.Scene {
   * Carga de los assets del juego
   */
   preload() {
+    
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0xBD0DBD, 0.8);
@@ -72,7 +73,7 @@ export default class Boot extends Phaser.Scene {
 
     // SPRITESHEETS
     this.load.spritesheet('crow', 'ravens.png', { frameWidth:97, frameHeight: 95 });
-    this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 100, frameHeight: 85 });
+    this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 90, frameHeight: 90 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 45, frameHeight: 45 });
     this.load.spritesheet('parakeet', 'periquito.png', { frameWidth: 500, frameHeight: 300, endFrame: 17 });
     this.load.spritesheet('run', 'cathy_run.png', { frameWidth: 55, frameHeight: 80, endFrame: 8 });
