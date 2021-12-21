@@ -10,9 +10,10 @@ export default class Sparrow extends Enemies {
     this.scene.physics.add.existing(this);
     this.player = player;
     this.body.setBounceY(1);
-    this.body.setSize(40,20);
+    this.body.setSize(40, 20);
     this.body.setCollideWorldBounds();
     this.play('sparrow_fly');
+    // Tween de movimiento del gorrión
     this.tween = this.scene.tweens.add({
       targets: this,
       x: this.x + 350,
@@ -23,11 +24,9 @@ export default class Sparrow extends Enemies {
       repeat: -1,
     })
   }
-  /**
-   * Métodos preUpdate de Phaser. Se encarga de mover y animar al cuervo
-   */
+
   preUpdate(t, dt) {
-    if (this.scene.playing == false) {
+    if (!this.scene.playing) {
       this.tween.pause();
     }
     else {
@@ -35,7 +34,6 @@ export default class Sparrow extends Enemies {
       super.preUpdate(t, dt);
       this.Attack();
     }
-
   }
 
   Attack() {
@@ -45,6 +43,5 @@ export default class Sparrow extends Enemies {
         this.player.changeInvulnerability();
       }
     }
-
   }
 }

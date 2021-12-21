@@ -1,13 +1,13 @@
 import PowerUp from "./powerUp.js";
 
 export default class Cola extends PowerUp {
-
+  /*
+  * Clase que hereda de PowerUp y representa la cola.
+  */
   constructor(scene, player, x, y) {
     super(scene, x, y, 'cola');
     //this.player = player;
   }
-
-
   preUpdate() {
     super.preUpdate();
 

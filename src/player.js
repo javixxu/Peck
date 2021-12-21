@@ -37,24 +37,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jump = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.space = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
   }
-
   playerDamage(hit) {
     if (!this.invulnerability) {
-      console.log('DAMAGE' + hit)
       this.lifes -= hit;
       this.scene.hurtSoundEffect();
       this.UI.loseLife(hit);
     }
   }
   colaEffect() {
-
     this.speed *= 2;
     let timer = this.scene.time.addEvent({
       delay: 5000,
       callback: this.setSpeed,
       callbackScope: this
     });
-
   }
   powerUpEffect(currentPowerUp) {
     if (currentPowerUp === 'cola') {
@@ -85,7 +81,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
   }
-
   bandageEffect() {
     this.lifes++;
     this.UI.addLife(1);
@@ -93,7 +88,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
   keyEffect() {
     this.scene.createTrigger();
   }
-
   sewerEffect() {
     this.playerDamage(1);
     this.x = this.scene.UltimaSobrePasada();
@@ -148,7 +142,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
     else if (this.cursors.right.isDown || this.right.isDown) {
-      console.log(this.speed);
       this.body.setVelocityX(this.speed);
       this.setFlip(false, false);
       this.play('run_anim', true);

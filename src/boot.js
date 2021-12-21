@@ -8,18 +8,15 @@ export default class Boot extends Phaser.Scene {
   constructor() {
     super({ key: 'boot' });
   }
-
   /**
   * Carga de los assets del juego
   */
   preload() {
-    
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0xBD0DBD, 0.8);
     progressBox.fillRect(340, 270, 320, 50);
     this.load.on('progress', function (value) {
-      console.log(value);
       percentText.setText(parseInt(value * 100) + '%');
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
@@ -103,12 +100,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('map2', 'level2.json');
     this.load.image('patronesLevel2', 'tilesetbeach.png');
 
-
-    this.load.on('fileprogress', function (file) {
-      console.log(file.src);
-    });
     this.load.on('complete', function () {
-      console.log('complete');
       progressBar.destroy();
       progressBox.destroy();
       loadingText.destroy();
@@ -141,7 +133,7 @@ export default class Boot extends Phaser.Scene {
   * Creación de las animaciones
   */
   createAnims() {
-    this.anims.create({ //correr 1
+    this.anims.create({ //correr
       key: 'run_anim',
       frames: this.anims.generateFrameNumbers('run', { start: 0, end: 5 }),
       frameRate: 10,
@@ -162,32 +154,32 @@ export default class Boot extends Phaser.Scene {
     this.anims.create({// movimiento del cuervo
       key: 'raven_right',
       frames: this.anims.generateFrameNumbers('crow', { start: 0, end: 9 }),
-      frameRate: 10, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
+      frameRate: 10,
+      repeat: -1    
     });
     this.anims.create({
       key: 'seagull_fly',
       frames: this.anims.generateFrameNumbers('sg', { start: 0, end: 8 }),
-      frameRate: 10, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
+      frameRate: 10,
+      repeat: -1 
     });
     this.anims.create({
       key: 'sparrow_fly',
       frames: this.anims.generateFrameNumbers('sparrow', { start: 0, end: 4 }),
-      frameRate: 10, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
+      frameRate: 10,
+      repeat: -1 
     });
     this.anims.create({
       key: 'explosion',
       frames: this.anims.generateFrameNumbers('parakeet', { start: 0, end: 17 }),
-      frameRate: 20, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
+      frameRate: 20, 
+      repeat: -1 
     });
     this.anims.create({
       key: 'crow_menu',
       frames: this.anims.generateFrameNumbers('menu_crow', { start: 0, end: 29 }),
-      frameRate: 9, // Velocidad de la animación
-      repeat: -1    // Animación en bucle
+      frameRate: 9,
+      repeat: -1 
     });
     this.anims.create({
       key: 'harrier_anim',

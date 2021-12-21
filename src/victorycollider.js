@@ -6,13 +6,11 @@ export default class VictoryCollider extends Phaser.GameObjects.Sprite {
         this.player=player;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
-        //this.scene.physics.add.collider(this, this.player);
         this.control=false;
     }
     preUpdate() {
         super.preUpdate();
         if (!this.control && this.scene.physics.overlap(this.player, this)) {
-
             this.control=true;
             this.scene.soundtrack.stop();
             this.scene.victory();

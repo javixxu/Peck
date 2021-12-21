@@ -1,6 +1,9 @@
 import Obstacles from "./obstacles.js";
 
 export default class Spikes extends Obstacles {
+    /*
+    * Clase que hereda de obstáculos y representa los pinchos. Se pasa como parámetro el player, para hacerle daño.
+    */
     constructor(scene, player, x, y, name) {
         super(scene, x, y, name);
         this.player = player;
