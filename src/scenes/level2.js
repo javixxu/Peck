@@ -437,6 +437,20 @@ export default class Level2 extends Phaser.Scene {
         this.pickupSound = this.sound.add("pickup", config);
         this.pickupSound.play();
     }
+    // sonido del periquito
+  parakeetSoundEffect() {
+    const config = {
+      mute: false,
+      volume: this.generalVolume + 0.1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.pickupSound = this.sound.add("parakeetsound", config);
+    this.pickupSound.play();
+  }
     // sonido de los powerups al consumirlos
     powerUpConsumeSoundEffect() {
         const config = {
