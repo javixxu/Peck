@@ -12,6 +12,7 @@ export default class Harrier extends Enemies {
         this.body.allowGravity = false;
         this.body.setBounceY(1);
         this.body.setCollideWorldBounds();
+        this.body.setSize(80,30);
         this.fallSpeed = 150;
         this.descenso = true;
         this.ascenso = false;
