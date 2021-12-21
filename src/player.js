@@ -22,10 +22,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jumpSpeed = -400;
     this.jumpAux = this.jumpSpeed;
     this.maxLife = 5;//vidas máximas
-
-
-
-
     this.lifes = numslife;
     this.invulnerability = false;
     this.createInput();
@@ -61,26 +57,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   }
   powerUpEffect(currentPowerUp) {
-    if (currentPowerUp == 'cola') {
+    if (currentPowerUp === 'cola') {
       this.colaEffect();
     }
-    else if (currentPowerUp == 'bandage') {
+    else if (currentPowerUp === 'bandage') {
       this.bandageEffect();
     }
-    else if (currentPowerUp == 'key') {
+    else if (currentPowerUp === 'key') {
       this.keyEffect();
     }
   }
   seeAtUI(currentPowerUp) {
-    if (currentPowerUp == 'cola') {
+    if (currentPowerUp === 'cola') {
       this.UI.seePowerUp(true, currentPowerUp);
       this.current = currentPowerUp;
     }
-    else if (currentPowerUp == 'bandage') {
+    else if (currentPowerUp === 'bandage') {
       this.UI.seePowerUp(true, currentPowerUp);
       this.current = currentPowerUp;
     }
-    else if (currentPowerUp == 'key') {
+    else if (currentPowerUp === 'key') {
       this.UI.seePowerUp(true, currentPowerUp);
       this.current = currentPowerUp;
     }
@@ -124,10 +120,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
       super.preUpdate(t, dt);
 
       if (this.consume.isDown && this.current != 'empty') {//si pulso E && this.empty==false
-        this.scene.powerUpConsumeSoundEffect();
+        
+        if (this.current === 'key') {
+          this.scene.parakeetSoundEffect();
+        }
+        else{
+          this.scene.powerUpConsumeSoundEffect();
+        }
         this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
         this.powerUpEffect(this.current);
         this.current = 'empty';
+        
       }
       this.Move();
       this.Jump();
@@ -168,5 +171,4 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
   }
-
 }
