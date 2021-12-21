@@ -91,6 +91,9 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('menumusic', 'menumusic.wav');
     this.load.audio('buttonclick', 'bottonclick.wav');
     this.load.audio('gameovermusic', 'deadmusic.wav');
+    this.load.audio('backsound2','level2.wav');
+    this.load.audio('parakeetsound','tweet.wav');
+    
     this.load.audio('winmusic', 'victorysound.mp3');
 
     //TILEMAP
