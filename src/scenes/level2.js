@@ -51,7 +51,7 @@ export default class Level2 extends Phaser.Scene {
 
         this.tiempoTotal = 0; this.tiempo;
         this.tiempoPausa = false;
-        this.timerLabel = this.add.text(800, 10, "").setScrollFactor(0);
+        this.timerLabel = this.add.text(800, 10, "",{ fontFamily: 'CustomFont'}).setScrollFactor(0);
 
         this.physics.world.setBounds(0, 0, large, height);
         this.cameras.main.setBounds(0, 0, large, height);
@@ -70,6 +70,7 @@ export default class Level2 extends Phaser.Scene {
             tileHeight: 64
         });
         const tileset1 = this.map2.addTilesetImage('tilesetbeach', 'patronesLevel2');
+        const tileset2 = this.map2.addTilesetImage('tilesetForest', 'patronesLevel1');
         this.waterLayer = this.map2.createLayer('Water', tileset1);
         this.sandLayer = this.map2.createLayer('Sand', tileset1);
 
@@ -123,6 +124,11 @@ export default class Level2 extends Phaser.Scene {
      * Creación de powerUps
      */
     createPowerUps() {
+        //cola
+        for (const cola of this.map2.getObjectLayer('Colas').objects) {
+        this.cola = new Cola(this,this.player, cola.x, cola.y);
+        this.physics.add.collider(this.cola, this.groundLayer);
+        }
         //vendas
         for (const bandage of this.map2.getObjectLayer('Bandages').objects) {
             this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
@@ -158,6 +164,10 @@ export default class Level2 extends Phaser.Scene {
             this.physics.add.collider(this.car, this.sandLayer);
             this.physics.add.collider(this.car, this.player);
         }
+        //spikes
+    for (const spikes of this.map2.getObjectLayer('Spikes').objects) {
+        this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
+      }
     }
 
     /**

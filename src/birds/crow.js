@@ -11,7 +11,7 @@ export default class Crow extends Enemies {
     this.body.allowGravity = false;
     this.player = player;
     this.body.setCollideWorldBounds();
-    this.body.setSize(80, 55);
+    this.body.setSize(50, 20);
     this.play('raven_right');
     this.tween = this.scene.tweens.add({
       targets: this,
@@ -38,7 +38,7 @@ export default class Crow extends Enemies {
 
   crowMovement() {
     if (!this.destroyed)
-      this.scene.physics.moveToObject(this, this.scene.player, 300);
+      this.scene.physics.moveToObject(this, this.scene.player, 250);
   }
 
   Attack() {

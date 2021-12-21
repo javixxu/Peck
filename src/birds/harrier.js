@@ -12,6 +12,7 @@ export default class Harrier extends Enemies {
         this.body.allowGravity = false;
         this.body.setBounceY(1);
         this.body.setCollideWorldBounds();
+        this.body.setSize(80,30);
         this.fallSpeed = 150;
         this.descenso = true;
         this.ascenso = false;
@@ -26,12 +27,12 @@ export default class Harrier extends Enemies {
             super.preUpdate(t, dt);
             if (this.x - this.player.x <= 375) {
                 //CASO 1 EL BICHO TIENE QUE BAJAR DE FORMA DIAGONAL
-                //if (!this.destroyed) {
+                if (!this.destroyed) {
                     if (this.descenso && this.y + 55 < this.playerY) {
                         this.body.setVelocity(-this.fallSpeed, this.fallSpeed);
                         this.lastPos = this.x;
                     }
-               // }
+                }
 
                 //CASO HA LLEGADO A SU LIMITE DE MOVIMIENTO RECTO Y QUEREMOS Q ASCIENDA
 

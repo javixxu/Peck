@@ -10,6 +10,7 @@ export default class Sparrow extends Enemies {
     this.scene.physics.add.existing(this);
     this.player = player;
     this.body.setBounceY(1);
+    this.body.setSize(40,20);
     this.body.setCollideWorldBounds();
     this.play('sparrow_fly');
     this.tween = this.scene.tweens.add({
