@@ -25,7 +25,7 @@ export default class Crow extends Enemies {
   }
 
   preUpdate(t, dt) {
-    if (this.scene.playing == false) {
+    if (!this.scene.playing) {
       this.tween.pause();
     }
     else {

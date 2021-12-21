@@ -1,7 +1,9 @@
 import PowerUp from "./powerUp.js";
 
 export default class Bandages extends PowerUp {
-
+  /*
+  * Clase que hereda de PowerUp y representa las vendas.
+  */
   constructor(scene, x, y) {
     super(scene, x, y, 'bandage');
     this.body.setSize(50, 50);
@@ -20,5 +22,4 @@ export default class Bandages extends PowerUp {
       }
     }
   }
-
 }

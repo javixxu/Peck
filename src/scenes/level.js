@@ -55,10 +55,7 @@ export default class Level extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
   }
   init() {
-
-    console.log('inicio');
     this.timeScene = 0;
-    console.log(this.timeScene);
     this.lose = true;
   }
   createTileMap() {
@@ -80,7 +77,7 @@ export default class Level extends Phaser.Scene {
   createEnemies() {
     //gorriones
     for (const sparrow of this.map1.getObjectLayer('Sparrows').objects) {
-      this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y,'sparrow');
+      this.sparrow = new Sparrow(this, this.player, sparrow.x, sparrow.y, 'sparrow');
       this.physics.add.collider(this.sparrow, this.groundLayer);
     }
     //cuervos
@@ -100,12 +97,12 @@ export default class Level extends Phaser.Scene {
     }
   }
   /**
- * Creación de powerUps
- */
+  * Creación de powerUps
+  */
   createPowerUps() {
     //cola
     for (const cola of this.map1.getObjectLayer('Colas').objects) {
-      this.cola = new Cola(this,this.player, cola.x, cola.y);
+      this.cola = new Cola(this, this.player, cola.x, cola.y);
       this.physics.add.collider(this.cola, this.groundLayer);
     }
     //vendas
@@ -120,8 +117,8 @@ export default class Level extends Phaser.Scene {
     }
   }
   /**
- * Creación de obstáculos
- */
+  * Creación de obstáculos
+  */
   createObstacles() {
     //puddle
     for (const puddle of this.map1.getObjectLayer('Puddles').objects) {
@@ -134,8 +131,8 @@ export default class Level extends Phaser.Scene {
   }
 
   /**
- * Menú de pausa
- */
+  * Menú de pausa
+  */
   createPause() {
     this.background = this.add.image(500, 250, 'panel').setScrollFactor(0).setVisible(false);
     this.controls = this.add.image(500, 250, 'controles').setScale(0.75).setScrollFactor(0).setVisible(false);
@@ -243,10 +240,10 @@ export default class Level extends Phaser.Scene {
     });
   }
   /**
-   * Creación de Trigger del powerUp de la llave
-   * Realizado con ayuda de las transparencias
-   * de físicas de la asignatura
-   */
+  * Creación de Trigger del powerUp de la llave
+  * Realizado con ayuda de las transparencias
+  * de físicas de la asignatura
+  */
   createTrigger() {
     // x, y, width, height
     this.trigger = this.add.zone(this.player.x, this.player.y, 500, 300);
@@ -256,17 +253,14 @@ export default class Level extends Phaser.Scene {
     this.physics.world.enable(this.trigger);
     this.trigger.body.setAllowGravity(false);
     this.trigger.body.setImmovable(false);
-
-
     this.time.delayedCall(3000, this.destroyZone());
-    //;
-
   }
   destroyZone() {
-    //this.physics.world.destroy(this.trigger.body);
     this.trigger.body.setAllowGravity(true);
-
   }
+  /*
+  * Imagen de Game Over con los botones de replay y salir
+  */
   gameOver() {
     this.physics.pause();
     this.gameovermusic = this.sound.add("gameovermusic");
@@ -290,8 +284,10 @@ export default class Level extends Phaser.Scene {
       this.scene.start('menu');
     });
   }
+  /* 
+  * Imagen de victoria con los botones de replay, next level y salir
+  */
   victory() {
-    
     this.physics.pause();
     const config = {
       mute: false,
@@ -307,7 +303,7 @@ export default class Level extends Phaser.Scene {
     this.winmusic.play();
 
     this.add.image(500, 250, 'backgroundvictory1').setScrollFactor(0)
-    this.finalTime = (this.timeScene/100).toString();
+    this.finalTime = (this.timeScene / 100).toString();
     this.add.text(410, 150, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09' }).setScrollFactor(0);
     this.nextbutton = this.add.image(500, 300, 'nextlevel').setScale(1.5).setScrollFactor(0).setInteractive();
     this.botonStart = this.add.image(390, 430, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
@@ -330,7 +326,7 @@ export default class Level extends Phaser.Scene {
       this.clicksound.play();
       this.scene.start('menu');
     });
-    
+
   }
   createAligned(scene, large, texture, scrollFactor) {
     const w = scene.textures.get(texture).getSourceImage().width;
@@ -354,8 +350,8 @@ export default class Level extends Phaser.Scene {
   */
   createSewer(h) {
     this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h - 75, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h-120, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h-220, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h - 120, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h - 220, 'alcantarilla'));
   }
   UltimaSobrePasada() {
     let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
@@ -393,7 +389,7 @@ export default class Level extends Phaser.Scene {
       this.hurtSound.stop();
     }
   }
-  //MUSICA DE FONDO
+  // musica de fondo
   backgroundMusic() {
     const config = {
       mute: this.muted,
@@ -463,6 +459,7 @@ export default class Level extends Phaser.Scene {
     this.hurtSound = this.sound.add("hurt", config);
     this.hurtSound.play();
   }
+  // sonido de al colisionar con una alcantarilla
   sewerSoundEffect() {
     this.player.sewerEffect();
     const config = {
@@ -477,6 +474,7 @@ export default class Level extends Phaser.Scene {
     this.fallSound = this.sound.add("fall", config);
     this.fallSound.play();
   }
+  // sonido de al hacer click
   clickSoundEffect() {
     const config = {
       mute: false,

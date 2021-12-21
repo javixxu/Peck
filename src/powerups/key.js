@@ -1,12 +1,13 @@
 import PowerUp from "./powerUp.js";
 
 export default class Key extends PowerUp {
-
+  /*
+  * Clase que hereda de PowerUp y representa las llave.
+  */
   constructor(scene, player, x, y) {
     super(scene, x, y, 'key');
     this.player = player;
   }
-
 
   preUpdate() {
     super.preUpdate();

@@ -13,8 +13,8 @@ import Key from '../powerups/key.js';
 import Harrier from '../birds/harrier.js'
 
 /**
- * Nivel 2 del juego 
- */
+* Nivel 2 del juego 
+*/
 export default class Level2 extends Phaser.Scene {
     constructor() {
         super({ key: 'level2' });
@@ -27,8 +27,8 @@ export default class Level2 extends Phaser.Scene {
         this.time = 0;
     }
     /**
-   * Creación de los elementos de la escena principal de juego
-   */
+    * Creación de los elementos de la escena principal de juego
+    */
     create() {
         //DIMENSIONES
         const width = this.scale.width;
@@ -58,9 +58,7 @@ export default class Level2 extends Phaser.Scene {
         this.cameras.main.startFollow(this.player);
     }
     init() {
-        console.log('inicio');
         this.timeScene = 0;
-        console.log(this.timeScene);
         this.lose = true;
     }
     createTileMap() {
@@ -79,7 +77,6 @@ export default class Level2 extends Phaser.Scene {
 
         this.sandLayer.setCollisionBetween(0, 999);
         this.waterLayer.setCollisionBetween(0, 999);
-
     }
     createAligned(scene, large, texture, scrollFactor) {
         const w = scene.textures.get(texture).getSourceImage().width; //Ancho de la imagen de fondo
@@ -134,7 +131,6 @@ export default class Level2 extends Phaser.Scene {
             this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
             this.physics.add.collider(this.bandage, this.sandLayer);
         }
-
         //llaves
         for (const k of this.map2.getObjectLayer('Keys').objects) {
             this.keys = new Key(this, this.player, k.x, k.y);
@@ -169,7 +165,6 @@ export default class Level2 extends Phaser.Scene {
         this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
       }
     }
-
     /**
      * Menú de pausa
      */
@@ -292,15 +287,10 @@ export default class Level2 extends Phaser.Scene {
         this.trigger.body.setAllowGravity(false);
         this.trigger.body.setImmovable(false);
 
-
         this.time.delayedCall(3000, this.destroyZone());
-        //;
-
     }
     destroyZone() {
-        //this.physics.world.destroy(this.trigger.body);
         this.trigger.body.setAllowGravity(true);
-
     }
     gameOver() {
         this.physics.pause();
@@ -313,13 +303,11 @@ export default class Level2 extends Phaser.Scene {
         this.botonStart = this.add.image(400, 300, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
         this.exit = this.add.image(550, 300, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
 
-
         this.botonStart.on("pointerdown", () => {
             this.scene.start('level2');
             this.gameovermusic.stop();
             this.clicksound.play();
         });
-
         this.exit.on("pointerdown", () => {
             this.scene.stop();
             this.clicksound.play();
@@ -353,7 +341,6 @@ export default class Level2 extends Phaser.Scene {
             this.clicksound.play();
             this.scene.start('level2');
         });
-
         this.exit.on("pointerdown", () => {
             this.scene.stop();
             this.winmusic.stop();
@@ -382,7 +369,6 @@ export default class Level2 extends Phaser.Scene {
         }
         return w[0].getPos() - desplazamiento;
     }
-
     timeTimer() {
         let timer = this.time.addEvent({
             delay: 1000,

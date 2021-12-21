@@ -22,7 +22,6 @@ export default class UIPlayer extends Phaser.GameObjects.Sprite {
         this.cola = this.scene.add.image(62, 90, 'cola').setScrollFactor(0).setScale(0.5, 0.5).setVisible(false);
         this.bandage = this.scene.add.image(62, 90, 'bandage').setScrollFactor(0).setScale(0.5, 0.5).setVisible(false);
         this.birdseed = this.scene.add.image(62, 90, 'key').setScrollFactor(0).setScale(0.7, 0.7).setVisible(false);
-
     }
 
     createLivesGroup() {
@@ -38,7 +37,6 @@ export default class UIPlayer extends Phaser.GameObjects.Sprite {
                 this.lifeGroup.create(this.x, 45, 'corazon').setFlip(true, false).setScrollFactor(0);
                 this.x += 20 + this.w / 2;
             }
-
             this.positions++;
 
             if (i >= this.currentLife) {
