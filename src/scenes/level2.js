@@ -420,7 +420,7 @@ export default class Level2 extends Phaser.Scene {
             loop: true,
             delay: 0,
         };
-        this.soundtrack = this.sound.add("backsound", config);
+        this.soundtrack = this.sound.add("backsound2", config);
         this.soundtrack.play();
     }
     // sonido de los powerups al cogerlos
