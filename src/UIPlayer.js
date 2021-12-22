@@ -1,6 +1,5 @@
 /**
- * Clase que representa la interfaz de usuario del jugador,
- * en ella se visualizan las vidas y el inventario 
+ * Clase que hace q se visualize las vidas , puntos y power ups que dispone el jugador
  */
 export default class UIPlayer extends Phaser.GameObjects.Sprite {
 
@@ -24,9 +23,7 @@ export default class UIPlayer extends Phaser.GameObjects.Sprite {
         this.bandage = this.scene.add.image(62, 90, 'bandage').setScrollFactor(0).setScale(0.5, 0.5).setVisible(false);
         this.birdseed = this.scene.add.image(62, 90, 'key').setScrollFactor(0).setScale(0.7, 0.7).setVisible(false);
     }
-    /**
- * Creación grupo de vidas
- */
+
     createLivesGroup() {
 
         this.positions = 0; this.x = 50;
@@ -48,9 +45,6 @@ export default class UIPlayer extends Phaser.GameObjects.Sprite {
             }
         }
     }
-    /**
- * Perder vida
- */
     loseLife(hit) {
         if (this.currentLife - hit < 0) hit = 0;
 
@@ -60,9 +54,6 @@ export default class UIPlayer extends Phaser.GameObjects.Sprite {
         }
         this.currentLife -= hit;
     }
-    /**
- * Ganar vida
- */
     addLife(maximLife) {
         if (maximLife + this.currentLife > 5) maximLife = this.gameMaxLife - this.currentLife;
 
@@ -73,9 +64,7 @@ export default class UIPlayer extends Phaser.GameObjects.Sprite {
         }
         this.currentLife += maximLife;
     }
-    /**
-     * Visualizar powerUp en el inventario 
-     */
+
     seePowerUp(visible, pU) {
         if (pU == 'cola') this.cola.setVisible(visible);
 

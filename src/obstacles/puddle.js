@@ -1,12 +1,9 @@
 import Obstacles from "./obstacles.js";
-/** 
-    * Clase que hereda de obstacles y representa el puddle. 
-    * Cuando el player choque con él, se reducirán
-    * tanto su velocidad como el alcance de su salto
-    * durante 5 segundos.
-    */
-export default class Puddle extends Obstacles {
 
+export default class Puddle extends Obstacles {
+    /*
+    * Clase que hereda de obstáculos y representa el puddle. Se pasa como parámetro el player, para modificar parámetros suyos.
+    */
     constructor(scene, player, x, y, name) {
         super(scene, x, y, name);
         this.player = player;
@@ -21,7 +18,7 @@ export default class Puddle extends Obstacles {
     effect() {
         this.player.speed = 200;
         this.player.jumpSpeed = -250;
-        // Restablecer speed
+        // Invulnerabilidad del jugador
         let timer = this.scene.time.addEvent({
             delay: 5000,
             callback: this.player.setSpeed,

@@ -6,7 +6,6 @@ export default class Menu extends Phaser.Scene {
         super({ key: 'menu' });
     }
     create() {
-        //música
         const config = {
             mute: false,
             volume: 0.3,
@@ -18,7 +17,6 @@ export default class Menu extends Phaser.Scene {
         };
         this.music = this.sound.add("menumusic", config);
         this.music.play();
-        //creación botones/paneles
         this.background = this.add.image(500, 270, 'menubackground').setScale(2);
         this.controls = this.add.image(500, 250, 'controles').setScale(0.75).setScrollFactor(0).setVisible(false);
         this.backButton = this.add.image(500, 400, 'exit').setScale(0.75).setScrollFactor(0).setVisible(false).setInteractive();
@@ -26,7 +24,6 @@ export default class Menu extends Phaser.Scene {
         this.helpButton = this.add.image(600, 150, 'controlsButton').setScale(2).setScrollFactor(0).setInteractive();
         this.menucrow = this.add.sprite(720, 250, 'menu_crow');
         this.menucrow.play({ key: 'crow_menu', loop: true });
-        //si pulsas play
         this.playButton.on("pointerdown", () => {
             this.music.stop();
             this.clicksound = this.sound.add("buttonclick");

@@ -1,6 +1,6 @@
 import UIPlayer from './UIPlayer.js';
 /**
- * Clase que representa el jugador.
+ * Clase que representa el jugador 
  */
 export default class Player extends Phaser.GameObjects.Sprite {
 
@@ -17,7 +17,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
-    this.body.setSize(25, 75);
+    this.body.setSize(25,75);
     this.speed = 300;
     this.speedAux = this.speed;
     this.jumpSpeed = -400;
@@ -30,9 +30,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.current = 'empty';
 
   }
-  /**
- * Creación del input
- */
   createInput() {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.consume = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);//tecla para consumir powerUp
@@ -41,9 +38,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jump = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.space = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
   }
-  /**
- * Recibir daño
- */
   playerDamage(hit) {
     if (!this.invulnerability) {
       this.lifes -= hit;
@@ -70,9 +64,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.keyEffect();
     }
   }
-  /**
- * Visualizar powerUp actual en el inventario
- */
   seeAtUI(currentPowerUp) {
     if (currentPowerUp === 'cola') {
       this.UI.seePowerUp(true, currentPowerUp);
@@ -87,9 +78,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.current = currentPowerUp;
     }
   }
-  /**
- * Restablecer speed 
- */
   setSpeed() {
     this.speed = this.speedAux;
     this.jumpSpeed = this.jumpAux;
@@ -101,7 +89,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
   keyEffect() {
     this.scene.createTrigger();
   }
-
+  sewerEffect() {
+    this.playerDamage(1);
+    this.x = this.scene.UltimaSobrePasada();
+  }
   //Te hace invulnerable
   changeInvulnerability() {
     this.invulnerability = true;
@@ -123,27 +114,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (this.scene.playing === true) {
       super.preUpdate(t, dt);
 
-      if (this.consume.isDown && this.current !== 'empty') {//si pulso E && this.empty==false
-
+      if (this.consume.isDown && this.current != 'empty') {//si pulso E && this.empty==false
+        
         if (this.current === 'key') {
           this.scene.parakeetSoundEffect();
         }
-        else {
+        else{
           this.scene.powerUpConsumeSoundEffect();
         }
-        this.UI.seePowerUp(false, this.current);//dejo de ver powerUp en la UI
+        this.UI.seePowerUp(false, this.current);//dejo de ver cocacola en la UI
         this.powerUpEffect(this.current);
         this.current = 'empty';
-
+        
       }
       this.Move();
       this.Jump();
 
     }
-  }
-  /**
- * Movimiento de player
- */
+  }//pre
   Move() {
 
     if (this.cursors.left.isDown || this.left.isDown) {
@@ -170,9 +158,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
   }
-  /**
-* Salto de player
-*/
   Jump() {
     if ((this.cursors.up.isDown || this.space.isDown || this.jump.isDown)) {
       if (this.body.onFloor()) {
