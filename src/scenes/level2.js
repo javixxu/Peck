@@ -38,7 +38,6 @@ export default class Level2 extends Phaser.Scene {
         this.createAligned(this, large, 'beach', 1);
 
         this.player = new Player(this, 50, 300, 5);
-        //new VictoryCollider(this, this.player, 6000, height - 38);
         this.groupAlcantarillas = this.add.group();
         this.createSewer(height - 30);
         this.createTileMap();
@@ -51,7 +50,7 @@ export default class Level2 extends Phaser.Scene {
 
         this.tiempoTotal = 0; this.tiempo;
         this.tiempoPausa = false;
-        this.timerLabel = this.add.text(800, 10, "",{ fontFamily: 'CustomFont'}).setScrollFactor(0);
+        this.timerLabel = this.add.text(800, 10, "", { fontFamily: 'CustomFont' }).setScrollFactor(0);
 
         this.physics.world.setBounds(0, 0, large, height);
         this.cameras.main.setBounds(0, 0, large, height);
@@ -61,6 +60,9 @@ export default class Level2 extends Phaser.Scene {
         this.timeScene = 0;
         this.lose = true;
     }
+    /**
+   * Creación del tilemap
+   */
     createTileMap() {
         this.map2 = this.make.tilemap({
             key: 'map2',
@@ -68,7 +70,6 @@ export default class Level2 extends Phaser.Scene {
             tileHeight: 64
         });
         const tileset1 = this.map2.addTilesetImage('tilesetbeach', 'patronesLevel2');
-        const tileset2 = this.map2.addTilesetImage('tilesetForest', 'patronesLevel1');
         this.waterLayer = this.map2.createLayer('Water', tileset1);
         this.sandLayer = this.map2.createLayer('Sand', tileset1);
 
@@ -123,8 +124,8 @@ export default class Level2 extends Phaser.Scene {
     createPowerUps() {
         //cola
         for (const cola of this.map2.getObjectLayer('Colas').objects) {
-        this.cola = new Cola(this,this.player, cola.x, cola.y);
-        this.physics.add.collider(this.cola, this.groundLayer);
+            this.cola = new Cola(this, this.player, cola.x, cola.y);
+            this.physics.add.collider(this.cola, this.groundLayer);
         }
         //vendas
         for (const bandage of this.map2.getObjectLayer('Bandages').objects) {
@@ -161,14 +162,15 @@ export default class Level2 extends Phaser.Scene {
             this.physics.add.collider(this.car, this.player);
         }
         //spikes
-    for (const spikes of this.map2.getObjectLayer('Spikes').objects) {
-        this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
-      }
+        for (const spikes of this.map2.getObjectLayer('Spikes').objects) {
+            this.spikes = new Spikes(this, this.player, spikes.x, spikes.y, 'spikes');
+        }
     }
     /**
      * Menú de pausa
      */
     createPause() {
+        //creación botones/paneles
         this.background = this.add.image(500, 250, 'panel').setScrollFactor(0).setVisible(false);
         this.controls = this.add.image(500, 250, 'controles').setScale(0.75).setScrollFactor(0).setVisible(false);
         this.back = this.add.image(500, 400, 'exit').setScale(0.75).setScrollFactor(0).setVisible(false).setInteractive();
@@ -179,6 +181,7 @@ export default class Level2 extends Phaser.Scene {
         this.midsound = this.add.image(400, 350, 'midsound').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
         this.mutesound = this.add.image(400, 350, 'mute').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
         this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
+        //si pulsas pausa
         this.pause.on("pointerdown", () => {
             this.playing = false;
             this.soundtrack.stop();
@@ -189,6 +192,7 @@ export default class Level2 extends Phaser.Scene {
             this.resume.setVisible(true);
             this.help.setVisible(true);
             this.exit.setVisible(true);
+            //gestión del volumen
             if (this.generalVolume === this.fullVol) {
                 this.fullsound.setVisible(true);
             }
@@ -219,7 +223,7 @@ export default class Level2 extends Phaser.Scene {
                 this.muted = false;
                 this.generalVolume = this.fullVol;
             });
-
+            //reanudar partida
             this.resume.on("pointerdown", () => {
                 //this.scene.stop();
                 this.playing = true;
@@ -235,6 +239,7 @@ export default class Level2 extends Phaser.Scene {
                 this.soundtrack.stop();
                 this.backgroundMusic();
             });
+            //panel de controles
             this.help.on("pointerdown", () => {
 
                 this.clickSoundEffect();
@@ -248,6 +253,7 @@ export default class Level2 extends Phaser.Scene {
                 this.controls.setVisible(true);
                 this.back.setVisible(true);
             });
+            //salir del panel de controles
             this.back.on("pointerdown", () => {
                 this.controls.setVisible(false);
                 this.back.setVisible(false);
@@ -267,7 +273,7 @@ export default class Level2 extends Phaser.Scene {
                 }
 
             });
-
+            //salir
             this.exit.on("pointerdown", () => {
                 //this.scene.stop();
                 this.playing = true;
@@ -277,6 +283,11 @@ export default class Level2 extends Phaser.Scene {
             });
         });
     }
+    /**
+  * Creación de Trigger del powerUp de la llave
+  * Realizado con ayuda de las transparencias
+  * de físicas en Arcade de la asignatura
+  */
     createTrigger() {
         // x, y, width, height
         this.trigger = this.add.zone(this.player.x, this.player.y, 500, 300);
@@ -292,6 +303,9 @@ export default class Level2 extends Phaser.Scene {
     destroyZone() {
         this.trigger.body.setAllowGravity(true);
     }
+    /**
+  * Panel de derrota
+  */
     gameOver() {
         this.physics.pause();
         this.gameovermusic = this.sound.add("gameovermusic");
@@ -315,6 +329,9 @@ export default class Level2 extends Phaser.Scene {
             this.scene.start('menu');
         });
     }
+    /* 
+  * Panel de victoria
+  */
     victory() {
         this.physics.pause();
         const config = {
@@ -335,12 +352,13 @@ export default class Level2 extends Phaser.Scene {
         this.add.text(370, 100, this.finalTime, { fontFamily: 'CustomFont', fontSize: 64, color: '#d1bf09' }).setScrollFactor(0);
         this.botonStart = this.add.image(410, 300, 'replay').setScale(1.2).setScrollFactor(0).setInteractive();
         this.exit = this.add.image(615, 300, 'exit').setScale(1.5).setScrollFactor(0).setInteractive();
-
+        //repetir nivel
         this.botonStart.on("pointerdown", () => {
             this.winmusic.stop();
             this.clicksound.play();
             this.scene.start('level2');
         });
+        //salir
         this.exit.on("pointerdown", () => {
             this.scene.stop();
             this.winmusic.stop();
@@ -352,7 +370,7 @@ export default class Level2 extends Phaser.Scene {
         this.player.bandageEffect();
     }
     /**
-     * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
+     * Método para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
      */
     createSewer(h) {
         this.groupAlcantarillas.add(new Sewer(this, this.player, 2000, h, 'alcantarilla'));
@@ -376,6 +394,9 @@ export default class Level2 extends Phaser.Scene {
             callbackScope: this
         });
     }
+    /**
+     * Actualizar tiempo
+     */
     updateTime() {
         this.timeScene++;
     }
@@ -409,7 +430,9 @@ export default class Level2 extends Phaser.Scene {
         this.soundtrack = this.sound.add("backsound2", config);
         this.soundtrack.play();
     }
-    // sonido de los powerups al cogerlos
+    /**
+     * Sonido al recoger powerUp
+     */
     powerUpPickSoundEffect() {
         const config = {
             mute: false,
@@ -423,21 +446,25 @@ export default class Level2 extends Phaser.Scene {
         this.pickupSound = this.sound.add("pickup", config);
         this.pickupSound.play();
     }
-    // sonido del periquito
-  parakeetSoundEffect() {
-    const config = {
-      mute: false,
-      volume: this.generalVolume + 0.1,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: false,
-      delay: 0,
-    };
-    this.pickupSound = this.sound.add("parakeetsound", config);
-    this.pickupSound.play();
-  }
-    // sonido de los powerups al consumirlos
+    /**
+     *  Sonido del periquito bomba
+     */
+    parakeetSoundEffect() {
+        const config = {
+            mute: false,
+            volume: this.generalVolume + 0.1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
+        };
+        this.pickupSound = this.sound.add("parakeetsound", config);
+        this.pickupSound.play();
+    }
+    /**
+     * Sonido al consumir powerUp
+     */
     powerUpConsumeSoundEffect() {
         const config = {
             mute: false,
@@ -451,7 +478,9 @@ export default class Level2 extends Phaser.Scene {
         this.powerSound = this.sound.add("usepowerup", config);
         this.powerSound.play();
     }
-    // sonido de al colisionar con obstaculos que hacen daño
+    /**
+     * Sonido al sufrir daño
+     */
     hurtSoundEffect() {
         const config = {
             mute: false,
@@ -465,6 +494,9 @@ export default class Level2 extends Phaser.Scene {
         this.hurtSound = this.sound.add("hurt", config);
         this.hurtSound.play();
     }
+    /**
+     * Sonido al pisar alcantarilla
+     */
     sewerSoundEffect() {
         this.player.sewerEffect();
         const config = {
@@ -479,6 +511,9 @@ export default class Level2 extends Phaser.Scene {
         this.fallSound = this.sound.add("fall", config);
         this.fallSound.play();
     }
+    /**
+     * Sonido al clickar botón
+     */
     clickSoundEffect() {
         const config = {
             mute: false,
