@@ -58,6 +58,9 @@ export default class Level extends Phaser.Scene {
     this.timeScene = 0;
     this.lose = true;
   }
+  /**
+   * Creación del tilemap
+   */
   createTileMap() {
     this.map1 = this.make.tilemap({
       key: 'map1',
@@ -134,6 +137,7 @@ export default class Level extends Phaser.Scene {
   * Menú de pausa
   */
   createPause() {
+    //creación botones/paneles
     this.background = this.add.image(500, 250, 'panel').setScrollFactor(0).setVisible(false);
     this.controls = this.add.image(500, 250, 'controles').setScale(0.75).setScrollFactor(0).setVisible(false);
     this.back = this.add.image(500, 400, 'exit').setScale(0.75).setScrollFactor(0).setVisible(false).setInteractive();
@@ -144,6 +148,7 @@ export default class Level extends Phaser.Scene {
     this.midsound = this.add.image(440, 330, 'midsound').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
     this.mutesound = this.add.image(420, 330, 'mute').setScale(1.5).setScrollFactor(0).setInteractive().setVisible(false);
     this.pause = this.add.image(970, 30, 'pause').setScale(0.1).setScrollFactor(0).setInteractive();
+    //si pulsas pausa
     this.pause.on("pointerdown", () => {
       this.playing = false;
       this.soundtrack.stop();
@@ -153,6 +158,7 @@ export default class Level extends Phaser.Scene {
       this.resume.setVisible(true);
       this.help.setVisible(true);
       this.exit.setVisible(true);
+      //gestión del volumen
       if (this.generalVolume === this.fullVol) {
         this.fullsound.setVisible(true);
       }
@@ -183,8 +189,8 @@ export default class Level extends Phaser.Scene {
         this.muted = false;
         this.generalVolume = this.fullVol;
       });
+      //reanudar partida
       this.resume.on("pointerdown", () => {
-        //this.scene.stop();
         this.playing = true;
         this.clickSoundEffect();
         this.background.setVisible(false);
@@ -198,6 +204,7 @@ export default class Level extends Phaser.Scene {
         this.soundtrack.stop();
         this.backgroundMusic();
       });
+      //panel de controles
       this.help.on("pointerdown", () => {
 
         this.clickSoundEffect();
@@ -211,6 +218,7 @@ export default class Level extends Phaser.Scene {
         this.controls.setVisible(true);
         this.back.setVisible(true);
       });
+      //salir del panel de controles
       this.back.on("pointerdown", () => {
         this.controls.setVisible(false);
         this.back.setVisible(false);
@@ -230,6 +238,7 @@ export default class Level extends Phaser.Scene {
         }
 
       });
+      //salir del panel de controles
       this.exit.on("pointerdown", () => {
         //this.scene.stop();
         this.playing = true;
@@ -242,7 +251,7 @@ export default class Level extends Phaser.Scene {
   /**
   * Creación de Trigger del powerUp de la llave
   * Realizado con ayuda de las transparencias
-  * de físicas de la asignatura
+  * de físicas en Arcade de la asignatura
   */
   createTrigger() {
     // x, y, width, height
@@ -258,9 +267,9 @@ export default class Level extends Phaser.Scene {
   destroyZone() {
     this.trigger.body.setAllowGravity(true);
   }
-  /*
-  * Imagen de Game Over con los botones de replay y salir
-  */
+  /**
+ * Panel de derrota
+ */
   gameOver() {
     this.physics.pause();
     this.gameovermusic = this.sound.add("gameovermusic");
@@ -285,7 +294,7 @@ export default class Level extends Phaser.Scene {
     });
   }
   /* 
-  * Imagen de victoria con los botones de replay, next level y salir
+  * Panel de victoria
   */
   victory() {
     this.physics.pause();
