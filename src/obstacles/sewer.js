@@ -1,5 +1,10 @@
 import Obstacles from "./obstacles.js";
-
+/** 
+    * Clase que hereda de obstacles y representa las alcantarillas. 
+    * Cuando el player choque con ellas, se le
+    * restará una vida y se le retrasará la posición
+    * a la de la anterior alcantarilla. Solo aparece en el primer nivel
+    */
 export default class Sewer extends Obstacles {
     constructor(scene, player, x, y, name) {
         super(scene, x, y, name);
@@ -11,6 +16,7 @@ export default class Sewer extends Obstacles {
     }
     preUpdate() {
         if (!this.collision && this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
+            this.effect();
             this.scene.sewerSoundEffect();
             this.collision = true;
             this.collisionTimer();
@@ -31,6 +37,12 @@ export default class Sewer extends Obstacles {
             callback: this.collision = false,
             callbackScope: this
         });
+    }
+    effect() {
+
+        this.player.playerDamage(1);
+        this.player.x = this.scene.UltimaSobrePasada();
+
     }
 
 }

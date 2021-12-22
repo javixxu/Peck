@@ -1,12 +1,12 @@
 import PowerUp from "./powerUp.js";
-
-export default class Cola extends PowerUp {
-  /*
+/** 
   * Clase que hereda de PowerUp y representa la cola.
+  * Al ser activado, la velocidad de player se duplicará
+  * durante 5 segundos.
   */
+export default class Cola extends PowerUp {
   constructor(scene, player, x, y) {
     super(scene, x, y, 'cola');
-    //this.player = player;
   }
   preUpdate() {
     super.preUpdate();

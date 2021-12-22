@@ -1,4 +1,7 @@
-
+/**
+ * Clase que representa el coche de Mitch
+ * al colisionar con el, pasaremos de nivel/ganaremos
+ */
 export default class VictoryCollider extends Phaser.GameObjects.Sprite {
     constructor(scene, player, x, y) {
         super(scene, x, y, 'car');

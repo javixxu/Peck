@@ -1,6 +1,7 @@
 import Enemies from "./enemies.js";
 /**
- * Clase que representa el cuervo.
+ * Clase que que hereda de Enemies y representa el cuervo.
+ * Al chocar con el jugador le hará un daño de 1 corazón
  */
 export default class Crow extends Enemies {
 
@@ -32,7 +33,7 @@ export default class Crow extends Enemies {
       this.tween.resume();
       super.preUpdate(t, dt);
       this.crowMovement();
-      this.Attack();
+      this.attack();
     }
   }
 
@@ -41,7 +42,7 @@ export default class Crow extends Enemies {
       this.scene.physics.moveToObject(this, this.scene.player, 250);
   }
 
-  Attack() {
+  attack() {
     if (!this.destroyed) {
       if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
         this.player.playerDamage(1);
