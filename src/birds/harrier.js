@@ -1,6 +1,7 @@
 import Enemies from "./enemies.js";
 /**
- * Clase que representa el aguilucho.
+ * Clase que que hereda de Enemies y representa el aguilucho.
+ * Al chocar con el jugador le hará un daño de 1 corazón
  */
 export default class Harrier extends Enemies {
     constructor(scene, player, x, y, name) {
@@ -12,7 +13,7 @@ export default class Harrier extends Enemies {
         this.body.allowGravity = false;
         this.body.setBounceY(1);
         this.body.setCollideWorldBounds();
-        this.body.setSize(80,30);
+        this.body.setSize(80, 30);
         this.fallSpeed = 150;
         this.descenso = true;
         this.ascenso = false;
@@ -53,14 +54,17 @@ export default class Harrier extends Enemies {
             }
             // Invencibilidad del jugador
             if (!this.destroyed) {
-                if (this.collision && this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
-                    this.player.playerDamage(1);
-                    this.collision = false;
-                    console.log('CHOQUEE')
-                }
+                this.attack();
             }
 
         }
 
+    }
+    attack() {
+        if (this.collision && this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
+            this.player.playerDamage(1);
+            this.collision = false;
+
+        }
     }
 }

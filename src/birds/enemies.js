@@ -1,3 +1,6 @@
+/**
+ * Clase de la que heredan los enemigos
+ */
 export default class Enemies extends Phaser.GameObjects.Sprite {
     constructor(scene, player, x, y, name) {
         super(scene, x, y, name);

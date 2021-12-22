@@ -498,7 +498,6 @@ export default class Level2 extends Phaser.Scene {
      * Sonido al pisar alcantarilla
      */
     sewerSoundEffect() {
-        this.player.sewerEffect();
         const config = {
             mute: false,
             volume: this.generalVolume + 0.2,

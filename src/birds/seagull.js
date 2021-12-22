@@ -1,5 +1,8 @@
 import Enemies from "./enemies.js";
-
+/**
+ * Clase que que hereda de Enemies y representa la gaviota.
+ * Al chocar con el jugador le hará un daño de 1.5 corazones
+ */
 export default class Seagull extends Enemies {
   constructor(scene, player, x, y) {
     super(scene, player, x, y);
@@ -25,7 +28,7 @@ export default class Seagull extends Enemies {
       const angle = 0.02; //Rotacion 
       this.container.rotation -= angle; //Rotacion del container
       this.bird.rotation += angle; //correcion para que la gaviota no se gire raro
-      this.Attack();
+      this.attack();
 
       if (this.scene.physics.overlap(this.bird, this.scene.trigger)) {
         this.setActive(false);
@@ -40,7 +43,7 @@ export default class Seagull extends Enemies {
       this.bird.play('seagull_fly');
     }
   }
-  Attack() {
+  attack() {
     if (this.scene.physics.overlap(this.player, this.bird) && !this.player.seeVulnerability()) {
       this.player.playerDamage(1.5);
       this.player.changeInvulnerability();

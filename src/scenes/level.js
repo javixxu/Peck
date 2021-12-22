@@ -470,7 +470,6 @@ export default class Level extends Phaser.Scene {
   }
   // sonido de al colisionar con una alcantarilla
   sewerSoundEffect() {
-    this.player.sewerEffect();
     const config = {
       mute: false,
       volume: this.generalVolume + 0.2,

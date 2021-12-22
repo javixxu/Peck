@@ -1,9 +1,10 @@
 import PowerUp from "./powerUp.js";
-
-export default class Bandages extends PowerUp {
-  /*
+/**
   * Clase que hereda de PowerUp y representa las vendas.
+  * Al ser utilizado, el jugador recupera una vida
+  * (nunca superando su vida máxima, 5)
   */
+export default class Bandages extends PowerUp {
   constructor(scene, x, y) {
     super(scene, x, y, 'bandage');
     this.body.setSize(50, 50);

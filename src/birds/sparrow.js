@@ -1,6 +1,7 @@
 import Enemies from "./enemies.js";
 /**
- * Clase que representa el gorrión.
+ * Clase que hereda de Enemies y representa el gorrión.
+ *  Al chocar con el jugador le hará un daño de 0.5 corazones
  */
 export default class Sparrow extends Enemies {
 
@@ -32,11 +33,11 @@ export default class Sparrow extends Enemies {
     else {
       this.tween.resume();
       super.preUpdate(t, dt);
-      this.Attack();
+      this.attack();
     }
   }
 
-  Attack() {
+  attack() {
     if (!this.destroyed) {
       if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
         this.player.playerDamage(0.5);
