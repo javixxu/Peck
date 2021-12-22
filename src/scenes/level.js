@@ -37,7 +37,7 @@ export default class Level extends Phaser.Scene {
     const large = width * 10;
 
     this.createAligned(this, large, 'backgroundlvl1', 1);
-
+    this.createStageImages();
     this.player = new Player(this, 0, 300, 5);
     new VictoryCollider(this, this.player, 7300, 175);
     this.groupAlcantarillas = this.add.group();
@@ -98,6 +98,25 @@ export default class Level extends Phaser.Scene {
       this.seagull = new Seagull(this, this.player, seagull.x, seagull.y, 'seagull');
       this.physics.add.collider(this.seagull, this.groundLayer);
     }
+  }
+  /**
+   * Elementos del Fondo del escenario
+   */
+  createStageImages(){
+    this.add.image(100,310,'casa1');
+    this.add.image(400,310,'arbol');
+    this.add.image(967.5,295,'casa5');
+    this.add.image(1900,250,'gasolinera');
+    this.add.image(1300,250,'arbol');
+    this.add.image(2732.5,150,'casa4');
+    this.add.image(3857.5,90,'casa3');
+    this.add.image( 3500,90,'casa3');
+    this.add.image(4382.5,255,'arbol');
+    this.add.image(4627.5,255,'arbol');
+    this.add.image(4762.5,395,'cartel');
+    this.add.image( 5202.5,350,'gasolinera');
+    this.add.image( 5652.5,340,'casa4');
+    this.add.image(7102.5,100,'arbol');   
   }
   /**
   * Creación de powerUps
@@ -382,6 +401,7 @@ export default class Level extends Phaser.Scene {
   */
   updateTime() {
     this.timeScene++;
+    console.log(this.player.x);
   }
   update(t, dt) {
     this.soundtrack.resume();
