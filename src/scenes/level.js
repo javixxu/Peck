@@ -357,8 +357,8 @@ export default class Level extends Phaser.Scene {
   createSewer(h) {
     this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h - 75, 'alcantarilla'));
     this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h - 120, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 4000, h - 220, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 7100, h - 270, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 3300, h - 270, 'alcantarilla'));
+    
   }
   UltimaSobrePasada() {
     let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
