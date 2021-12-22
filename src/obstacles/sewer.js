@@ -11,6 +11,7 @@ export default class Sewer extends Obstacles {
     }
     preUpdate() {
         if (!this.collision && this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
+            this.Effect();
             this.scene.sewerSoundEffect();
             this.collision = true;
             this.collisionTimer();
@@ -31,6 +32,12 @@ export default class Sewer extends Obstacles {
             callback: this.collision = false,
             callbackScope: this
         });
+    }
+    Effect() {
+
+        this.player.playerDamage(1);
+        this.player.x = this.scene.UltimaSobrePasada();
+
     }
 
 }

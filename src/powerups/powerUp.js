@@ -1,7 +1,8 @@
-export default class PowerUp extends Phaser.GameObjects.Sprite {
-    /*
-    * Clase para los Power Ups
+/** 
+    * Clase de la que heredan los Power Ups
     */
+export default class PowerUp extends Phaser.GameObjects.Sprite {
+
     constructor(scene, x, y, name) {
         super(scene, x, y, name);
         this.scene.add.existing(this);
