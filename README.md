@@ -13,7 +13,7 @@ Nombre de los autores y correo electrónico de contacto:
 - Javier Comas de Frutos javcomas@ucm.es
 - Adrián Montero Castrillo admont02@ucm.es
 
-Versión 1.6 –20 diciembre 2021
+Versión 1.7 –22 diciembre 2021
 
 ## Características
 
@@ -27,12 +27,16 @@ Versión 1.6 –20 diciembre 2021
 
 ## Descripción
  
- Peck es un juego de plataformas 2D en el que nuestra protagonista, Cathy Brenner, una simple niña de 11 años con una jaula con periquitos, deberá huir de las bandadas de pájaros asesinos que siembran el caos en Bodega Bay. Para poder escapar de esta pesadilla deberá huir en el coche de su hermano Mitch. Sin embargo, llegar hasta él supondrá todo un reto ya que deberá esquivar y defenderse de los ataques de los diferentes pájaros, sorteando diversos obstáculos y ayudándose de sus pequeños periquitos.
+ Peck es un juego de plataformas 2D en el que nuestra protagonista, Cathy Brenner, una simple niña de 11 años, trata de huir de unas bandadas de pájaros asesinos que están sembrando el caos en Bodega Bay. Para poder escapar de esta pesadilla deberá llegar al coche de su hermano Mitch. Sin embargo, llegar hasta él supondrá todo un reto ya que deberá esquivar y defenderse de los ataques de los diferentes pájaros, sorteando diversos obstáculos y ayudándose de diversos power ups.
 
 ### Versiones del documento
 Histórico de versiones y control de cambios
 25/09/2021-Generación de la idea
 30/09/2021-Fin Preproducción
+31/10/2021- Hito 1
+27/11/2021- Hito 2
+20/12/2021- Hito 3
+22/12/2021- Release
 
 ### Tabla de contenidos
 
@@ -68,56 +72,65 @@ Histórico de versiones y control de cambios
 
 # 1. Aspectos generales
 
-Peck es un juego en el que controlamos a Cathy Brenner, una niña que tiene la mala suerte de que en su undécimo cumpleaños, la localidad en la que reside, Bodega Bay, es atacada por varios pájaros con instinto asesino. Su objetivo principal será escapar de este truculento suceso huyendo de Bodega Bay en el coche de su hermano Mitch. Para ello deberá atravesar el lugar partiendo de su fiesta de cumpleaños, pero esto no será fácil ya que debido al caos creado por los continuos ataques de los pájaros, Bodega Bay se encuentra arrasada. Debido a esto, Cathy deberá sortear los distintos obstáculos (saltando o agachándose) que se encuentre (escombros, vallas, coches...), mientras se intenta defender de los ataques de las aves.
+Peck es un juego de plataformas 2D estilo scroll lateral, en el que controlamos a Cathy Brenner, una niña que tiene la mala suerte de que en su undécimo cumpleaños, la localidad en la que reside, Bodega Bay, es atacada por bandadas de pájaros con un inexplicable instinto asesino. Su objetivo principal será escapar de este truculento suceso huyendo de Bodega Bay en el coche de su hermano Mitch. Para ello deberá atravesar el lugar partiendo de su fiesta de cumpleaños, pero esto no será fácil ya que debido al caos creado por los continuos ataques de los pájaros, Bodega Bay se encuentra arrasada. Debido a esto, Cathy deberá sortear los distintos obstáculos que se encuentre (escombros, vallas, coches...), mientras se intenta defender de los ataques de las aves.
 
 ## 1.1 Relato breve y parcial de una partida típica 
-Aparecemos en Bodega Bay, controlando a Cathy, con su jaula de periquitos en mano. Avanzamos por el nivel, esquivando a sucesivos cuervos, encontramos un bote de alpiste en el suelo, que empleamos para poner una trampa para pájaros, que nos otorgan tres segundos extra de margen para escapar. A continuación, una gaviota impacta contra nosotros, haciéndonos perder un corazón y medio, seguimos avanzando por la calle, recogemos un periquito que explota, eliminando a unos gorriones que estaban cerca. Recuperamos un corazón mediante el uso de una venda, pero poco después tres cuervos impactan contra nosotros de manera muy seguida, y nos quedamos únicamente con dos corazones restantes. Caemos en una alcantarilla, y nada más salir de ella dos gorriones nos atacan, matándonos y perdiendo así la partida.
+Aparecemos en el primer nivel, controlando a Cathy, recogemos del suelo una llave, que usamos para eliminar a dos aguiluchos, avanzamos hasta que un cuervo impacta contra nosotros, restandonos 1 corazón de salud, caemos en un charco de lodo que reduce nuestra velocidad, por lo que una gaviota nos impacta sin poder esquivarla, perdiendo otros 1.5 corazones. Encontramos una cola, que nos aumenta la velocidad, saltamos por encima un profundo hoyo repleto de pinchos sin recibir ningún daño, nos impactan consecutivamente dos gorriones, perdiendo 0.5 corazones por cada golpe. Tras ello, nos encontramos justo a punto de pasar al siguiente nivel, pero justo caemos en una alcantarilla, y al aparecer en la anterior, un cuervo nos asesta un golpe y nos quedamos sin vidas restantes
 
 # 2. Jugabilidad
 ## 2.1 Mecánica
 ### 2.1.1 Mecánicas del personaje
-- Movimiento: La partida se desarrolla en un solo plano lateral, en el que Cathy únicamente podrá moverse hacia izquierda o derecha. Además tendrá la capacidad de saltar  para esquivar obstáculos.
-- Vida: Cathy tendrá 5 corazones que podrá perder al colisionar con los diferentes pájaros enemigos. Si se queda sin corazones, muere y se pierde la partida (regresando al menú principal). En los niveles habrá diferentes trampas que también harán daño. Dependiendo del tipo de pájaro y trampa, perderá más o menos vida.
-La vida se resetea al pasar de nivel.
-- Recoger/Consumir objetos: Al pasar por encima  de un objeto , lo almacenaremos en nuestro inventario (si está vacío). En el inventario solo podremos llevar un objeto, que podremos consumir con la tecla E. No podremos sustituir el objeto guardado por otro.
+- Movimiento: La partida se desarrolla en un solo plano lateral, en el que Cathy únicamente podrá moverse hacia izquierda o derecha. Además tendrá la capacidad de saltar para pasar distintas zonas de los niveles y esquivar tanto obstáculos como enemigos.
+
+- Vida: Cathy dispone de 5 corazones de salud, que se ven reflejados en la interfaz de usuario y puede perder al colisionar con los diferentes enemigos. Si se queda sin corazones, muere y perdemos la partida, apareciendo una pantalla de GAme Over que nos da tanto la opciión de reiniciar el nivel como de regresar al menú principal. En los niveles habrá diversos obstáculos que también harán daño. Dependiendo del tipo de pájaro y obstáculo con el que colisione, perderá más o menos vida.
+La vida se resetea a los 5 corazones iniciales al reiniciar/pasar de nivel.
+
+- Recoger/Consumir power ups: Si Cathy pasa por encima de un power up , lo almacenaremos en nuestro inventario, siempre y cuando esté vacío. En el inventario solo podremos llevar un item, que podremos consumir con la tecla E, desapareciendo del inventario el power up y aplicandose el efecto del mismo. No podremos sustituir el power up guardado por otro.
 
 
 #### 2.1.2 Mecánicas de escenario
 El escenario consta de una serie de plataformas y obstáculos por las que la protagonista deberá moverse y esquivar para alcanzar la meta. Cathy podrá recoger distintos objetos que le proporcionarán power-ups con ventajas que le ayudarán a escapar.
 Obstáculos que bloquean el paso:
-- Vallas: La protagonista deberá agacharse para pasar por debajo.
-- Escombros: Algunos deberán saltarse y otros deberán pasarse por debajo.
-- Coches: Deberán saltarse por encima.
+- Vallas (Fences), escombros (Debris) y coches (Car): La protagonista deberá saltar estos obstáculos para poder avanzar
 
-Asimismo, habrá trampas (obstáculos que quitan vida):
-- Pinchos: Quitan medio corazón mientras se esté en contacto con ellos.
-- Alcantarilla: Quita un corazón al caer en ella. El jugador, tras caer por ella aparecerá justo detrás de ésta.  
-- Charco de lodo: si la protagonista cae o se posiciona dentro de uno de estos se reducirá su velocidad a la mitad y como consecuencia la altura de su salto. El efecto dura 5 segundos desde que se pisa por primera vez.
+Por otro lado, podemos encontrarnos con trampas (obstáculos que quitan vida):
+- Pinchos (Spikes): Quitan medio corazón mientras se esté en contacto con ellos.
+
+- Alcantarilla (Sewer): Al caer en una alcantarilla, además de perder un corazón, Cathy se teletransportara a la posicion de la última alcantarilla que haya sobrepasado en el nivel.
+
+- Charco de lodo(Puddle): Si Cathy colisiona con un charco de lodo, se reducirá su velocidad a la mitad y como consecuencia la altura de su salto. El efecto dura 5 segundos desde que se pisa por primera vez.
 
 
 
 ### 2.1.3 Cámara
-La cámara tendrá movimiento de scroll lateral y seguirá al jugador, viéndose tan solo una parte del nivel y no éste completo. La partida se desarrolla en un único plano lateral. 
+La cámara tendrá movimiento de scroll lateral y seguirá al jugador cuando este avance, viéndose tan solo una parte del nivel y no éste completo. La partida se desarrolla en un único plano lateral. 
+
+
 
 ## 2.2 Dinámica
-El objetivo de Peck consiste en escapar de los violentos pájaros que atacan a la población de Bodega Bay huyendo de la ciudad mientras se esquivan obstáculos y ataques. 
-Para ganar, Cathy deberá llegar al coche de su hermano, que se encuentra al final del nivel, y huir de la ciudad.
+El objetivo de Peck consiste en escapar de los violentos pájaros que atacan a la población de Bodega Bay huyendo de la ciudad, mientras se esquivan obstáculos y ataques de las aves. 
+Para ganar, Cathy deberá llegar al coche de su hermano, que se encuentra al final del segundo nivel, y así escapar de la ciudad.
+
 Se pierde al quedarse sin vidas (muriendo la protagonista), tras haber sufrido los diferentes ataques de las aves o haber caído en las trampas. Es a la vez un sistema de castigo ya que deberá empezarse de nuevo el nivel.
-Como sistema de puntuación, habrá un temporizador que contabilizará el tiempo que tarda el jugador en pasarse el nivel y se  guardará como high-score el tiempo mínimo.
+Como sistema de puntuación, habrá un temporizador que contabilizará el tiempo que tarda el jugador en pasarse el nivel.
 
 ## 2.3 Estética
+
 _Temática_
-Peck está inspirado en la película de 1963 de Hitchcock, “Los pájaros”. El juego se ambienta en la Bodega Bay de los años 60 por lo que todos los edificios, ropa, coches e infraestructuras concuerdan con la época. También continuando con la temática de los pájaros, cuervos, gaviotas y gorriones provocan destrozos en la ciudad y por ello encontramos escombros, vallas, coches mal aparcados...
+
+Peck está inspirado en la película de 1963 de Alfred Hitchcock, “Los pájaros”. El juego se ambienta en la Bodega Bay de los años 60 por lo que la ropa, los coches e infraestructuras concuerdan con la época. También continuando con la temática de los pájaros, cuervos, gaviotas, aguiluchos y gorriones provocan destrozos en la ciudad y por ello encontramos escombros, vallas, coches mal aparcados..
 
 _Target_
+
 Este juego irá orientado principalmente a personas de más de 12 años debido a la sensación de violencia que se transmite. También estará orientado al público más cinéfilo al estar basada en una película por lo que quizás sea mejor comprendido por un público más adulto.
 
 _Experiencia_
-El usuario experimentará cierta tensión al no saber cuándo ni dónde aparecerán los pájaros que le atacarán. Además debido a la temática y estética puede que en algunos puntos de la partida experimente cierta sensación de angustia o congoja debido al clima de devastación y violencia que se presenta. 
-También se experimentará cierta sensación de frenesí y nerviosismo debido a las ansias que provoca el querer escapar del terrible caos de la ciudad.
+
+El usuario experimentará cierta tensión al no saber cuándo ni dónde aparecerán los pájaros que le atacarán. Además experimentará cierta sensación de frenesí y nerviosismo debido a las ansias que provoca el querer escapar del terrible caos de la ciudad. Cuando consiga completar un nivel y/o  una zona dde dificultad alta, se sentirá feliz y satisfecho.
 
 _Colores_
-El escenario del juego tendrá unos colores apagados y oscuros, con el objetivo de transmitir tensión y miedo.
+
+El escenario del juego tendrá unos colores apagados y oscuros, con el objetivo de transmitir que el escenario está ligeramente devastado.
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/893091942873854052/paletton_2.png)
 
@@ -138,18 +151,19 @@ Peck dispondrá únicamente de un modo de juego, que será el modo Single Player
 
 El menú de pausa tendrá las opciones de:
 - Reanudar el juego
-- Salir del juego (volver al menú principal)
+- Salir de la partida (volver al menú principal)
 - Configuración del sonido
+- Panel de controles
 
 El menú principal dará acceso a:
 - Iniciar la Partida
-- Información sobre los controles
-- Salir del juego
+- Panel de controles
 
 
-## 3.2 Interfaz y control  
-En la parte superior izquierda de la pantalla,  se encuentran la vida del jugador (representada por corazones), como el inventario donde podremos llevar un power-up.
-Por otro lado, en la parte derecha, encontraremos un contador de tiempo de lo que lleva la partida en curso y un botón de pausa, que al ser pulsado pausa la escena de juego y abre el menú de pausa.
+## 3.2 Interfaz y control
+
+En la parte superior izquierda de la pantalla, se encuentran la vida del jugador (representadas las vidas restantes por corazones), como el inventario, donde podremos llevar un power-up.
+Por otro lado, en la parte derecha, encontraremos un contador del tiempo que lleva la partida en curso y un botón de pausa, que al ser pulsado pausa la escena de juego y abre el menú de pausa.
 
 
 # 4. Contenido
@@ -160,8 +174,8 @@ El día del undécimo cumpleaños de Cathy Brenner una bandada de gaviotas, cuer
 ## 4.2 Niveles
 
 Los niveles estarán predefinidos en el diseño, es decir, siempre habrá el mismo número de enemigos.
-El juego consta de dos niveles en los que la dificultad aumenta gradualmente. Ambos niveles están ambientados en Bodega Bay y se darán en un escenario similar. El final o la meta de los dos será el coche de Mitch Brenner.
-En el segundo nivel aparecerán obstáculos de mayor dificultad con respecto al nivel anterior, por ejemplo más trampas o plataformas más separadas.
+El juego consta de dos niveles en los que la dificultad aumenta gradualmente. Ambos niveles están ambientados en Bodega Bay y se darán en un escenario similar, el primer nivel más orientado a la zona residencial de Bodega Bay, y el segundoo a la play. El final o la meta de los dos será el coche de Mitch Brenner.
+
 En ambos niveles habrá ciertas zonas en las que la concentración de enemigos será mayor de la usual, por ello, alrededor de estas zonas encontraremos objetos que nos servirán de ayuda.
 
 
@@ -171,20 +185,20 @@ Protagonista: Cathy Brenner. Ocupa 1,5 x 1,5.
 
 Los enemigos tendrán la habilidad de atacar a Cathy colisionando con ella. Irán apareciendo aleatoriamente del cielo, volando hacia ella.
 
-- Cuervo: Cuervo: Enemigo hostil que ataca en línea recta, dándose la vuelta cada cierto tiempo persiguiendo a Cathy. Ocupa la mitad que la protagonista.
+- Cuervo: Cuervo: Enemigo hostil que ataca en línea recta, dándose la vuelta cada cierto tiempo persiguiendo a Cathy. Tiene un daño de 1 corazón. Ocupa la mitad que la protagonista.
 
 
 ![N|Solid](https://cdn.discordapp.com/attachments/884555645414699018/891738880787750963/unknown.png)
-- Gaviota: Enemigo hostil que realiza movimientos circulares alrededor de un punto fijo. Ocupa la mitad que la protagonista.
+- Gaviota: Enemigo hostil que realiza movimientos circulares alrededor de un punto fijo. Tiene un daño de 1.5 corazones .Ocupa la mitad que la protagonista.
 
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/891739115060600832/unknown.png?width=749&height=657)
-- Gorrión: Enemigo hostil que se mueve en semicírculos tocando el suelo (es decir, dando saltitos por el suelo), a lo largo de un radio de medio metro. Es a su vez el enemigo más numeroso. Ocupa ¼ de la escala de la protagonista.
+- Gorrión: Enemigo hostil que se mueve en semicírculos tocando el suelo (es decir, dando saltitos). Es el enemigo con menor daño,0.5 corazones. Ocupa ¼ de la escala de la protagonista.
 
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/891737841741234226/unknown.png?width=758&height=657)
 
-Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino será la posición del jugador en el momento en el que se genere el enemigo (no se actualizará de constante), es decir, si el jugador se mueve, no será perseguido. El movimiento que realiza este enemigo es con forma de parábola cóncava.
+Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino será la posición del jugador en el momento en el que se genere el enemigo, es decir, si el jugador se mueve, no será perseguido. El movimiento que realiza este enemigo es con forma de parábola cóncava y tiene un daño de 1 corazón, al igual que el cuervo.
 
 ![N|Solid](https://st4.depositphotos.com/20277160/38579/v/600/depositphotos_385794022-stock-illustration-vector-of-flying-eagle-mascot.jpg)
 
@@ -196,17 +210,16 @@ Aguilucho: Enemigo hostil que se mueve con una dirección fija cuyo destino ser�
 ### 4.3.1 Controles
 Controles de movimiento:
 - Teclas “D” ó “Right Arrow” para movernos hacia la derecha
-- Teclas “S” ó “Down Arrow” para agacharse
 - Teclas “W”, “Up Arrow” ó “Space Bar” para saltar
 - Teclas “A” ó “LeftArrow” para movernos hacia la izquierda
 - Tecla “E” para consumir el power-up almacenado
 
-- Menú de pausa: Al pulsar el botón de pausa situado en la parte superior derecha de la pantalla,  aparecerá  el menú de pausa que contendrá distintas opciones.
+- Menú de pausa: Al pulsar el botón rojo situado en la parte superior derecha de la pantalla, aparecerá el menú de pausa que contendrá distintas opciones.
 
 ## 4.4 Objetos
-Los objetos aparecerán aleatoriamente por el escenario de juego, y se recogen al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres objetos:
+Los objetos tienen una posición predefinida en cada nivel en el escenario de juego, y se recogen al colisionar con ellos, desapareciendo estos del mapa. En Peck disponemos de tres power ups:
 
-- Llave para la jaula: al recogerla, Cathy abre su jaula y lanza  un periquito para eliminar varios cuervos cuando el periquito explota cerca de estos. Cathy dispone 2 periquitos por nivel , en su jaula 
+- Llave para la jaula: Al activar el power up de la llave, Cathy lanza un periquito bomba que elimina a los enemigos que estén en un rango de 500 píxeles de ancho y 300 de alto.
 
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/893092168477061130/llave.png)
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/892690851443134484/unknown.png?width=492&height=657)
@@ -216,7 +229,7 @@ Los objetos aparecerán aleatoriamente por el escenario de juego, y se recogen a
 
 ![N|Solid](https://previews.123rf.com/images/jemastock/jemastock1708/jemastock170811033/84161725-adhesivos-venda-salud-icono-imagen-vector-ilustraci%C3%B3n-dise%C3%B1o.jpg)
 
--Refresco :La velocidad de Cathy se duplica durante 5 segundos.
+-Refresco :Su efecto duplica la velocidad de Cathy durante 5 segundos.
 ![N|Solid](https://media.discordapp.net/attachments/884555645414699018/904436623834492978/cola.png)
 
 
@@ -232,3 +245,4 @@ https://www.shutterstock.com/es/image-vector/old-school-8-bit-pixel-art-66359515
 https://www.pinterest.ch/pin/807129564441953561/
 - https://es.123rf.com/photo_84161725_adhesivos-venda-salud-icono-imagen-vector-ilustraci%C3%B3n-dise%C3%B1o.html
 - https://mx.depositphotos.com/
+- https://freesound.org
