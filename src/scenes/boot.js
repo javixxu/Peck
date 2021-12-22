@@ -66,9 +66,20 @@ export default class Boot extends Phaser.Scene {
     this.load.image('center', 'center.png');
     this.load.image('car', 'car.png');
     this.load.image('redcar', 'redcar.png');
-    this.load.image('greencar', 'greencar');
-
+    this.load.image('greencar', 'greencar.png');
+    this.load.setPath('assets/images/elementosfondo/');
+    this.load.image('arbol', 'arbol1.png');
+    this.load.image('pino', 'arbol(Pino).png');
+    this.load.image('cartel', 'cartel.png');
+    this.load.image('casa1', 'casa1.png');
+    this.load.image('casa2', 'casa2.png');
+    this.load.image('casa3', 'casa3.png');
+    this.load.image('casa4','casa4.png');
+    this.load.image('casa5', 'casa5.png');
+    this.load.image('gasolinera', 'gasolinera.png');
+    
     // SPRITESHEETS
+    this.load.setPath('assets/images/');
     this.load.spritesheet('crow', 'ravens.png', { frameWidth:97, frameHeight: 95 });
     this.load.spritesheet('sg', 'seagullsSprite.png', { frameWidth: 90, frameHeight: 90 });
     this.load.spritesheet('sparrow', 'gorrion.png', { frameWidth: 45, frameHeight: 45 });
