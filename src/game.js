@@ -1,4 +1,4 @@
-import Boot from './boot.js';
+import Boot from './scenes/boot.js';
 import Menu from './scenes//mainmenu.js';
 import Level from './scenes/level.js';
 import Level2 from './scenes/level2.js';

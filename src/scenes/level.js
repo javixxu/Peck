@@ -351,16 +351,14 @@ export default class Level extends Phaser.Scene {
       x += b.width;
     }
   }
-  bandagePickt() {
-    this.player.bandageEffect();
-  }
   /**
-   * metodo para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
+   * Método para crear las alcantarillas 
   */
   createSewer(h) {
     this.groupAlcantarillas.add(new Sewer(this, this.player, 700, h - 75, 'alcantarilla'));
     this.groupAlcantarillas.add(new Sewer(this, this.player, 1500, h - 120, 'alcantarilla'));
-    this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h - 220, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 4000, h - 220, 'alcantarilla'));
+    this.groupAlcantarillas.add(new Sewer(this, this.player, 7100, h - 270, 'alcantarilla'));
   }
   UltimaSobrePasada() {
     let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
@@ -379,6 +377,9 @@ export default class Level extends Phaser.Scene {
       callbackScope: this
     });
   }
+  /**
+  * Actualizar tiempo
+  */
   updateTime() {
     this.timeScene++;
   }
@@ -398,7 +399,9 @@ export default class Level extends Phaser.Scene {
       this.hurtSound.stop();
     }
   }
-  // musica de fondo
+  /**
+  * Música
+  */
   backgroundMusic() {
     const config = {
       mute: this.muted,
@@ -412,7 +415,9 @@ export default class Level extends Phaser.Scene {
     this.soundtrack = this.sound.add("backsound", config);
     this.soundtrack.play();
   }
-  // sonido de los powerups al cogerlos
+ /**
+  * Sonido powerUps
+  */
   powerUpPickSoundEffect() {
     const config = {
       mute: false,
@@ -426,7 +431,9 @@ export default class Level extends Phaser.Scene {
     this.pickupSound = this.sound.add("pickup", config);
     this.pickupSound.play();
   }
-  // sonido del periquito
+  /**
+  * Sonido bomba
+  */
   parakeetSoundEffect() {
     const config = {
       mute: false,
@@ -440,7 +447,9 @@ export default class Level extends Phaser.Scene {
     this.pickupSound = this.sound.add("parakeetsound", config);
     this.pickupSound.play();
   }
-  // sonido de los powerups al consumirlos
+  /**
+   * sonido de los powerups al consumirlos
+    */
   powerUpConsumeSoundEffect() {
     const config = {
       mute: false,
@@ -454,7 +463,9 @@ export default class Level extends Phaser.Scene {
     this.powerSound = this.sound.add("usepowerup", config);
     this.powerSound.play();
   }
-  // sonido de al colisionar con obstaculos que hacen daño
+  /**
+  * Sonido daño
+  */
   hurtSoundEffect() {
     const config = {
       mute: false,
@@ -468,7 +479,9 @@ export default class Level extends Phaser.Scene {
     this.hurtSound = this.sound.add("hurt", config);
     this.hurtSound.play();
   }
-  // sonido de al colisionar con una alcantarilla
+  /**
+  * Sonido pisar alcantarilla
+  */
   sewerSoundEffect() {
     const config = {
       mute: false,
@@ -482,7 +495,9 @@ export default class Level extends Phaser.Scene {
     this.fallSound = this.sound.add("fall", config);
     this.fallSound.play();
   }
-  // sonido de al hacer click
+  /**
+  * Sonido click
+  */
   clickSoundEffect() {
     const config = {
       mute: false,

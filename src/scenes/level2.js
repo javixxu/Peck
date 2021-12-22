@@ -3,9 +3,7 @@ import Crow from '../birds/crow.js';
 import Cola from '../powerups/cola.js';
 import Obstacles from '../obstacles/obstacles.js';
 import Seagull from '../birds/seagull.js';
-import Puddle from '../obstacles/puddle.js';
 import VictoryCollider from '../victorycollider.js';
-import Sewer from '../obstacles/sewer.js';
 import Bandages from '../powerups/bandages.js';
 import Sparrow from '../birds/sparrow.js';
 import Spikes from '../obstacles/spikes.js';
@@ -38,8 +36,6 @@ export default class Level2 extends Phaser.Scene {
         this.createAligned(this, large, 'beach', 1);
 
         this.player = new Player(this, 50, 300, 5);
-        this.groupAlcantarillas = this.add.group();
-        this.createSewer(height - 30);
         this.createTileMap();
         this.createEnemies();
         this.createPowerUps();
@@ -369,24 +365,6 @@ export default class Level2 extends Phaser.Scene {
     bandagePickt() {
         this.player.bandageEffect();
     }
-    /**
-     * Método para crear las alcantarillas , poner en orden creciente es decir de menor posicion a mas adelante
-     */
-    createSewer(h) {
-        this.groupAlcantarillas.add(new Sewer(this, this.player, 2000, h, 'alcantarilla'));
-        this.groupAlcantarillas.add(new Sewer(this, this.player, 2500, h, 'alcantarilla'));
-        this.groupAlcantarillas.add(new Sewer(this, this.player, 3500, h, 'alcantarilla'));
-    }
-    UltimaSobrePasada() {
-        let w = this.groupAlcantarillas.getChildren(); let desplazamiento = 175
-
-        for (let i = this.groupAlcantarillas.getLength() - 1; i > -1; i--) {
-            if (w[i].isPassed()) {
-                return w[i].getPos() - desplazamiento;
-            }
-        }
-        return w[0].getPos() - desplazamiento;
-    }
     timeTimer() {
         let timer = this.time.addEvent({
             delay: 1000,
@@ -493,22 +471,6 @@ export default class Level2 extends Phaser.Scene {
         };
         this.hurtSound = this.sound.add("hurt", config);
         this.hurtSound.play();
-    }
-    /**
-     * Sonido al pisar alcantarilla
-     */
-    sewerSoundEffect() {
-        const config = {
-            mute: false,
-            volume: this.generalVolume + 0.2,
-            rate: 1,
-            detune: 0,
-            seek: 0,
-            loop: false,
-            delay: 0,
-        };
-        this.fallSound = this.sound.add("fall", config);
-        this.fallSound.play();
     }
     /**
      * Sonido al clickar botón

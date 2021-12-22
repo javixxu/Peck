@@ -13,6 +13,7 @@ export default class Sparrow extends Enemies {
     this.body.setBounceY(1);
     this.body.setSize(40, 20);
     this.body.setCollideWorldBounds();
+    this.setDamageAttack=0.5;
     this.play('sparrow_fly');
     // Tween de movimiento del gorrión
     this.tween = this.scene.tweens.add({
@@ -40,7 +41,7 @@ export default class Sparrow extends Enemies {
   attack() {
     if (!this.destroyed) {
       if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
-        this.player.playerDamage(0.5);
+        this.player.playerDamage(this.setDamageAttack);
         this.player.changeInvulnerability();
       }
     }

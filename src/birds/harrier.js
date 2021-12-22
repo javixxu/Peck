@@ -14,6 +14,7 @@ export default class Harrier extends Enemies {
         this.body.setBounceY(1);
         this.body.setCollideWorldBounds();
         this.body.setSize(80, 30);
+        this.setDamageAttack=1;
         this.fallSpeed = 150;
         this.descenso = true;
         this.ascenso = false;
@@ -62,7 +63,7 @@ export default class Harrier extends Enemies {
     }
     attack() {
         if (this.collision && this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
-            this.player.playerDamage(1);
+            this.player.playerDamage(this.setDamageAttack);
             this.collision = false;
 
         }
