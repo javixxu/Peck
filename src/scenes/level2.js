@@ -129,12 +129,12 @@ export default class Level2 extends Phaser.Scene {
         }
         //vendas
         for (const bandage of this.map2.getObjectLayer('Bandages').objects) {
-            this.bandage = new Bandages(this, bandage.x, bandage.y, this.player, 'bandage');
+            this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
             this.physics.add.collider(this.bandage, this.sandLayer);
         }
         //llaves
-        for (const key of this.map2.getObjectLayer('Keys').objects) {
-            this.key = new Key(this, this.player, key.x, key.y);
+        for (const k of this.map2.getObjectLayer('Keys').objects) {
+            this.keys = new Key(this, this.player, k.x, k.y);
             this.physics.add.collider(this.keys, this.sandLayer);
         }
     }
@@ -498,6 +498,7 @@ export default class Level2 extends Phaser.Scene {
      * Sonido al pisar alcantarilla
      */
     sewerSoundEffect() {
+        this.player.sewerEffect();
         const config = {
             mute: false,
             volume: this.generalVolume + 0.2,

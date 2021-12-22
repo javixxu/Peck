@@ -110,7 +110,7 @@ export default class Level extends Phaser.Scene {
     }
     //vendas
     for (const bandage of this.map1.getObjectLayer('Bandages').objects) {
-      this.bandage = new Bandages(this, bandage.x, bandage.y,this.player, 'bandage');
+      this.bandage = new Bandages(this, bandage.x, bandage.y, 'bandage');
       this.physics.add.collider(this.bandage, this.groundLayer);
     }
     //llaves
@@ -293,7 +293,7 @@ export default class Level extends Phaser.Scene {
       this.scene.start('menu');
     });
   }
-  /**
+  /* 
   * Panel de victoria
   */
   victory() {
@@ -470,6 +470,7 @@ export default class Level extends Phaser.Scene {
   }
   // sonido de al colisionar con una alcantarilla
   sewerSoundEffect() {
+    this.player.sewerEffect();
     const config = {
       mute: false,
       volume: this.generalVolume + 0.2,
