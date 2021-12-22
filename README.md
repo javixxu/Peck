@@ -210,6 +210,12 @@ En ambos niveles habrá ciertas zonas en las que la concentración de enemigos s
 
 Los niveles están diseñados e implementados con Tiled.
 
+![Captura de pantalla (434)](https://user-images.githubusercontent.com/82326212/147162971-b1613de2-f629-47eb-87d6-d27b737a5b19.png)
+
+
+![nivel 2](https://user-images.githubusercontent.com/82326212/147162861-54b67e95-547f-4616-aef4-9215d8619e15.png)
+
+
 
 ## 4.3 Personajes y enemigos
 
