@@ -14,6 +14,7 @@ export default class Seagull extends Enemies {
     this.bird = this.scene.physics.add.sprite(offset, 0, 'sg');
     this.bird.body.allowGravity = false; //Quitarle la gravedad a la gaviota
     this.bird.body.setSize(60, 25);
+    this.setDamageAttack=1.5;
     //Animacion de la gaviota cuando no esta pausado
     if (this.scene.playing) { this.bird.play('seagull_fly'); }
     //Rellenar el container
@@ -45,7 +46,7 @@ export default class Seagull extends Enemies {
   }
   attack() {
     if (this.scene.physics.overlap(this.player, this.bird) && !this.player.seeVulnerability()) {
-      this.player.playerDamage(1.5);
+      this.player.playerDamage(this.setDamageAttack);
       this.player.changeInvulnerability();
     }
   }

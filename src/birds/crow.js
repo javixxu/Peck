@@ -13,6 +13,7 @@ export default class Crow extends Enemies {
     this.player = player;
     this.body.setCollideWorldBounds();
     this.body.setSize(50, 20);
+    this.setDamageAttack=1;
     this.play('raven_right');
     this.tween = this.scene.tweens.add({
       targets: this,
@@ -45,7 +46,7 @@ export default class Crow extends Enemies {
   attack() {
     if (!this.destroyed) {
       if (this.scene.physics.overlap(this.player, this) && !this.player.seeVulnerability()) {
-        this.player.playerDamage(1);
+        this.player.playerDamage(this.setDamageAttack);
         this.player.changeInvulnerability();
       }
     }
